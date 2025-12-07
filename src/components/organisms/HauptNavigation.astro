@@ -10,16 +10,19 @@ import Link from '../atoms/Link.astro';
 <style>
     nav {
         display: flex;
-        gap: 1rem;
-        padding: 1rem;
-        background-color: #f0f0f0;
+        justify-content: center; /* Navigation zentrieren */
+        gap: 2rem; /* Etwas mehr Abstand */
+        padding: 1.5rem 1rem; /* Mehr Padding */
+        background-color: #f8f9fa; /* Leichter Hintergrund */
+        border-bottom: 1px solid #e9ecef; /* Dezente Trennlinie */
     }
-    nav :global(a) { /* Verwende :global() um den Stil auf das Link-Atom anzuwenden */
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
+    nav :global(a) {
+        color: var(--textfarbe); /* Globale Textfarbe */
+        font-weight: 600; /* Etwas dicker für Navigation */
+        transition: color 0.3s ease; /* Weicher Übergang */
     }
     nav :global(a):hover {
-        color: #007bff;
+        color: var(--primärfarbe); /* Globale Primärfarbe */
+        text-decoration: none; /* Unterstreichung bei Hover entfernen */
     }
 </style>

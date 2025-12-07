@@ -10,11 +10,104 @@ const { titel } = Astro.props;
 <html lang="de">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="Eine persönliche Webseite von Jacqueline Franz" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{titel}</title>
+		<style is:global>
+			/* CSS Reset und grundlegende Stile */
+			:root {
+				--primärfarbe: #007bff; /* Blau für Links/Akzente */
+				--sekundärfarbe: #6c757d; /* Grau für Sekundärtext */
+				--hintergrundfarbe: #ffffff; /* Weißer Hintergrund */
+				--textfarbe: #333333; /* Dunkler Text */
+				--schriftart-standard: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+			}
+
+			html {
+				box-sizing: border-box;
+				font-size: 16px;
+			}
+
+			*, *::before, *::after {
+				box-sizing: inherit;
+			}
+
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: var(--schriftart-standard);
+				line-height: 1.6;
+				color: var(--textfarbe);
+				background-color: var(--hintergrundfarbe);
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+
+			/* Grundlegende Typografie */
+			h1, h2 {
+				margin-top: 1.5em;
+				margin-bottom: 0.5em;
+				line-height: 1.2;
+				color: var(--textfarbe); /* Kann später angepasst werden */
+			}
+
+			h1 {
+				font-size: 2.5rem; /* ~40px */
+			}
+
+			h2 {
+				font-size: 2rem; /* ~32px */
+			}
+
+			p {
+				margin-top: 0;
+				margin-bottom: 1em;
+			}
+
+			a {
+				color: var(--primärfarbe);
+				text-decoration: none;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			main {
+				max-width: 800px; /* Begrenzte Breite für bessere Lesbarkeit */
+				margin: 2rem auto; /* Zentrierung und Abstand */
+				padding: 0 1rem;
+			}
+
+			section {
+				margin-bottom: 3rem; /* Abstand zwischen den Sektionen */
+			}
+
+			ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+
+			li {
+				margin-bottom: 0.5rem;
+			}
+
+			/* Responsives Design - Mobile First */
+			@media (min-width: 768px) {
+				h1 {
+					font-size: 3rem;
+				}
+				h2 {
+					font-size: 2.5rem;
+				}
+				main {
+					margin: 3rem auto;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<slot />
