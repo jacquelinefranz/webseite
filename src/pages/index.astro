@@ -1,27 +1,18 @@
 ---
-import BasisLayout from '../components/templates/BasisLayout.astro';
-import HauptNavigation from '../components/organisms/HauptNavigation.astro';
+import BasisLayout from "../components/templates/BasisLayout.astro";
+import HauptNavigation from "../components/organisms/HauptNavigation.astro";
+import IntroSektion from "../components/organisms/IntroSektion.astro";
+import UeberMichSektion from "../components/organisms/UeberMichSektion.astro";
+import NeuesteBlogpostsSektion from "../components/organisms/NeuesteBlogpostsSektion.astro";
+import KontaktSektion from "../components/organisms/KontaktSektion.astro";
 ---
 
 <BasisLayout titel="Jacqueline Franz - Deine digitale Heimat">
-    <HauptNavigation />
-    <main>
-        <section>
-            <h1>Hi, ich bin Jacqueline Franz</h1>
-            <p>App-Entwicklerin • Indie Maker • Founder of Franz Labs</p>
-            <p>Online auch als @digitalerPanda 🐼 bekannt</p>
-            <p>Ich baue Apps, teile meinen Lernprozess und helfe anderen, ihre digitalen Ideen umzusetzen.</p>
-            <p>
-                <a href="https://franzlabs.de">Franz Labs (mein App-Portfolio)</a>
-                <br>
-                <a href="/blog">Neuester Blog-Post</a>
-            </p>
-            <p>
-                Social Links:
-                <a href="https://twitter.com/digitalerPanda">X</a>,
-                <a href="https://github.com/dein-handle">GitHub</a>,
-                <a href="https://linkedin.com/in/jacquelinefranz">LinkedIn</a>
-            </p>
-        </section>
-    </main>
+  <HauptNavigation />
+  <main>
+    <IntroSektion />
+    <UeberMichSektion />
+    <NeuesteBlogpostsSektion />
+    <KontaktSektion />
+  </main>
 </BasisLayout>

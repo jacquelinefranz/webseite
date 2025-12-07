@@ -1,0 +1,13 @@
+---
+import Ueberschrift2 from '../atoms/Ueberschrift2.astro';
+import BlogpostVorschau from '../molecules/BlogpostVorschau.astro';
+---
+
+<section>
+    <Ueberschrift2 inhalt="Neueste Blogposts" />
+    <ul>
+        <BlogpostVorschau titel="Mein erster Blogpost: Die Reise beginnt" url="/blog#post-1" />
+        <BlogpostVorschau titel="Astro.js und Ich: Erste Schritte" url="/blog#post-2" />
+        <BlogpostVorschau titel="Warum ich diesen Blog betreibe" url="/blog#post-3" />
+    </ul>
+</section>

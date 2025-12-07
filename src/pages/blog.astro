@@ -1,18 +1,20 @@
 ---
 import BasisLayout from '../components/templates/BasisLayout.astro';
 import HauptNavigation from '../components/organisms/HauptNavigation.astro';
+import Ueberschrift1 from '../components/atoms/Ueberschrift1.astro';
+import Ueberschrift2 from '../components/atoms/Ueberschrift2.astro';
+import BlogpostVorschau from '../components/molecules/BlogpostVorschau.astro';
 ---
 
 <BasisLayout titel="Blog">
     <HauptNavigation />
     <main>
-        <h1>Blog / Updates</h1>
-        <p>Dies ist das Herzstück der Website, wo "Show Your Work" Posts, Lernfortschritte und Stories geteilt werden.</p>
-        <h2>Neueste Beiträge</h2>
+        <Ueberschrift1 inhalt="Blog / Updates" />
+        <Ueberschrift2 inhalt="Neueste Beiträge" />
         <ul>
-            <li><a href="#">Mein erster Beitrag zur Webentwicklung</a></li>
-            <li><a href="#">Heute gelernt: Astro Komponenten</a></li>
-            <li><a href="#">Hinter den Kulissen von Franz Labs</a></li>
+            <BlogpostVorschau titel="Mein erster Beitrag zur Webentwicklung" url="#" />
+            <BlogpostVorschau titel="Heute gelernt: Astro Komponenten" url="#" />
+            <BlogpostVorschau titel="Hinter den Kulissen von Franz Labs" url="#" />
         </ul>
     </main>
 </BasisLayout>

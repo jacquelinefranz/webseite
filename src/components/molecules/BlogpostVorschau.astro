@@ -1,0 +1,12 @@
+---
+import Link from '../atoms/Link.astro';
+
+interface Props {
+    titel: string;
+    url: string;
+}
+
+const { titel, url } = Astro.props;
+---
+
+<li><Link href={url} text={titel} /></li>

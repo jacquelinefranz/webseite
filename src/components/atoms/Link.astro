@@ -1,0 +1,11 @@
+---
+interface Props {
+    href: string;
+    text: string;
+    ziel?: string; // Optionaler Parameter für target="_blank"
+}
+
+const { href, text, ziel } = Astro.props;
+---
+
+<a href={href} target={ziel}>{text}</a>

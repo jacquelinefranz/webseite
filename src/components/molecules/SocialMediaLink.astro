@@ -1,0 +1,15 @@
+---
+import Link from '../atoms/Link.astro';
+
+interface Props {
+    icon: string;
+    href: string;
+    text: string;
+}
+
+const { icon, href, text } = Astro.props;
+---
+
+<p>
+    {icon} <Link href={href} text={text} />
+</p>

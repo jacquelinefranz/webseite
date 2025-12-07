@@ -1,0 +1,11 @@
+---
+import Link from '../atoms/Link.astro';
+
+interface Props {
+    email: string;
+}
+
+const { email } = Astro.props;
+---
+
+<p>📧 E-Mail: <Link href={`mailto:${email}`} text={email} /></p>
