@@ -11,15 +11,15 @@ import Link from '../atoms/Link.astro';
     nav {
         display: flex;
         justify-content: center; /* Navigation zentrieren */
-        gap: 2rem; /* Etwas mehr Abstand */
-        padding: 1.5rem 1rem; /* Mehr Padding */
-        background-color: #f8f9fa; /* Leichter Hintergrund */
-        border-bottom: 1px solid #e9ecef; /* Dezente Trennlinie */
+        gap: var(--abstand-element-gap); /* Etwas mehr Abstand */
+        padding: var(--abstand-padding-vertikal) var(--abstand-padding-horizontal); /* Mehr Padding */
+        background-color: var(--hintergrund-hellgrau); /* Leichter Hintergrund */
+        border-bottom: 1px solid var(--border-farbe-hellgrau); /* Dezente Trennlinie */
     }
     nav :global(a) {
         color: var(--textfarbe); /* Globale Textfarbe */
-        font-weight: 600; /* Etwas dicker für Navigation */
-        transition: color 0.3s ease; /* Weicher Übergang */
+        font-weight: var(--schriftgewicht-semi-bold); /* Etwas dicker für Navigation */
+        transition: var(--uebergang-standard); /* Weicher Übergang */
     }
     nav :global(a):hover {
         color: var(--primärfarbe); /* Globale Primärfarbe */
