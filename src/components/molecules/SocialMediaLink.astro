@@ -1,9 +1,15 @@
 ---
 import Link from '../atoms/Link.astro';
 
+/**
+ * Definiert die Eigenschaften für die SocialMediaLink-Komponente.
+ */
 interface Props {
+    /** Ein Emoji oder String, der das soziale Netzwerk repräsentiert. */
     icon: string;
+    /** Die URL zum Social Media Profil. */
     href: string;
+    /** Der sichtbare Text des Links, z.B. der Name des Netzwerks oder Benutzername. */
     text: string;
 }
 

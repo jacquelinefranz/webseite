@@ -1,8 +1,14 @@
 ---
+/**
+ * Definiert die Eigenschaften für die Link-Komponente.
+ */
 interface Props {
+    /** Die URL, zu der der Link führt. */
     href: string;
+    /** Der sichtbare Text des Links. */
     text: string;
-    ziel?: string; // Optionaler Parameter für target="_blank"
+    /** Das Ziel des Links, z.B. '_blank' für einen neuen Tab. */
+    ziel?: string;
 }
 
 const { href, text, ziel } = Astro.props;
