@@ -1,0 +1,28 @@
+
+:root {
+    /* Farben */
+    --primärfarbe: #007bff; /* Blau für Links/Akzente */
+    --sekundärfarbe: #6c757d; /* Grau für Sekundärtext */
+    --hintergrundfarbe: #ffffff; /* Weißer Hintergrund */
+    --textfarbe: #333333; /* Dunkler Text */
+    --hintergrund-hellgrau: #f8f9fa; /* Leichter Hintergrund */
+    --border-farbe-hellgrau: #e9ecef; /* Dezente Trennlinie */
+
+    /* Typografie */
+    --schriftart-standard: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --schriftgewicht-semi-bold: 600; /* Halbfett */
+
+    /* Abstände */
+    --abstand-xs: 0.25rem;
+    --abstand-s: 0.5rem;
+    --abstand-m: 1rem;
+    --abstand-l: 1.5rem;
+    --abstand-xl: 2rem;
+    --abstand-xxl: 3rem;
+    --abstand-element-gap: var(--abstand-xl); /* 2rem */
+    --abstand-padding-vertikal: var(--abstand-l); /* 1.5rem */
+    --abstand-padding-horizontal: var(--abstand-m); /* 1rem */
+
+    /* Übergänge/Animationen */
+    --uebergang-standard: color 0.3s ease; /* Weicher Übergang für Farben */
+}
