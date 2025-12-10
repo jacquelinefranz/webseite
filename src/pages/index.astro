@@ -5,6 +5,8 @@ import IntroSektion from "../components/organisms/IntroSektion.astro";
 import UeberMichSektion from "../components/organisms/UeberMichSektion.astro";
 import NeuesteBlogpostsSektion from "../components/organisms/NeuesteBlogpostsSektion.astro";
 import KontaktSektion from "../components/organisms/KontaktSektion.astro";
+import Link from "../components/atoms/Link.astro";
+import SocialMediaLink from "../components/molecules/SocialMediaLink.astro";
 ---
 
 <BasisLayout
@@ -12,11 +14,25 @@ import KontaktSektion from "../components/organisms/KontaktSektion.astro";
   description="Die persönliche Webseite von Jacqueline Franz, bekannt als @digitalerPanda. Hier teilt sie ihren Lernprozess in Webentwicklung und hilft anderen, ihre digitalen Ideen umzusetzen."
   type="website"
 >
-  <HauptNavigation />
+  <HauptNavigation>
+    <Link href="/" text="Home" />
+    <Link href="/blog" text="Blog" />
+  </HauptNavigation>
   <main>
     <IntroSektion />
     <UeberMichSektion />
     <NeuesteBlogpostsSektion />
-    <KontaktSektion />
+    <KontaktSektion email="hallo@jacquelinefranz.de">
+      <SocialMediaLink
+        icon="GH"
+        href="https://github.com/your-username"
+        text="GitHub"
+      />
+      <SocialMediaLink
+        icon="LI"
+        href="https://linkedin.com/in/your-username"
+        text="LinkedIn"
+      />
+    </KontaktSektion>
   </main>
 </BasisLayout>
