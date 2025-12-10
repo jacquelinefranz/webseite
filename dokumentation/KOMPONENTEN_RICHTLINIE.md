@@ -58,6 +58,5 @@ Füge einen `<style>`-Block hinzu und verwende ausschließlich **[Design Tokens]
 
 ### Schritt 4: Story für Astrobook anlegen
 
-Jede Komponente muss für die visuelle Dokumentation und das Testen in Astrobook registriert werden.
+Um eine Story für Astrobook anzulegen, folge der **[Richtlinie: Komponenten-Stories mit Astrobook](./STORYBOOK_RICHTLINIE.md)**.
 
--   **Anleitung:** Folge der **[Richtlinie für Komponenten-Stories](./STORYBOOK_RICHTLINIE.md)**.
