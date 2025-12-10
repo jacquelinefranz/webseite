@@ -1,5 +1,5 @@
 ---
-title: Astro.js und Ich: Erste Schritte
+title: 'Astro.js und Ich: Erste Schritte'
 description: Ein Rückblick auf meine ersten Erfahrungen und Learnings mit dem Astro Framework.
 pubDate: 2025-12-05
 image: /assets/og-image-post-2.jpg
