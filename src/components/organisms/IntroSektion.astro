@@ -1,10 +1,14 @@
 ---
-import Ueberschrift1 from '../atoms/Ueberschrift1.astro';
-import Absatz from '../atoms/Absatz.astro';
+import { getEntryBySlug } from 'astro:content';
+import Ueberschrift1 from '../atoms/Ueberschrift1.astro'; // Keep if you want consistent styling for headline
+// Absatz import is not strictly needed if Content renders paragraphs, but can be kept for other reasons.
+// For now, let's keep it simple and rely on Content.
+
+const introEntry = await getEntryBySlug('sections', 'intro');
+const { Content } = await introEntry.render();
 ---
 
 <section>
-    <Ueberschrift1 inhalt="Hi, ich bin Jacqueline Franz" />
-    <Absatz inhalt="Online auch als @digitalerPanda 🐼 bekannt" />
-    <Absatz inhalt="Ich teile meinen Lernprozess und helfe anderen, ihre digitalen Ideen umzusetzen." />
+    <Ueberschrift1 inhalt={introEntry.data.title} />
+    <Content />
 </section>

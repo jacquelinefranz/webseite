@@ -1,13 +1,24 @@
 ---
 import Ueberschrift2 from '../atoms/Ueberschrift2.astro';
 import BlogpostVorschau from '../molecules/BlogpostVorschau.astro';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  sectionTitle?: string;
+}
+
+const { sectionTitle = "Neueste Blogposts" } = Astro.props;
+
+const allBlogPosts = await getCollection('blog');
+allBlogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const latestBlogPosts = allBlogPosts.slice(0, 3);
 ---
 
 <section>
-    <Ueberschrift2 inhalt="Neueste Blogposts" />
+    <Ueberschrift2 inhalt={sectionTitle} />
     <ul>
-        <BlogpostVorschau titel="Mein erster Blogpost: Die Reise beginnt" url="/blog#post-1" />
-        <BlogpostVorschau titel="Astro.js und Ich: Erste Schritte" url="/blog#post-2" />
-        <BlogpostVorschau titel="Warum ich diesen Blog betreibe" url="/blog#post-3" />
+        {latestBlogPosts.map(post => (
+            <BlogpostVorschau titel={post.data.title} url={`/blog/${post.slug}`} />
+        ))}
     </ul>
 </section>

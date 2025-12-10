@@ -11,3 +11,9 @@ export default meta;
 type Story = StoryObj<typeof NeuesteBlogpostsSektion>;
 
 export const Standard: Story = {};
+
+export const CustomTitle: Story = {
+  args: {
+    sectionTitle: "Meine allerneuesten Beiträge",
+  },
+};
