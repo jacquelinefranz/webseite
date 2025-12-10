@@ -1,0 +1,51 @@
+---
+/**
+ * Definiert die Eigenschaften für die SEO-Komponente.
+ */
+interface Props {
+  /** Der Titel der Seite (wird in <title> und Open Graph verwendet). */
+  title: string;
+  /** Die Beschreibung der Seite (für <meta description> und Open Graph). */
+  description: string;
+  /** Die absolute URL zum Vorschaubild (für Open Graph). */
+  image?: string;
+  /** Die kanonische URL der Seite. */
+  url?: string;
+  /** Der Typ des Inhalts (z.B. 'website', 'article'). Standard ist 'website'. */
+  type?: 'website' | 'article';
+}
+
+const {
+  title,
+  description,
+  image = '/default-og-image.jpg', // Standardbild, falls keines angegeben
+  url = Astro.url.href, // Aktuelle URL als Standard
+  type = 'website',
+} = Astro.props;
+
+// Default site title for consistent branding
+const siteTitle = "Jacqueline Franz - Webentwicklung & Blog";
+const fullTitle = `${title} | ${siteTitle}`;
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={url} />
+
+{/* Open Graph Tags (für Social Media Sharing) */}
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={new URL(image, Astro.url.origin).href} />
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={siteTitle} />
+
+{/* Twitter Card Tags */}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={new URL(image, Astro.url.origin).href} />
+---
+/*
+Anmerkung: Für ein Standard-OG-Bild (default-og-image.jpg) muss dieses in den `public`-Ordner gelegt werden.
+*/
