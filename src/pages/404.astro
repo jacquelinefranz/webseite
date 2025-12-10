@@ -1,0 +1,17 @@
+---
+import BasisLayout from '../components/templates/BasisLayout.astro';
+import Ueberschrift1 from '../components/atoms/Ueberschrift1.astro';
+import Absatz from '../components/atoms/Absatz.astro';
+import Link from '../components/atoms/Link.astro';
+---
+
+<BasisLayout title="Seite nicht gefunden (404)" description="Die angeforderte Seite konnte nicht gefunden werden.">
+  <main>
+    <section>
+      <Ueberschrift1 inhalt="404 - Seite nicht gefunden" />
+      <Absatz inhalt="Es tut uns leid, aber die Seite, die Sie suchen, existiert nicht oder wurde verschoben." />
+      <Absatz inhalt="Bitte überprüfen Sie die URL oder kehren Sie zur Startseite zurück." />
+      <Link href="/" text="Zur Startseite" />
+    </section>
+  </main>
+</BasisLayout>
