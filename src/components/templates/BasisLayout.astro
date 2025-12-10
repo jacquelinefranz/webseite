@@ -1,22 +1,37 @@
 ---
 import '../../styles/tokens.css';
+import SEO from '../atoms/SEO.astro'; // Import SEO component
 
+/**
+ * Definiert die Eigenschaften für das BasisLayout.
+ */
 interface Props {
-	titel: string;
+	/** Der Titel der Seite, der an die SEO-Komponente weitergegeben wird. */
+	title: string;
+	/** Die Beschreibung der Seite, die an die SEO-Komponente weitergegeben wird. */
+	description?: string;
+	/** Das Vorschaubild der Seite für Social Media, an die SEO-Komponente weitergegeben. */
+	image?: string;
+	/** Der Typ des Inhalts für Social Media, an die SEO-Komponente weitergegeben (z.B. 'website', 'article'). */
+	type?: 'website' | 'article';
 }
 
-const { titel } = Astro.props;
+const { title, description, image, type } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="de">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Eine persönliche Webseite von Jacqueline Franz" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{titel}</title>
+		<SEO
+			title={title}
+			description={description || "Eine persönliche Webseite von Jacqueline Franz über Webentwicklung und Blogbeiträge."}
+			image={image}
+			type={type}
+		/>
 		<style is:global>
 			/* CSS Reset und grundlegende Stile */
 
@@ -33,7 +48,7 @@ const { titel } = Astro.props;
 				margin: 0;
 				padding: 0;
 				font-family: var(--schriftart-standard);
-				line-height: 1.6;
+				line-height: var(--linienhoehe-standard);
 				color: var(--textfarbe);
 				background-color: var(--hintergrundfarbe);
 				-webkit-font-smoothing: antialiased;
@@ -42,23 +57,23 @@ const { titel } = Astro.props;
 
 			/* Grundlegende Typografie */
 			h1, h2 {
-				margin-top: 1.5em;
-				margin-bottom: 0.5em;
-				line-height: 1.2;
+				margin-top: var(--abstand-ueberschrift-oben);
+				margin-bottom: var(--abstand-ueberschrift-unten);
+				line-height: var(--linienhoehe-ueberschrift);
 				color: var(--textfarbe); /* Kann später angepasst werden */
 			}
 
 			h1 {
-				font-size: 2.5rem; /* ~40px */
+				font-size: var(--schriftgroesse-h1-mobil);
 			}
 
 			h2 {
-				font-size: 2rem; /* ~32px */
+				font-size: var(--schriftgroesse-h2-mobil);
 			}
 
 			p {
 				margin-top: 0;
-				margin-bottom: 1em;
+				margin-bottom: var(--abstand-absatz-unten);
 			}
 
 			a {
@@ -71,13 +86,13 @@ const { titel } = Astro.props;
 			}
 
 			main {
-				max-width: 800px; /* Begrenzte Breite für bessere Lesbarkeit */
-				margin: 2rem auto; /* Zentrierung und Abstand */
-				padding: 0 1rem;
+				max-width: var(--seitenbreite-max);
+				margin: var(--abstand-main-vertikal-mobil) auto;
+				padding: 0 var(--padding-main-horizontal);
 			}
 
 			section {
-				margin-bottom: 3rem; /* Abstand zwischen den Sektionen */
+				margin-bottom: var(--abstand-sektion-unten);
 			}
 
 			ul {
@@ -87,19 +102,19 @@ const { titel } = Astro.props;
 			}
 
 			li {
-				margin-bottom: 0.5rem;
+				margin-bottom: var(--abstand-listenelement-unten);
 			}
 
 			/* Responsives Design - Mobile First */
-			@media (min-width: 768px) {
+			@media (min-width: var(--breakpoint-md)) {
 				h1 {
-					font-size: 3rem;
+					font-size: var(--schriftgroesse-h1-desktop);
 				}
 				h2 {
-					font-size: 2.5rem;
+					font-size: var(--schriftgroesse-h2-desktop);
 				}
 				main {
-					margin: 3rem auto;
+					margin: var(--abstand-main-vertikal-desktop) auto;
 				}
 			}
 		</style>

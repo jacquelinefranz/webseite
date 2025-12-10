@@ -25,4 +25,26 @@
 
     /* Übergänge/Animationen */
     --uebergang-standard: color 0.3s ease; /* Weicher Übergang für Farben */
+
+    /* Typografie - Ergänzungen */
+    --linienhoehe-standard: 1.6;
+    --linienhoehe-ueberschrift: 1.2;
+    --schriftgroesse-h1-mobil: 2.5rem; /* ~40px */
+    --schriftgroesse-h2-mobil: 2rem; /* ~32px */
+    --schriftgroesse-h1-desktop: 3rem;
+    --schriftgroesse-h2-desktop: 2.5rem;
+
+    /* Abstände - Ergänzungen */
+    --abstand-ueberschrift-oben: 1.5em;
+    --abstand-ueberschrift-unten: 0.5em;
+    --abstand-absatz-unten: 1em;
+    --abstand-main-vertikal-mobil: 2rem;
+    --abstand-main-vertikal-desktop: 3rem;
+    --abstand-sektion-unten: 3rem;
+    --abstand-listenelement-unten: 0.5rem;
+    --seitenbreite-max: 800px;
+    --padding-main-horizontal: 1rem; /* Besser benannt als spezifischer Padding-Wert */
+
+    /* Breakpoints */
+    --breakpoint-md: 768px;
 }
