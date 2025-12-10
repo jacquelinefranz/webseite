@@ -1,6 +1,9 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import '../../styles/tokens.css';
 import SEO from '../atoms/SEO.astro'; // Import SEO component
+import HauptNavigation from '../organisms/HauptNavigation.astro';
+import Link from '../atoms/Link.astro';
 
 /**
  * Definiert die Eigenschaften für das BasisLayout.
@@ -32,6 +35,7 @@ const { title, description, image, type } = Astro.props;
 			image={image}
 			type={type}
 		/>
+		<ViewTransitions />
 		<style is:global>
 			/* CSS Reset und grundlegende Stile */
 
@@ -120,6 +124,10 @@ const { title, description, image, type } = Astro.props;
 		</style>
 	</head>
 	<body>
+		<HauptNavigation>
+			<Link href="/" text="Home" />
+			<Link href="/blog" text="Blog" />
+		</HauptNavigation>
 		<slot />
 	</body>
 </html>
