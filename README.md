@@ -1,6 +1,6 @@
 # Jacqueline Franz - Persönliche Webseite
 
-Dieses Repository enthält den Quellcode für die persönliche Webseite von Jacqueline Franz, erstellt mit [Astro](https://astro.build/).
+Dieses Repository enthält den Quellcode für die persönliche Webseite von Jacqueline Franz. Für typische Entwicklungsaufgaben und Arbeitsabläufe, beginne bitte mit der **[Onboarding-Dokumentation](./dokumentation/_ONBOARDING.md)**.
 
 ## 🧞 Befehle
 
