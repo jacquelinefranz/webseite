@@ -3,6 +3,7 @@ import BasisLayout from '../components/templates/BasisLayout.astro';
 import Ueberschrift1 from '../components/atoms/Ueberschrift1.astro';
 import Ueberschrift2 from '../components/atoms/Ueberschrift2.astro';
 import Absatz from '../components/atoms/Absatz.astro';
+import EmailLink from '../components/molecules/EmailLink.astro';
 ---
 
 <BasisLayout titel="Impressum">
@@ -11,14 +12,13 @@ import Absatz from '../components/atoms/Absatz.astro';
 
         <Ueberschrift2>Angaben gemäß § 5 DDG und verantwortlich nach § 18 Abs. 2 MStV</Ueberschrift2>
         <Absatz>
-            [Vorname] [Nachname]<br />
-            [Straße] [Hausnummer]<br />
-            [PLZ] [Ort]
+            Jacqueline Franz<br />
+            Rosenstr. 9<br />
+            54578 Oberbettingen<br />
+            Deutschland
         </Absatz>
 
         <Ueberschrift2>Kontakt</Ueberschrift2>
-        <Absatz>
-            E-Mail: [E-Mail-Adresse]
-        </Absatz>
+        <EmailLink email="hi@jacquelinefranz.de"/>
     </main>
 </BasisLayout>
