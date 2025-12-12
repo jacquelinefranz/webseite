@@ -8,11 +8,6 @@
     "dist"
   ],
   "compilerOptions": {
-    "jsx": "preserve",
-    "plugins": [
-      {
-        "name": "@astrojs/ts-plugin"
-      }
-    ]
+    "jsx": "preserve"
   }
 }
