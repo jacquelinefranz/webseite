@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import '../../styles/tokens.css';
 import '../../styles/global.css';
 import SEO from '../atoms/SEO.astro'; // Import SEO component
@@ -36,7 +36,7 @@ const { titel, beschreibung, bild, typ } = Astro.props;
 			bild={bild}
 			typ={typ}
 		/>
-		<ViewTransitions />
+		<ClientRouter />
 	</head>
 	<body>
 		<HauptNavigation>
