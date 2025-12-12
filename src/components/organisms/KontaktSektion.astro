@@ -1,5 +1,4 @@
 ---
-import Ueberschrift2 from '../atoms/Ueberschrift2.astro';
 import EmailLink from '../molecules/EmailLink.astro';
 
 interface Props {
@@ -10,7 +9,7 @@ const { email } = Astro.props;
 ---
 
 <section>
-    <Ueberschrift2>Kontakt</Ueberschrift2>
+    <h2>Kontakt</h2>
     <EmailLink email={email} />
     <slot />
 </section>

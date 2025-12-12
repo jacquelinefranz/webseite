@@ -1,7 +1,6 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import BasisLayout from '../../components/templates/BasisLayout.astro';
-import Ueberschrift1 from '../../components/atoms/Ueberschrift1.astro';
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection('blog');
@@ -31,7 +30,7 @@ const { Content } = await entry.render();
   typ="article"
 >
   <main>
-    <Ueberschrift1>{entry.data.titel}</Ueberschrift1>
+    <h1>{entry.data.titel}</h1>
     <p>Veröffentlicht am: {entry.data.datum.toLocaleDateString('de-DE')}</p>
     <Content />
   </main>

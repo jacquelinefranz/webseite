@@ -1,6 +1,5 @@
 ---
 import { getEntry } from 'astro:content';
-import Ueberschrift2 from '../atoms/Ueberschrift2.astro';
 
 const ueberMichEntry = await getEntry('sections', 'ueber-mich');
 
@@ -12,6 +11,6 @@ const { Content } = await ueberMichEntry.render();
 ---
 
 <section>
-    <Ueberschrift2>{ueberMichEntry.data.titel}</Ueberschrift2>
+    <h2>{ueberMichEntry.data.titel}</h2>
     <Content />
 </section>

@@ -1,9 +1,4 @@
 ---
-import Link from '../atoms/Link.astro';
-
-/**
- * Definiert die Eigenschaften für die EmailLink-Komponente.
- */
 interface Props {
     /** Die E-Mail-Adresse, die verlinkt und angezeigt wird. */
     email: string;
@@ -12,4 +7,4 @@ interface Props {
 const { email } = Astro.props;
 ---
 
-<p>📧 E-Mail: <Link href={`mailto:${email}`}>{email}</Link></p>
+<p>📧 E-Mail: <a href={`mailto:${email}`}>{email}</a></p>

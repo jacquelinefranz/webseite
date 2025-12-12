@@ -1,5 +1,4 @@
 ---
-import Link from '../atoms/Link.astro';
 
 const startYear = 2025;
 const currentYear = new Date().getFullYear();
@@ -11,9 +10,9 @@ const copyrightDate = startYear === currentYear
 <footer>
     <div class="footer-content">
         <div class="footer-links">
-            <Link href="/impressum">Impressum</Link>
+            <a href="/impressum">Impressum</a>
             <span class="separator">|</span>
-            <Link href="/datenschutz">Datenschutz</Link>
+            <a href="/datenschutz">Datenschutz</a>
         </div>
         <p class="copyright">
             &copy; {copyrightDate} Jacqueline Franz. Alle Rechte vorbehalten.

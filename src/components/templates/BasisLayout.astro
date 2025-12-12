@@ -4,7 +4,6 @@ import '../../styles/tokens.css';
 import SEO from '../atoms/SEO.astro'; // Import SEO component
 import HauptNavigation from '../organisms/HauptNavigation.astro';
 import Footer from '../organisms/Footer.astro';
-import Link from '../atoms/Link.astro';
 
 /**
  * Definiert die Eigenschaften für das BasisLayout.
@@ -131,8 +130,8 @@ const { titel, beschreibung, bild, typ } = Astro.props;
 	</head>
 	<body>
 		<HauptNavigation>
-			<Link href="/">Home</Link>
-			<Link href="/blog">Blog</Link>
+			<a href="/">Home</a>
+			<a href="/blog">Blog</a>
 		</HauptNavigation>
 		<slot />
 		<Footer />

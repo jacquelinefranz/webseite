@@ -1,9 +1,4 @@
 ---
-import Link from '../atoms/Link.astro';
-
-/**
- * Definiert die Eigenschaften für die SocialMediaLink-Komponente.
- */
 interface Props {
     /** Ein Emoji oder String, der das soziale Netzwerk repräsentiert. */
     icon: string;
@@ -17,5 +12,5 @@ const { icon, href, text } = Astro.props;
 ---
 
 <p>
-    {icon} <Link href={href}>{text}</Link>
+    {icon} <a href={href}>{text}</a>
 </p>

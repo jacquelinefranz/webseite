@@ -1,6 +1,5 @@
 ---
 import BasisLayout from '../components/templates/BasisLayout.astro'; // Adjust path if BasisLayout moves
-import Ueberschrift1 from '../components/atoms/Ueberschrift1.astro';
 import BlogpostVorschau from '../components/molecules/BlogpostVorschau.astro';
 import { getCollection } from 'astro:content';
 
@@ -14,7 +13,7 @@ allBlogPosts.sort((a, b) => b.data.datum.getTime() - a.data.datum.getTime());
   typ="website"
 >
   <main>
-    <Ueberschrift1>Alle Blogposts</Ueberschrift1>
+    <h1>Alle Blogposts</h1>
     <ul>
       {allBlogPosts.map(post => (
         <BlogpostVorschau titel={post.data.titel} url={`/blog/${post.slug}`} />

@@ -1,9 +1,4 @@
 ---
-import Link from '../atoms/Link.astro';
-
-/**
- * Definiert die Eigenschaften für die BlogpostVorschau-Komponente.
- */
 interface Props {
     /** Der Titel des Blogposts. */
     titel: string;
@@ -14,4 +9,4 @@ interface Props {
 const { titel, url } = Astro.props;
 ---
 
-<li><Link href={url}>{titel}</Link></li>
+<li><a href={url}>{titel}</a></li>

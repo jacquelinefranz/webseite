@@ -1,5 +1,4 @@
 ---
-import Ueberschrift2 from '../atoms/Ueberschrift2.astro';
 import BlogpostVorschau from '../molecules/BlogpostVorschau.astro';
 import { getCollection } from 'astro:content';
 
@@ -15,7 +14,7 @@ const latestBlogPosts = allBlogPosts.slice(0, 3);
 ---
 
 <section>
-    <Ueberschrift2>{sectionTitle}</Ueberschrift2>
+    <h2>{sectionTitle}</h2>
     <ul>
         {latestBlogPosts.map(post => (
             <BlogpostVorschau titel={post.data.titel} url={`/blog/${post.slug}`} />

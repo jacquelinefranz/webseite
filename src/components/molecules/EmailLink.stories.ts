@@ -17,6 +17,6 @@ type Story = StoryObj<typeof EmailLink>;
 
 export const Standard: Story = {
   args: {
-    email: "hallo@jacquelinefranz.de",
+    email: "hi@jacquelinefranz.de",
   },
 };
