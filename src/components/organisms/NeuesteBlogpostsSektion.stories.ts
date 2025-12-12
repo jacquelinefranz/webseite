@@ -1,18 +1,13 @@
-import type { Meta, StoryObj } from "astrobook";
 import NeuesteBlogpostsSektion from "./NeuesteBlogpostsSektion.astro";
 
-const meta: Meta<typeof NeuesteBlogpostsSektion> = {
+export default {
   title: "Organismus/NeuesteBlogpostsSektion",
   component: NeuesteBlogpostsSektion,
 };
 
-export default meta;
+export const Standard = {};
 
-type Story = StoryObj<typeof NeuesteBlogpostsSektion>;
-
-export const Standard: Story = {};
-
-export const CustomTitle: Story = {
+export const CustomTitle = {
   args: {
     sectionTitle: "Meine allerneuesten Beiträge",
   },

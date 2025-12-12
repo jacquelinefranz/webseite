@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from "astrobook";
 import SEO from "./SEO.astro";
 
-const meta: Meta<typeof SEO> = {
+export default {
   title: "Atom/SEO",
   component: SEO,
   argTypes: {
@@ -13,11 +12,7 @@ const meta: Meta<typeof SEO> = {
   },
 };
 
-export default meta;
-
-type Story = StoryObj<typeof SEO>;
-
-export const Default: Story = {
+export const Default = {
   args: {
     titel: "Startseite",
     beschreibung: "Willkommen auf meiner persönlichen Webseite über Webentwicklung und Blogbeiträge.",
@@ -25,7 +20,7 @@ export const Default: Story = {
   },
 };
 
-export const BlogPost: Story = {
+export const BlogPost = {
   args: {
     titel: "Mein erster Blogpost: Die Reise beginnt",
     beschreibung: "Meine Gedanken zum Start dieser neuen Reise in die Webentwicklung.",

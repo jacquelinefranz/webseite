@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from "astrobook";
 import BlogpostVorschau from "./BlogpostVorschau.astro";
 
-const meta: Meta<typeof BlogpostVorschau> = {
+export default {
   title: "Molekül/BlogpostVorschau",
   component: BlogpostVorschau,
   argTypes: {
@@ -14,11 +13,7 @@ const meta: Meta<typeof BlogpostVorschau> = {
   },
 };
 
-export default meta;
-
-type Story = StoryObj<typeof BlogpostVorschau>;
-
-export const Standard: Story = {
+export const Standard = {
   args: {
     titel: "Mein erster Blogpost über die Webentwicklung",
     url: "/blog/erster-post",

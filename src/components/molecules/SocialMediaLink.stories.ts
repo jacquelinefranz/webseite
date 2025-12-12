@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from "astrobook";
 import SocialMediaLink from "./SocialMediaLink.astro";
 
-const meta: Meta<typeof SocialMediaLink> = {
+export default {
   title: "Molekül/SocialMediaLink",
   component: SocialMediaLink,
   argTypes: {
@@ -17,11 +16,7 @@ const meta: Meta<typeof SocialMediaLink> = {
   },
 };
 
-export default meta;
-
-type Story = StoryObj<typeof SocialMediaLink>;
-
-export const LinkedIn: Story = {
+export const LinkedIn = {
   args: {
     icon: "💼",
     href: "https://www.linkedin.com/in/jacqueline-franz/",
@@ -29,7 +24,7 @@ export const LinkedIn: Story = {
   },
 };
 
-export const GitHub: Story = {
+export const GitHub = {
     args: {
       icon: "💻",
       href: "https://github.com/jacquelinefranz",

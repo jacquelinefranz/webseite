@@ -1,8 +1,6 @@
-import type { Meta, StoryObj } from "astrobook";
 import KontaktSektion from "./KontaktSektion.astro";
-import SocialMediaLink from '../molecules/SocialMediaLink.astro'; // Import for use in story
 
-const meta: Meta<typeof KontaktSektion> = {
+export default {
   title: "Organismus/KontaktSektion",
   component: KontaktSektion,
   argTypes: {
@@ -10,17 +8,16 @@ const meta: Meta<typeof KontaktSektion> = {
   },
 };
 
-export default meta;
-
-type Story = StoryObj<typeof KontaktSektion>;
-
-export const Standard: Story = {
+export const Standard = {
   args: {
     email: "hi@jacquelinefranz.de",
     slots: {
       default: `
-        <SocialMediaLink icon="🐦" href="https://twitter.com/digitalerPanda" text="X/Twitter: @digitalerPanda" />
-        <SocialMediaLink icon="💼" href="https://www.linkedin.com/in/jacqueline-franz/" text="LinkedIn: Jacqueline Franz" />
+        <div class="social-links">
+          <!-- Placeholder content for slot -->
+          <p>X/Twitter: @digitalerPanda</p>
+          <p>LinkedIn: Jacqueline Franz</p>
+        </div>
       `,
     },
   },

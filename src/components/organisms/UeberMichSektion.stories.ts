@@ -1,13 +1,8 @@
-import type { Meta, StoryObj } from "astrobook";
 import UeberMichSektion from "./UeberMichSektion.astro";
 
-const meta: Meta<typeof UeberMichSektion> = {
+export default {
   title: "Organismus/UeberMichSektion",
   component: UeberMichSektion,
 };
 
-export default meta;
-
-type Story = StoryObj<typeof UeberMichSektion>;
-
-export const Standard: Story = {};
+export const Standard = {};

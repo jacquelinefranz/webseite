@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from "astrobook";
 import EmailLink from "./EmailLink.astro";
 
-const meta: Meta<typeof EmailLink> = {
+export default {
   title: "Molekül/EmailLink",
   component: EmailLink,
   argTypes: {
@@ -11,11 +10,7 @@ const meta: Meta<typeof EmailLink> = {
   },
 };
 
-export default meta;
-
-type Story = StoryObj<typeof EmailLink>;
-
-export const Standard: Story = {
+export const Standard = {
   args: {
     email: "hi@jacquelinefranz.de",
   },
