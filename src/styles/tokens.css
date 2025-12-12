@@ -48,3 +48,14 @@
     /* Breakpoints */
     --breakpoint-md: 768px;
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --hintergrundfarbe: #121212;
+        --textfarbe: #e0e0e0;
+        --hintergrund-hellgrau: #1e1e1e;
+        --border-farbe-hellgrau: #333333;
+        --sekundärfarbe: #adb5bd;
+        /* Primärfarbe kann oft bleiben oder leicht angepasst werden, hier belassen wir sie vorerst */
+    }
+}
