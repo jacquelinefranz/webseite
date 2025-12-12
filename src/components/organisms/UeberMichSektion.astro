@@ -1,13 +1,17 @@
 ---
-import { getEntryBySlug } from 'astro:content';
-import Ueberschrift2 from '../atoms/Ueberschrift2.astro'; // Keep if you want consistent styling for headline
-// Absatz import is not strictly needed if Content renders paragraphs, but can be kept for other reasons.
+import { getEntry } from 'astro:content';
+import Ueberschrift2 from '../atoms/Ueberschrift2.astro';
 
-const ueberMichEntry = await getEntryBySlug('sections', 'ueber-mich');
+const ueberMichEntry = await getEntry('sections', 'ueber-mich');
+
+if (!ueberMichEntry) {
+  throw new Error("Ueber Mich section not found");
+}
+
 const { Content } = await ueberMichEntry.render();
 ---
 
 <section>
-    <Ueberschrift2>{ueberMichEntry.data.title}</Ueberschrift2>
+    <Ueberschrift2>{ueberMichEntry.data.titel}</Ueberschrift2>
     <Content />
 </section>

@@ -3,19 +3,19 @@ import { defineCollection, z } from 'astro:content';
 const blogCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    pubDate: z.date(),
-    image: z.string().optional(), // Add image field
+    titel: z.string(),
+    beschreibung: z.string().optional(),
+    datum: z.date(),
+    bild: z.string().optional(), // Add image field
   }),
 });
 
 const sectionsCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string(),
+    titel: z.string(),
     // Add other relevant fields if needed, e.g., an ID or a specific type for filtering
-  }),
+  }).passthrough(),
 });
 
 export const collections = {

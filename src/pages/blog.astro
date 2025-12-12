@@ -5,19 +5,19 @@ import BlogpostVorschau from '../components/molecules/BlogpostVorschau.astro';
 import { getCollection } from 'astro:content';
 
 const allBlogPosts = await getCollection('blog');
-allBlogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+allBlogPosts.sort((a, b) => b.data.datum.getTime() - a.data.datum.getTime());
 ---
 
 <BasisLayout
-  title="Alle Blogposts"
-  description="Entdecke die neuesten Blogposts von Jacqueline Franz zu Webentwicklung, Astro und digitalen Themen."
-  type="website"
+  titel="Alle Blogposts"
+  beschreibung="Entdecke die neuesten Blogposts von Jacqueline Franz zu Webentwicklung, Astro und digitalen Themen."
+  typ="website"
 >
   <main>
     <Ueberschrift1>Alle Blogposts</Ueberschrift1>
     <ul>
       {allBlogPosts.map(post => (
-        <BlogpostVorschau titel={post.data.title} url={`/blog/${post.slug}`} />
+        <BlogpostVorschau titel={post.data.titel} url={`/blog/${post.slug}`} />
       ))}
     </ul>
   </main>

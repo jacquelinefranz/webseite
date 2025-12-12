@@ -1,5 +1,5 @@
 ---
-title: Intro Section
+titel: Intro Section
 ---
 Hi, ich bin Jacqueline Franz
 Online auch als @digitalerPanda 🐼 bekannt

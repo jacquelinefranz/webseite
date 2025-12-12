@@ -11,16 +11,16 @@ import Link from '../atoms/Link.astro';
  */
 interface Props {
 	/** Der Titel der Seite, der an die SEO-Komponente weitergegeben wird. */
-	title: string;
+	titel: string;
 	/** Die Beschreibung der Seite, die an die SEO-Komponente weitergegeben wird. */
-	description?: string;
+	beschreibung?: string;
 	/** Das Vorschaubild der Seite für Social Media, an die SEO-Komponente weitergegeben. */
-	image?: string;
+	bild?: string;
 	/** Der Typ des Inhalts für Social Media, an die SEO-Komponente weitergegeben (z.B. 'website', 'article'). */
-	type?: 'website' | 'article';
+	typ?: 'website' | 'article';
 }
 
-const { title, description, image, type } = Astro.props;
+const { titel, beschreibung, bild, typ } = Astro.props;
 ---
 
 <!doctype html>
@@ -31,10 +31,10 @@ const { title, description, image, type } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<SEO
-			title={title}
-			description={description || "Eine persönliche Webseite von Jacqueline Franz über Webentwicklung und Blogbeiträge."}
-			image={image}
-			type={type}
+			titel={titel}
+			beschreibung={beschreibung || "Eine persönliche Webseite von Jacqueline Franz über Webentwicklung und Blogbeiträge."}
+			bild={bild}
+			typ={typ}
 		/>
 		<ViewTransitions />
 		<style is:global>

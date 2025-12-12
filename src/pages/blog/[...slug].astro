@@ -25,14 +25,14 @@ const { Content } = await entry.render();
 ---
 
 <BasisLayout
-  title={entry.data.title}
-  description={entry.data.description}
-  image={entry.data.image}
-  type="article"
+  titel={entry.data.titel}
+  beschreibung={entry.data.beschreibung}
+  bild={entry.data.bild}
+  typ="article"
 >
   <main>
-    <Ueberschrift1>{entry.data.title}</Ueberschrift1>
-    <p>Veröffentlicht am: {entry.data.pubDate.toLocaleDateString('de-DE')}</p>
+    <Ueberschrift1>{entry.data.titel}</Ueberschrift1>
+    <p>Veröffentlicht am: {entry.data.datum.toLocaleDateString('de-DE')}</p>
     <Content />
   </main>
 </BasisLayout>

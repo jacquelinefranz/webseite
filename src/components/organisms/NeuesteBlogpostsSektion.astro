@@ -10,7 +10,7 @@ interface Props {
 const { sectionTitle = "Neueste Blogposts" } = Astro.props;
 
 const allBlogPosts = await getCollection('blog');
-allBlogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+allBlogPosts.sort((a, b) => b.data.datum.getTime() - a.data.datum.getTime());
 const latestBlogPosts = allBlogPosts.slice(0, 3);
 ---
 
@@ -18,7 +18,7 @@ const latestBlogPosts = allBlogPosts.slice(0, 3);
     <Ueberschrift2>{sectionTitle}</Ueberschrift2>
     <ul>
         {latestBlogPosts.map(post => (
-            <BlogpostVorschau titel={post.data.title} url={`/blog/${post.slug}`} />
+            <BlogpostVorschau titel={post.data.titel} url={`/blog/${post.slug}`} />
         ))}
     </ul>
 </section>
