@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
 import vue from '@astrojs/vue';
+import icon from 'astro-icon';
 import astrobook from 'astrobook';
 
 // https://astro.build/config
@@ -11,6 +12,7 @@ export default defineConfig({
     mode: 'standalone',
   }),
   integrations: [
+    icon(),
     vue(),
     // Astrobook wird nur geladen, wenn die Umgebungsvariable ENABLE_ASTROBOOK gesetzt ist.
     // Dies erlaubt es, Astrobook bei Bedarf separat zu starten, ohne die Hauptwebseite zu beeinflussen.
