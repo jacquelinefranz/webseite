@@ -1,6 +1,6 @@
 import EmailLink from "./EmailLink.astro";
 
-export default {
+const meta = { // Typisierung entfernt
   title: "Molekül/EmailLink",
   component: EmailLink,
   argTypes: {
@@ -10,7 +10,9 @@ export default {
   },
 };
 
-export const Standard = {
+export default meta;
+
+export const Standard = { // Typisierung entfernt
   args: {
     email: "hi@jacquelinefranz.de",
   },

@@ -1,16 +1,38 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 interface Props {
-    /** Ein Emoji oder String, der das soziale Netzwerk repräsentiert. */
+    /** Der Name des Icons aus dem Lucide-Set (z.B. 'lucide:instagram'). */
     icon: string;
     /** Die URL zum Social Media Profil. */
     href: string;
-    /** Der sichtbare Text des Links, z.B. der Name des Netzwerks oder Benutzername. */
+    /** Der sichtbare Text des Links. */
     text: string;
 }
 
 const { icon, href, text } = Astro.props;
 ---
 
-<p>
-    {icon} <a href={href}>{text}</a>
-</p>
+<a href={href} target="_blank" rel="noopener noreferrer" class="social-link">
+    <Icon name={icon} class="icon" />
+    <span>{text}</span>
+</a>
+
+<style>
+    .social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--abstand-s); /* Design Token verwendet */
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .social-link:hover {
+        text-decoration: underline;
+    }
+
+    .icon {
+        width: 1.2em;
+        height: 1.2em;
+    }
+</style>

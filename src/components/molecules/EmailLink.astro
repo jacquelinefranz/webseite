@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 interface Props {
     /** Die E-Mail-Adresse, die verlinkt und angezeigt wird. */
     email: string;
@@ -7,4 +9,26 @@ interface Props {
 const { email } = Astro.props;
 ---
 
-<p>📧 E-Mail: <a href={`mailto:${email}`}>{email}</a></p>
+<a href={`mailto:${email}`} class="email-link">
+    <Icon name="lucide:mail" class="icon" />
+    <span>E-Mail: {email}</span>
+</a>
+
+<style>
+    .email-link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--abstand-s); /* Design Token verwendet */
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .email-link:hover {
+        text-decoration: underline;
+    }
+
+    .icon {
+        width: 1.2em;
+        height: 1.2em;
+    }
+</style>
