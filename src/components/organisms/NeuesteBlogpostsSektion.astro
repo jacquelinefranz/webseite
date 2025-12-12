@@ -15,7 +15,7 @@ const latestBlogPosts = allBlogPosts.slice(0, 3);
 ---
 
 <section>
-    <Ueberschrift2 inhalt={sectionTitle} />
+    <Ueberschrift2>{sectionTitle}</Ueberschrift2>
     <ul>
         {latestBlogPosts.map(post => (
             <BlogpostVorschau titel={post.data.title} url={`/blog/${post.slug}`} />

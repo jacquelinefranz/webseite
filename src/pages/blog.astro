@@ -14,7 +14,7 @@ allBlogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
   type="website"
 >
   <main>
-    <Ueberschrift1 inhalt="Alle Blogposts" />
+    <Ueberschrift1>Alle Blogposts</Ueberschrift1>
     <ul>
       {allBlogPosts.map(post => (
         <BlogpostVorschau titel={post.data.title} url={`/blog/${post.slug}`} />

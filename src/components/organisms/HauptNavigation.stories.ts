@@ -15,9 +15,9 @@ export const Standard: Story = {
   args: {
     slots: {
       default: `
-        <Link href="/" text="Startseite" />
-        <Link href="/blog" text="Blog" />
-        <Link href="/kontakt" text="Kontakt" />
+        <Link href="/">Startseite</Link>
+        <Link href="/blog">Blog</Link>
+        <Link href="/kontakt">Kontakt</Link>
       `,
     },
   },

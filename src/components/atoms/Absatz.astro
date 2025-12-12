@@ -3,11 +3,8 @@
  * Definiert die Eigenschaften für die Absatz-Komponente.
  */
 interface Props {
-    /** Der Textinhalt des Absatzes. */
-    inhalt: string;
+    // Props könnten hier definiert werden, falls benötigt. Aktuell werden nur Slots verwendet.
 }
-
-const { inhalt } = Astro.props;
 ---
 
-<p>{inhalt}</p>
+<p><slot /></p>

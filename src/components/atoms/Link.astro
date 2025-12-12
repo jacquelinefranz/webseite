@@ -5,13 +5,11 @@
 interface Props {
     /** Die URL, zu der der Link führt. */
     href: string;
-    /** Der sichtbare Text des Links. */
-    text: string;
     /** Das Ziel des Links, z.B. '_blank' für einen neuen Tab. */
     ziel?: string;
 }
 
-const { href, text, ziel } = Astro.props;
+const { href, ziel } = Astro.props;
 ---
 
-<a href={href} target={ziel}>{text}</a>
+<a href={href} target={ziel}><slot /></a>

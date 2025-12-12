@@ -3,6 +3,7 @@ import { ViewTransitions } from 'astro:transitions';
 import '../../styles/tokens.css';
 import SEO from '../atoms/SEO.astro'; // Import SEO component
 import HauptNavigation from '../organisms/HauptNavigation.astro';
+import Footer from '../organisms/Footer.astro';
 import Link from '../atoms/Link.astro';
 
 /**
@@ -57,6 +58,9 @@ const { title, description, image, type } = Astro.props;
 				background-color: var(--hintergrundfarbe);
 				-webkit-font-smoothing: antialiased;
 				-moz-osx-font-smoothing: grayscale;
+				display: flex;
+				flex-direction: column;
+				min-height: 100vh;
 			}
 
 			/* Grundlegende Typografie */
@@ -93,6 +97,8 @@ const { title, description, image, type } = Astro.props;
 				max-width: var(--seitenbreite-max);
 				margin: var(--abstand-main-vertikal-mobil) auto;
 				padding: 0 var(--padding-main-horizontal);
+				flex: 1;
+				width: 100%;
 			}
 
 			section {
@@ -125,9 +131,10 @@ const { title, description, image, type } = Astro.props;
 	</head>
 	<body>
 		<HauptNavigation>
-			<Link href="/" text="Home" />
-			<Link href="/blog" text="Blog" />
+			<Link href="/">Home</Link>
+			<Link href="/blog">Blog</Link>
 		</HauptNavigation>
 		<slot />
+		<Footer />
 	</body>
 </html>

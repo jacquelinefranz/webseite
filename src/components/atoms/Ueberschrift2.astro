@@ -3,11 +3,8 @@
  * Definiert die Eigenschaften für die H2-Überschrift-Komponente.
  */
 interface Props {
-    /** Der Textinhalt der Überschrift. */
-    inhalt: string;
+    // Props könnten hier definiert werden, falls benötigt. Aktuell werden nur Slots verwendet.
 }
-
-const { inhalt } = Astro.props;
 ---
 
-<h2>{inhalt}</h2>
+<h2><slot /></h2>

@@ -12,4 +12,4 @@ interface Props {
 const { email } = Astro.props;
 ---
 
-<p>📧 E-Mail: <Link href={`mailto:${email}`} text={email} /></p>
+<p>📧 E-Mail: <Link href={`mailto:${email}`}>{email}</Link></p>

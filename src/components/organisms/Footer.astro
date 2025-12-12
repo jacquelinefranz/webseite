@@ -1,0 +1,24 @@
+---
+import Link from '../atoms/Link.astro';
+---
+
+<footer>
+    <div class="footer-content">
+        <Link href="/impressum">Impressum</Link>
+    </div>
+</footer>
+
+<style>
+    footer {
+        padding: var(--abstand-padding-vertikal) var(--abstand-padding-horizontal);
+        background-color: var(--hintergrund-hellgrau);
+        border-top: 1px solid var(--border-farbe-hellgrau);
+        margin-top: var(--abstand-sektion-unten);
+        text-align: center;
+        width: 100%; /* Stellt sicher, dass der Footer die volle Breite einnimmt */
+    }
+    .footer-content {
+        max-width: var(--seitenbreite-max);
+        margin: 0 auto;
+    }
+</style>

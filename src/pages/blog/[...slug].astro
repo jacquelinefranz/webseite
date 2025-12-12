@@ -31,7 +31,7 @@ const { Content } = await entry.render();
   type="article"
 >
   <main>
-    <Ueberschrift1 inhalt={entry.data.title} />
+    <Ueberschrift1>{entry.data.title}</Ueberschrift1>
     <p>Veröffentlicht am: {entry.data.pubDate.toLocaleDateString('de-DE')}</p>
     <Content />
   </main>
