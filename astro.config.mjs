@@ -11,7 +11,7 @@ export default defineConfig({
     mode: 'standalone',
   }),
   integrations: [
-    icon({ include: { lucide: ['*'], mingcute: ['*'] } }), // Lucide und Mingcute inkludieren
+    icon({ include: { mingcute: ['*'] } }), // Mingcute inkludieren
     // Astrobook wird nur geladen, wenn die Umgebungsvariable ENABLE_ASTROBOOK gesetzt ist.
     // Dies erlaubt es, Astrobook bei Bedarf separat zu starten, ohne die Hauptwebseite zu beeinflussen.
     process.env.ENABLE_ASTROBOOK ? astrobook() : null,

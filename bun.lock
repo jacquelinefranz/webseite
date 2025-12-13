@@ -7,7 +7,6 @@
       "dependencies": {
         "@astrojs/check": "^0.9.6",
         "@astrojs/node": "^9.5.1",
-        "@iconify-json/lucide": "^1.2.80",
         "astro": "^5.16.4",
         "astro-icon": "^1.1.5",
         "typescript": "^5.9.3",
@@ -191,8 +190,6 @@
     "@humanwhocodes/module-importer": ["@humanwhocodes/module-importer@1.0.1", "", {}, "sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA=="],
 
     "@humanwhocodes/retry": ["@humanwhocodes/retry@0.4.3", "", {}, "sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ=="],
-
-    "@iconify-json/lucide": ["@iconify-json/lucide@1.2.80", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-DwAHO+xJEJpOV5y2Q0DIoR3Au9UPk+J6an6KRO281QAxsz/+YpeySGSyZzUEK9tMrSAohkQamqlHx6lPDB8BEg=="],
 
     "@iconify-json/mingcute": ["@iconify-json/mingcute@1.2.5", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-LKlW4wahStprbfJcpzUnuayObOVAuztgYSy3v5oTke6cBJNfqEeE/mtMhHgpoSgGJvo5hhde2Q0+DoxKEldY2A=="],
 

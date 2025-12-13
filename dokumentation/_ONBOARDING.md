@@ -18,6 +18,7 @@ Die Erstellung von Komponenten ist der häufigste Arbeitsablauf.
 
 -   **Grundlagen:** Komponenten werden nach dem **Atomic Design** Prinzip in `Atome`, `Moleküle` und `Organismen` unterteilt und in `/src/components/` abgelegt.
 -   **Anleitung:** Eine detaillierte Schritt-für-Schritt-Anleitung findest du in der **[Komponenten-Richtlinie](./KOMPONENTEN_RICHTLINIE.md)**.
+-   **Icons integrieren:** Siehe **[Komponenten-Richtlinie > Schritt 3.5: Icons verwenden](./KOMPONENTEN_RICHTLINIE.md#schritt-35-icons-verwenden)**.
 
 ### 2. Eine neue Seite hinzufügen
 

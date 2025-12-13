@@ -56,6 +56,17 @@ Füge einen `<style>`-Block hinzu und verwende ausschließlich **[Design Tokens]
 </style>
 ```
 
+### Schritt 3.5: Icons verwenden
+
+Icons werden über das `astro-icon`-Paket integriert und unterstützen das Mingcute-Set. Verwende ausschließlich Mingcute für Konsistenz.
+
+**Nutzung:**
+- Importiere die `Icon`-Komponente: `import { Icon } from 'astro-icon/components';`
+- Verwende sie im Template: `<Icon name="mingcute:example-line" class="icon-class" />`
+- Style die Icons mit CSS (z.B. `width: 1.2em; height: 1.2em;`) und halte dich an Design Tokens.
+
+**Hinweis zur Erweiterung:** Wenn ein neues Set benötigt wird, installiere es via `npm install @iconify-json/set-name` und aktualisiere diese Richtlinie.
+
 ### Schritt 4: Story für Astrobook anlegen
 
 Um eine Story für Astrobook anzulegen, folge der **[Richtlinie: Komponenten-Stories mit Astrobook](./STORYBOOK_RICHTLINIE.md)**.

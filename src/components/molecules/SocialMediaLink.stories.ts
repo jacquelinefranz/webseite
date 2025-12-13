@@ -6,7 +6,7 @@ const meta = { // Typisierung entfernt
   argTypes: {
     icon: {
       control: { type: "text" },
-      description: "Name des Icons (z.B. lucide:linkedin)",
+      description: "Name des Icons (z.B. mingcute:linkedin-fill)",
     },
     href: {
       control: { type: "text" },
@@ -21,7 +21,7 @@ export default meta;
 
 export const LinkedIn = { // Typisierung entfernt
   args: {
-    icon: "lucide:linkedin",
+    icon: "mingcute:linkedin-fill",
     href: "https://www.linkedin.com/in/jacqueline-franz/",
     text: "LinkedIn",
   },
