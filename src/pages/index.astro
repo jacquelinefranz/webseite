@@ -1,16 +1,32 @@
 ---
-
+import BasisLayout from "../components/templates/BasisLayout.astro";
+import IntroSektion from "../components/organisms/IntroSektion.astro";
+import UeberMichSektion from "../components/organisms/UeberMichSektion.astro";
+import NeuesteBlogpostsSektion from "../components/organisms/NeuesteBlogpostsSektion.astro";
+import KontaktSektion from "../components/organisms/KontaktSektion.astro";
+import SocialMediaLink from "../components/molecules/SocialMediaLink.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BasisLayout
+  titel="Jacqueline Franz - Deine digitale Heimat"
+  beschreibung="Die persönliche Webseite von Jacqueline Franz, bekannt als @digitalerPanda. Hier teilt sie ihren Lernprozess in Webentwicklung und hilft anderen, ihre digitalen Ideen umzusetzen."
+  typ="website"
+>
+  <main>
+    <IntroSektion />
+    <UeberMichSektion />
+    <NeuesteBlogpostsSektion />
+    <KontaktSektion email="hi@jacquelinefranz.de">
+      <SocialMediaLink
+        icon="mingcute:github-fill"
+        href="https://github.com/your-username"
+        text="GitHub"
+      />
+      <SocialMediaLink
+        icon="mingcute:linkedin-fill"
+        href="https://linkedin.com/in/your-username"
+        text="LinkedIn"
+      />
+    </KontaktSektion>
+  </main>
+</BasisLayout>

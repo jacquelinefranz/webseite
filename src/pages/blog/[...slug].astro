@@ -1,0 +1,37 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BasisLayout from '../../components/templates/BasisLayout.astro';
+
+export async function getStaticPaths() {
+	const blogEntries = await getCollection('blog');
+	return blogEntries.map((entry) => ({
+		params: { slug: entry.slug },
+	}));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry('blog', slug);
+
+// Render a 404 page if the entry does not exist
+if (!entry) {
+	return new Response(null, {
+		status: 404,
+		statusText: 'Nicht gefunden',
+	});
+}
+
+const { Content } = await entry.render();
+---
+
+<BasisLayout
+  titel={entry.data.titel}
+  beschreibung={entry.data.beschreibung}
+  bild={entry.data.bild}
+  typ="article"
+>
+  <main>
+    <h1>{entry.data.titel}</h1>
+    <p>Veröffentlicht am: {entry.data.datum.toLocaleDateString('de-DE')}</p>
+    <Content />
+  </main>
+</BasisLayout>

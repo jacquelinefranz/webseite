@@ -1,0 +1,12 @@
+---
+interface Props {
+    /** Der Titel des Blogposts. */
+    titel: string;
+    /** Die URL zum vollständigen Blogpost. */
+    url: string;
+}
+
+const { titel, url } = Astro.props;
+---
+
+<li><a href={url}>{titel}</a></li>

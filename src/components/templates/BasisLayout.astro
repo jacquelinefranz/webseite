@@ -1,0 +1,49 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../../styles/tokens.css';
+import '../../styles/global.css';
+import SEO from '../atoms/SEO.astro'; // Import SEO component
+import HauptNavigation from '../organisms/HauptNavigation.astro';
+import Footer from '../organisms/Footer.astro';
+
+/**
+ * Definiert die Eigenschaften für das BasisLayout.
+ */
+interface Props {
+	/** Der Titel der Seite, der an die SEO-Komponente weitergegeben wird. */
+	titel: string;
+	/** Die Beschreibung der Seite, die an die SEO-Komponente weitergegeben wird. */
+	beschreibung?: string;
+	/** Das Vorschaubild der Seite für Social Media, an die SEO-Komponente weitergegeben. */
+	bild?: string;
+	/** Der Typ des Inhalts für Social Media, an die SEO-Komponente weitergegeben (z.B. 'website', 'article'). */
+	typ?: 'website' | 'article';
+}
+
+const { titel, beschreibung, bild, typ } = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<SEO
+			titel={titel}
+			beschreibung={beschreibung || "Eine persönliche Webseite von Jacqueline Franz über Webentwicklung und Blogbeiträge."}
+			bild={bild}
+			typ={typ}
+		/>
+		<ClientRouter />
+	</head>
+	<body>
+		<HauptNavigation>
+			<a href="/">Home</a>
+			<a href="/blog">Blog</a>
+		</HauptNavigation>
+		<slot />
+		<Footer />
+	</body>
+</html>

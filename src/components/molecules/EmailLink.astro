@@ -1,0 +1,34 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+    /** Die E-Mail-Adresse, die verlinkt und angezeigt wird. */
+    email: string;
+}
+
+const { email } = Astro.props;
+---
+
+<a href={`mailto:${email}`} class="email-link">
+    <Icon name="mingcute:mail-line" class="icon" /> {/* Icon aus dem Mingcute-Set */}
+    <span>E-Mail: {email}</span>
+</a>
+
+<style>
+    .email-link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--abstand-s); /* Design Token verwendet */
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .email-link:hover {
+        text-decoration: underline;
+    }
+
+    .icon {
+        width: 1.2em;
+        height: 1.2em;
+    }
+</style>

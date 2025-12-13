@@ -1,0 +1,15 @@
+---
+import EmailLink from '../molecules/EmailLink.astro';
+
+interface Props {
+    email: string;
+}
+
+const { email } = Astro.props;
+---
+
+<section>
+    <h2>Kontakt</h2>
+    <EmailLink email={email} />
+    <slot />
+</section>

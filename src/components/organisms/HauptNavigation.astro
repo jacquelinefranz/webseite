@@ -1,0 +1,26 @@
+---
+---
+
+<nav>
+    <slot />
+</nav>
+
+<style>
+    nav {
+        display: flex;
+        justify-content: center; /* Navigation zentrieren */
+        gap: var(--abstand-element-gap); /* Etwas mehr Abstand */
+        padding: var(--abstand-padding-vertikal) var(--abstand-padding-horizontal); /* Mehr Padding */
+        background-color: var(--hintergrund-hellgrau); /* Leichter Hintergrund */
+        border-bottom: 1px solid var(--border-farbe-hellgrau); /* Dezente Trennlinie */
+    }
+    nav :global(a) {
+        color: var(--textfarbe); /* Globale Textfarbe */
+        font-weight: var(--schriftgewicht-semi-bold); /* Etwas dicker für Navigation */
+        transition: var(--uebergang-standard); /* Weicher Übergang */
+    }
+    nav :global(a):hover {
+        color: var(--primärfarbe); /* Globale Primärfarbe */
+        text-decoration: none; /* Unterstreichung bei Hover entfernen */
+    }
+</style>

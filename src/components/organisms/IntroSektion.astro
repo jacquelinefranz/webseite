@@ -1,0 +1,18 @@
+---
+import { getEntry, getCollection } from 'astro:content';
+
+const introEntry = await getEntry('sections', 'intro');
+
+if (!introEntry) {
+  const allSections = await getCollection('sections');
+  const slugs = allSections.map(s => s.slug).join(', ');
+  throw new Error(`Intro section not found. Available sections: [${slugs}]`);
+}
+
+const { Content } = await introEntry.render();
+---
+
+<section>
+    <h1>{introEntry.data.titel}</h1>
+    <Content />
+</section>

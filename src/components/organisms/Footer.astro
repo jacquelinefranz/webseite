@@ -1,0 +1,54 @@
+---
+
+const startYear = 2025;
+const currentYear = new Date().getFullYear();
+const copyrightDate = startYear === currentYear 
+    ? `${startYear}` 
+    : `${startYear} – ${currentYear}`;
+---
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="/impressum">Impressum</a>
+            <span class="separator">|</span>
+            <a href="/datenschutz">Datenschutz</a>
+        </div>
+        <p class="copyright">
+            &copy; {copyrightDate} Jacqueline Franz. Alle Rechte vorbehalten.
+        </p>
+    </div>
+</footer>
+
+<style>
+    footer {
+        padding: var(--abstand-padding-vertikal) var(--abstand-padding-horizontal);
+        background-color: var(--hintergrund-hellgrau);
+        border-top: 1px solid var(--border-farbe-hellgrau);
+        margin-top: var(--abstand-sektion-unten);
+        text-align: center;
+        width: 100%;
+    }
+    .footer-content {
+        max-width: var(--seitenbreite-max);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--abstand-s);
+    }
+    .footer-links {
+        display: flex;
+        gap: var(--abstand-s);
+        align-items: center;
+    }
+    .separator {
+        color: var(--sekundärfarbe);
+        opacity: 0.5;
+    }
+    .copyright {
+        font-size: 0.9rem;
+        color: var(--sekundärfarbe);
+        margin: 0;
+    }
+</style>

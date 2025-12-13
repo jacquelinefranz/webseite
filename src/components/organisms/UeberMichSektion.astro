@@ -1,0 +1,16 @@
+---
+import { getEntry } from 'astro:content';
+
+const ueberMichEntry = await getEntry('sections', 'ueber-mich');
+
+if (!ueberMichEntry) {
+  throw new Error("Ueber Mich section not found");
+}
+
+const { Content } = await ueberMichEntry.render();
+---
+
+<section>
+    <h2>{ueberMichEntry.data.titel}</h2>
+    <Content />
+</section>

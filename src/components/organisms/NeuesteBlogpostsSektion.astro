@@ -1,0 +1,23 @@
+---
+import BlogpostVorschau from '../molecules/BlogpostVorschau.astro';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  sectionTitle?: string;
+}
+
+const { sectionTitle = "Neueste Blogposts" } = Astro.props;
+
+const allBlogPosts = await getCollection('blog');
+allBlogPosts.sort((a, b) => b.data.datum.getTime() - a.data.datum.getTime());
+const latestBlogPosts = allBlogPosts.slice(0, 3);
+---
+
+<section>
+    <h2>{sectionTitle}</h2>
+    <ul>
+        {latestBlogPosts.map(post => (
+            <BlogpostVorschau titel={post.data.titel} url={`/blog/${post.slug}`} />
+        ))}
+    </ul>
+</section>
