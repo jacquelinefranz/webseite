@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
-import vue from '@astrojs/vue';
 import icon from 'astro-icon';
 import astrobook from 'astrobook';
 
@@ -13,7 +12,6 @@ export default defineConfig({
   }),
   integrations: [
     icon({ include: { lucide: ['*'], mingcute: ['*'] } }), // Lucide und Mingcute inkludieren
-    vue(),
     // Astrobook wird nur geladen, wenn die Umgebungsvariable ENABLE_ASTROBOOK gesetzt ist.
     // Dies erlaubt es, Astrobook bei Bedarf separat zu starten, ohne die Hauptwebseite zu beeinflussen.
     process.env.ENABLE_ASTROBOOK ? astrobook() : null,
