@@ -1,0 +1,49 @@
+---
+import LizenzEintrag from '../molecules/LizenzEintrag.astro';
+import { getProjectLicenses } from '../../utils/getLicenses';
+
+interface Props {
+  licenses?: Awaited<ReturnType<typeof getProjectLicenses>>;
+}
+
+let { licenses } = Astro.props;
+
+if (!licenses) {
+  licenses = await getProjectLicenses();
+}
+---
+
+<section class="lizenz-liste">
+    {licenses.length > 0 ? (
+        <div class="grid">
+            {licenses.map((lizenz) => (
+                <LizenzEintrag lizenz={lizenz} />
+            ))}
+        </div>
+    ) : (
+        <p class="empty-state">Keine Lizenzinformationen gefunden.</p>
+    )}
+</section>
+
+<style>
+    .lizenz-liste {
+        margin: var(--abstand-l) 0;
+    }
+
+    .grid {
+        display: grid;
+        /* 
+           Fluid Layout ohne Media Query:
+           - auto-fill: Füllt die Zeile mit so vielen Spalten wie möglich
+           - minmax: Spalte ist mind. 300px breit, aber max. 1fr (teilt Restplatz auf)
+           - min(100%, ...): Verhindert Overflow auf Screens < 300px
+        */
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+        gap: var(--abstand-m);
+    }
+
+    .empty-state {
+        color: var(--sekundärfarbe);
+        font-style: italic;
+    }
+</style>

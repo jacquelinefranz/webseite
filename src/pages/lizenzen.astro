@@ -1,0 +1,25 @@
+---
+import BasisLayout from '../components/templates/BasisLayout.astro';
+import LizenzListe from '../components/organisms/LizenzListe.astro';
+---
+
+<BasisLayout 
+    titel="Open Source Lizenzen" 
+    beschreibung="Übersicht der verwendeten Open Source Komponenten und ihrer Lizenzen."
+>
+    <h1>Open Source Lizenzen</h1>
+    <p class="intro-text">
+        Diese Webseite verwendet folgende Open Source Software. Wir bedanken uns bei den Entwicklern und der Community für ihre Arbeit.
+    </p>
+
+    <LizenzListe />
+</BasisLayout>
+
+<style>
+    .intro-text {
+        max-width: 60ch;
+        margin-bottom: var(--abstand-xl);
+        color: var(--sekundärfarbe);
+        line-height: var(--linienhoehe-standard);
+    }
+</style>

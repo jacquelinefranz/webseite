@@ -1,0 +1,55 @@
+---
+interface LinkItem {
+    label: string;
+    href: string;
+}
+
+interface Props {
+    /** Optionale Liste von Links. Wenn nicht angegeben, werden Standard-Links verwendet. */
+    links?: LinkItem[];
+}
+
+const defaultLinks: LinkItem[] = [
+    { label: 'Impressum', href: '/impressum' },
+    { label: 'Datenschutz', href: '/datenschutz' },
+    { label: 'Lizenzen', href: '/lizenzen' }
+];
+
+const { links = defaultLinks } = Astro.props;
+---
+
+<nav class="rechtliche-navigation" aria-label="Rechtliche Links">
+    {links.map((link, index) => (
+        <>
+            <a href={link.href} class="link">{link.label}</a>
+            {index < links.length - 1 && <span class="separator" aria-hidden="true">|</span>}
+        </>
+    ))}
+</nav>
+
+<style>
+    .rechtliche-navigation {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--abstand-s);
+        font-size: 0.95rem;
+        align-items: center;
+    }
+
+    .link {
+        color: var(--primärfarbe);
+        text-decoration: none;
+        transition: var(--uebergang-standard);
+    }
+
+    .link:hover {
+        text-decoration: underline;
+        color: var(--textfarbe);
+    }
+
+    .separator {
+        color: var(--sekundärfarbe);
+        opacity: 0.5;
+        user-select: none;
+    }
+</style>

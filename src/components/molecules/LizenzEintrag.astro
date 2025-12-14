@@ -1,0 +1,132 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { LicenseInfo } from '../../utils/getLicenses';
+
+interface Props {
+  lizenz: LicenseInfo;
+}
+
+const { lizenz } = Astro.props;
+---
+
+<article class="lizenz-eintrag">
+  <div class="header">
+    <h3 class="name">{lizenz.name}</h3>
+    <span class="version">v{lizenz.version}</span>
+  </div>
+  
+  <div class="details">
+    <p class="author">
+        <span class="label">Von:</span> {lizenz.author}
+    </p>
+    <div class="license-info">
+      <span class="badge">{lizenz.licenseType}</span>
+      {lizenz.licenseUrl && (
+        <a href={lizenz.licenseUrl} target="_blank" rel="noopener noreferrer" class="license-link">
+          Lizenztext
+          <Icon name="mingcute:external-link-line" class="icon" />
+        </a>
+      )}
+    </div>
+  </div>
+  
+  {lizenz.description && <p class="description">{lizenz.description}</p>}
+</article>
+
+<style>
+  .lizenz-eintrag {
+    background-color: var(--hintergrund-hellgrau);
+    border: 1px solid var(--border-farbe-hellgrau);
+    padding: var(--abstand-m);
+    border-radius: 8px; /* Kann auch via Token sein falls vorhanden, nehme erstmal Standard */
+    display: flex;
+    flex-direction: column;
+    gap: var(--abstand-s);
+    transition: var(--uebergang-standard);
+  }
+
+  .lizenz-eintrag:hover {
+    border-color: var(--sekundärfarbe);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--abstand-xs);
+  }
+
+  .name {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--textfarbe);
+    font-weight: var(--schriftgewicht-semi-bold);
+  }
+
+  .version {
+    font-size: 0.85rem;
+    color: var(--sekundärfarbe);
+    font-family: monospace;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--abstand-xs);
+  }
+
+  .author {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--textfarbe);
+  }
+
+  .label {
+    color: var(--sekundärfarbe);
+    font-size: 0.85rem;
+    margin-right: 4px;
+  }
+
+  .license-info {
+    display: flex;
+    align-items: center;
+    gap: var(--abstand-m);
+    margin-top: var(--abstand-xs);
+  }
+
+  .badge {
+    background-color: var(--hintergrundfarbe);
+    border: 1px solid var(--border-farbe-hellgrau);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--textfarbe);
+  }
+
+  .license-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.9rem;
+    color: var(--primärfarbe);
+    text-decoration: none;
+  }
+
+  .license-link:hover {
+    text-decoration: underline;
+  }
+
+  .icon {
+    width: 1em;
+    height: 1em;
+  }
+
+  .description {
+    margin: var(--abstand-xs) 0 0 0;
+    font-size: 0.9rem;
+    color: var(--sekundärfarbe);
+    line-height: 1.4;
+  }
+</style>

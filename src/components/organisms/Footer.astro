@@ -1,6 +1,7 @@
 ---
 import EmailLink from '../molecules/EmailLink.astro';
 import SocialMediaLink from '../molecules/SocialMediaLink.astro';
+import RechtlicheNavigation from '../molecules/RechtlicheNavigation.astro';
 
 const startYear = 2025;
 const currentYear = new Date().getFullYear();
@@ -13,12 +14,7 @@ const copyrightDate = startYear === currentYear
     <div class="footer-content">
         
         <div class="footer-column left">
-            <div class="legal-links">
-                <a href="/impressum">Impressum</a>
-                <span class="separator">|</span>
-                <a href="/datenschutz">Datenschutz</a>
-                {/* <span class="separator">|</span> <a href="/lizenzen">Lizenzen</a> */}
-            </div>
+            <RechtlicheNavigation />
             <p class="copyright">
                 &copy; {copyrightDate} Jacqueline Franz.
             </p>
@@ -84,17 +80,6 @@ const copyrightDate = startYear === currentYear
         display: flex;
         align-items: center;
         gap: var(--abstand-m);
-    }
-
-    .legal-links {
-        display: flex;
-        gap: var(--abstand-s);
-        font-size: 0.95rem;
-    }
-
-    .separator {
-        color: var(--sekundärfarbe);
-        opacity: 0.5;
     }
 
     .copyright {
