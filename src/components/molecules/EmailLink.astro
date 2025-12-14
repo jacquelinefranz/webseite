@@ -13,7 +13,7 @@ const { email, hideText = false } = Astro.props;
 
 <a href={`mailto:${email}`} class="email-link" aria-label={hideText ? `E-Mail an ${email} senden` : undefined}>
     <Icon name="mingcute:mail-send-line" class="icon" /> {/* Icon aus dem Mingcute-Set */}
-    <span class={hideText ? 'sr-only' : ''}>E-Mail: {email}</span>
+    <span class={hideText ? 'sr-only' : ''}>{email}</span>
 </a>
 
 <style>
