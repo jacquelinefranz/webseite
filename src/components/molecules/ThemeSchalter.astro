@@ -137,7 +137,8 @@ import { Icon } from 'astro-icon/components'
     button.setAttribute('title', titles[state])
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  // Funktion zur Initialisierung
+  const initThemeToggle = () => {
     const button = document.getElementById('theme-toggle')
     if (!button) return
 
@@ -151,8 +152,13 @@ import { Icon } from 'astro-icon/components'
     applyThemeToDocument(currentState)
     updateButtonState(button, currentState)
 
-    // 3. Click Handler
-    button.addEventListener('click', () => {
+    // Event Listener entfernen um Duplikate zu vermeiden (falls Swap Mechanismus anders arbeitet)
+    // ist bei Astro View Transitions meist nicht nötig da Element neu ist, aber sicher ist sicher.
+    const newButton = button.cloneNode(true) as HTMLElement
+    button.parentNode?.replaceChild(newButton, button)
+
+    // 3. Click Handler neu registrieren
+    newButton.addEventListener('click', () => {
       // Zyklus: system -> light -> dark -> system
       const currentIndex = THEME_STATES.indexOf(currentState)
       const nextIndex = (currentIndex + 1) % THEME_STATES.length
@@ -161,7 +167,17 @@ import { Icon } from 'astro-icon/components'
       // Speichern & Anwenden
       localStorage.setItem(STORAGE_KEY, currentState)
       applyThemeToDocument(currentState)
-      updateButtonState(button, currentState)
+      updateButtonState(newButton, currentState)
     })
-  })
+  }
+
+  // Init bei jedem Page Load (auch nach View Transition)
+  document.addEventListener('astro:page-load', initThemeToggle)
+  
+  // Fallback: Theme sofort anwenden um FOUC zu minimieren
+  // (Optional, falls astro:page-load zu spät feuert)
+  const savedState = localStorage.getItem(STORAGE_KEY) as ThemeState | null
+  if (savedState && THEME_STATES.includes(savedState)) {
+    applyThemeToDocument(savedState)
+  }
 </script>
