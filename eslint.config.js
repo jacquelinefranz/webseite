@@ -4,9 +4,8 @@ import tseslint from "typescript-eslint";
 import pluginAstro from "eslint-plugin-astro";
 import pluginJsxA11y from "eslint-plugin-jsx-a11y";
 import eslintConfigPrettier from "eslint-config-prettier";
-import { defineConfig } from "@eslint/js"; // This is likely incorrect, should be from "@eslint/js" or similar
 
-export default defineConfig( // Changed here
+export default [
   {
     ignores: [
       ".astro/",
@@ -67,4 +66,4 @@ export default defineConfig( // Changed here
 
   // Prettier config to disable conflicting rules
   eslintConfigPrettier
-);
+];
