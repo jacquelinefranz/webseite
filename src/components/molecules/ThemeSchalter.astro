@@ -1,0 +1,97 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  /** Der aktuelle Theme-Modus ('light' oder 'dark'). */
+  aktuellesThema?: 'light' | 'dark';
+}
+
+const { aktuellesThema = 'light' } = Astro.props; // Default auf 'light', wird clientseitig überschrieben
+---
+
+<button id="theme-toggle" aria-label="Theme wechseln" data-aktuelles-thema={aktuellesThema}>
+  <Icon name="" class="theme-icon" />
+</button>
+
+<style>
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--abstand-s);
+    color: var(--textfarbe);
+    transition: var(--uebergang-standard);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--abstand-s);
+  }
+
+  button:hover {
+    background-color: var(--hintergrund-hellgrau);
+  }
+
+  .theme-icon {
+    width: 1.5em;
+    height: 1.5em;
+  }
+</style>
+
+<script>
+  // Dieses Skript läuft clientseitig, nachdem Astro die Komponente gerendert hat.
+  document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (!themeToggle) return;
+
+    let aktuellesThema: 'light' | 'dark' = 'light'; // Initialwert
+
+    // Funktion zum Setzen des Themas und Aktualisieren des Icons
+    const setzeThema = (thema: 'light' | 'dark') => {
+      aktuellesThema = thema;
+      if (thema === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+      const icon = themeToggle.querySelector('.theme-icon');
+      if (icon) {
+        let iconName;
+        switch (thema) {
+          case 'light':
+            iconName = 'mingcute:sun-line';
+            break;
+          case 'dark':
+          default:
+            iconName = 'mingcute:moon-line';
+            break;
+        }
+        icon.setAttribute('name', iconName);
+        themeToggle.dataset.aktuellesThema = thema;
+      }
+    };
+
+    // Beim Laden der Seite: Thema basierend auf System-Einstellungen setzen
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialThema = systemDark ? 'dark' : 'light';
+    setzeThema(initialThema);
+
+    // Event-Listener für den Toggle-Button
+    themeToggle.addEventListener('click', () => {
+      const neuesThema = aktuellesThema === 'light' ? 'dark' : 'light';
+      setzeThema(neuesThema);
+    });
+
+    // Listener für Änderungen im System-Theme (nur wenn nicht manuell gesetzt)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      // Wenn das Thema nicht manuell gesetzt wurde, folge dem System
+      // Hier nehmen wir an, dass nach dem ersten Laden das Thema manuell ist, aber für Einfachheit folgen wir immer dem System, es sei denn, es wurde manuell gewechselt.
+      // Um es einfach zu halten, folgen wir dem System nur, wenn das aktuelle Thema dem System entspricht.
+      const systemDarkNow = e.matches;
+      const systemThema = systemDarkNow ? 'dark' : 'light';
+      if (aktuellesThema === systemThema) {
+        // Es war bereits auf System, also aktualisiere Icon falls nötig
+        setzeThema(systemThema);
+      }
+    });
+  });
+</script>

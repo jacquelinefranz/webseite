@@ -1,24 +1,18 @@
-import ThemenUmschalter from "./ThemenUmschalter.astro";
+import ThemeSchalter from "./ThemeSchalter.astro";
 
 const meta = {
-  title: "Molekül/ThemenUmschalter",
-  component: ThemenUmschalter,
+  title: "Molekül/ThemeSchalter",
+  component: ThemeSchalter,
   argTypes: {
     aktuellesThema: {
       control: { type: "select" },
-      options: ['light', 'dark', 'system'],
+      options: ['light', 'dark'],
       description: "Der aktuell aktive Theme-Modus",
     },
   },
 };
 
 export default meta;
-
-export const System = {
-  args: {
-    aktuellesThema: 'system',
-  },
-};
 
 export const Light = {
   args: {
