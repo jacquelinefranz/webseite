@@ -1,16 +1,20 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from 'astro-icon/components'
 
-interface Props {
-  /** Der aktuelle Theme-Modus ('light' oder 'dark'). */
-  aktuellesThema?: 'light' | 'dark';
-}
-
-const { aktuellesThema = 'light' } = Astro.props; // Default auf 'light', wird clientseitig überschrieben
+// Wir definieren keine Props mehr, da der State rein clientseitig verwaltet wird
 ---
 
-<button id="theme-toggle" aria-label="Theme wechseln" data-aktuelles-thema={aktuellesThema}>
-  <Icon name="mingcute:sun-line" class="theme-icon" />
+<button id="theme-toggle" aria-label="Theme wechseln" title="Design wechseln">
+  <!-- Alle drei Icons werden gerendert, aber per CSS gesteuert -->
+  <span class="icon-wrapper icon-system">
+    <Icon name="mingcute:brightness-line" class="theme-icon" />
+  </span>
+  <span class="icon-wrapper icon-light">
+    <Icon name="mingcute:sun-line" class="theme-icon" />
+  </span>
+  <span class="icon-wrapper icon-dark">
+    <Icon name="mingcute:moon-line" class="theme-icon" />
+  </span>
 </button>
 
 <style>
@@ -25,6 +29,10 @@ const { aktuellesThema = 'light' } = Astro.props; // Default auf 'light', wird c
     align-items: center;
     justify-content: center;
     border-radius: var(--abstand-s);
+    position: relative;
+    /* Verhindert Layout-Verschiebungen beim Laden */
+    min-width: 2.5em; 
+    min-height: 2.5em;
   }
 
   button:hover {
@@ -35,63 +43,93 @@ const { aktuellesThema = 'light' } = Astro.props; // Default auf 'light', wird c
     width: 1.5em;
     height: 1.5em;
   }
+
+  /* Standardmäßig alle ausblenden */
+  .icon-wrapper {
+    display: none;
+  }
+
+  /* 
+   * Logik für die Sichtbarkeit basierend auf dem Attribut am BUTTON 
+   * Default (kein Attribut oder 'system') -> System Icon
+   */
+  button:not([data-state]),
+  button[data-state='system'] .icon-system {
+    display: block;
+  }
+
+  /* Wenn Light gewählt ist -> Light Icon */
+  button[data-state='light'] .icon-light {
+    display: block;
+  }
+  /* System Icon dann ausblenden (überschreibt die :not Regel falls nötig, hier aber explizit) */
+  button[data-state='light'] .icon-system {
+    display: none;
+  }
+
+  /* Wenn Dark gewählt ist -> Dark Icon */
+  button[data-state='dark'] .icon-dark {
+    display: block;
+  }
+  button[data-state='dark'] .icon-system {
+    display: none;
+  }
 </style>
 
 <script>
-  // Dieses Skript läuft clientseitig, nachdem Astro die Komponente gerendert hat.
+  const STORAGE_KEY = 'theme-preference'
+  const THEME_STATES = ['system', 'light', 'dark'] as const
+  type ThemeState = (typeof THEME_STATES)[number]
+
+  // Helfer: Theme auf HTML Element anwenden (für tokens.css)
+  const applyThemeToDocument = (state: ThemeState) => {
+    const doc = document.documentElement
+    if (state === 'system') {
+      doc.removeAttribute('data-theme')
+    } else {
+      doc.setAttribute('data-theme', state)
+    }
+  }
+
+  // Helfer: State auf Button anwenden (für Icon-Wechsel)
+  const updateButtonState = (button: HTMLElement, state: ThemeState) => {
+    button.setAttribute('data-state', state)
+    // Optional: Title Attribut für Hover-Info anpassen
+    const titles = {
+      system: 'Design: System (Auto)',
+      light: 'Design: Hell',
+      dark: 'Design: Dunkel'
+    }
+    button.setAttribute('title', titles[state])
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('theme-toggle');
-    if (!themeToggle) return;
+    const button = document.getElementById('theme-toggle')
+    if (!button) return
 
-    let aktuellesThema: 'light' | 'dark' = 'light'; // Initialwert
+    // 1. Initialen State laden
+    const savedState = localStorage.getItem(STORAGE_KEY) as ThemeState | null
+    let currentState: ThemeState = savedState && THEME_STATES.includes(savedState) 
+      ? savedState 
+      : 'system'
 
-    // Funktion zum Setzen des Themas und Aktualisieren des Icons
-    const setzeThema = (thema: 'light' | 'dark') => {
-      aktuellesThema = thema;
-      if (thema === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-      }
-      const icon = themeToggle.querySelector('.theme-icon');
-      if (icon) {
-        let iconName;
-        switch (thema) {
-          case 'light':
-            iconName = 'mingcute:sun-line';
-            break;
-          case 'dark':
-          default:
-            iconName = 'mingcute:moon-line';
-            break;
-        }
-        icon.setAttribute('name', iconName);
-        themeToggle.dataset.aktuellesThema = thema;
-      }
-    };
+    // 2. Initial anwenden
+    applyThemeToDocument(currentState)
+    updateButtonState(button, currentState)
 
-    // Beim Laden der Seite: Thema basierend auf System-Einstellungen setzen
-    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialThema = systemDark ? 'dark' : 'light';
-    setzeThema(initialThema);
+    // 3. Click Handler
+    button.addEventListener('click', () => {
+      // Zyklus: system -> light -> dark -> system
+      const currentIndex = THEME_STATES.indexOf(currentState)
+      const nextIndex = (currentIndex + 1) % THEME_STATES.length
+      currentState = THEME_STATES[nextIndex]
 
-    // Event-Listener für den Toggle-Button
-    themeToggle.addEventListener('click', () => {
-      const neuesThema = aktuellesThema === 'light' ? 'dark' : 'light';
-      setzeThema(neuesThema);
-    });
+      // Speichern
+      localStorage.setItem(STORAGE_KEY, currentState)
 
-    // Listener für Änderungen im System-Theme (nur wenn nicht manuell gesetzt)
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      // Wenn das Thema nicht manuell gesetzt wurde, folge dem System
-      // Hier nehmen wir an, dass nach dem ersten Laden das Thema manuell ist, aber für Einfachheit folgen wir immer dem System, es sei denn, es wurde manuell gewechselt.
-      // Um es einfach zu halten, folgen wir dem System nur, wenn das aktuelle Thema dem System entspricht.
-      const systemDarkNow = e.matches;
-      const systemThema = systemDarkNow ? 'dark' : 'light';
-      if (aktuellesThema === systemThema) {
-        // Es war bereits auf System, also aktualisiere Icon falls nötig
-        setzeThema(systemThema);
-      }
-    });
-  });
+      // Anwenden
+      applyThemeToDocument(currentState)
+      updateButtonState(button, currentState)
+    })
+  })
 </script>
