@@ -4,76 +4,111 @@ import { Icon } from 'astro-icon/components'
 // Wir definieren keine Props mehr, da der State rein clientseitig verwaltet wird
 ---
 
-<button id="theme-toggle" aria-label="Theme wechseln" title="Design wechseln">
-  <!-- Alle drei Icons werden gerendert, aber per CSS gesteuert -->
-  <span class="icon-wrapper icon-system">
-    <Icon name="mingcute:brightness-line" class="theme-icon" />
-  </span>
-  <span class="icon-wrapper icon-light">
-    <Icon name="mingcute:sun-line" class="theme-icon" />
-  </span>
-  <span class="icon-wrapper icon-dark">
-    <Icon name="mingcute:moon-line" class="theme-icon" />
-  </span>
+<button 
+  id="theme-toggle" 
+  class="theme-toggle theme-toggle--rotate" 
+  aria-label="Theme wechseln" 
+  title="Design wechseln"
+>
+  <div class="icon-stack">
+    <!-- System Icon -->
+    <span class="icon-wrapper icon-system">
+      <Icon name="mingcute:brightness-line" class="theme-icon" />
+    </span>
+    <!-- Light Icon -->
+    <span class="icon-wrapper icon-light">
+      <Icon name="mingcute:sun-line" class="theme-icon" />
+    </span>
+    <!-- Dark Icon -->
+    <span class="icon-wrapper icon-dark">
+      <Icon name="mingcute:moon-line" class="theme-icon" />
+    </span>
+  </div>
 </button>
 
 <style>
-  button {
+  /* Basis Button Styles */
+  .theme-toggle {
     background: none;
-    border: none;
+    border: 1px solid var(--border-farbe-hellgrau);
     cursor: pointer;
     padding: var(--abstand-s);
     color: var(--textfarbe);
-    transition: var(--uebergang-standard);
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--abstand-s);
+    border-radius: 50%; /* Runde Buttons für bessere Animation */
+    width: 3rem;
+    height: 3rem;
+    overflow: hidden; /* Wichtig für Animations-Überlappung */
     position: relative;
-    /* Verhindert Layout-Verschiebungen beim Laden */
-    min-width: 2.5em; 
-    min-height: 2.5em;
+    background-color: var(--hintergrundfarbe);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Übergang für Button selbst */
   }
 
-  button:hover {
+  .theme-toggle:hover {
     background-color: var(--hintergrund-hellgrau);
+  }
+
+  .icon-stack {
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    display: grid;
+    place-items: center;
   }
 
   .theme-icon {
     width: 1.5em;
     height: 1.5em;
+    display: block;
   }
 
-  /* Standardmäßig alle ausblenden */
+  /* Basis Wrapper: Absolute Positionierung für Übereinanderlagern */
   .icon-wrapper {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    opacity: 0; /* Standard: Unsichtbar */
+    pointer-events: none; /* Interaktionen mit inaktiven Icons verhindern */
   }
 
-  /* 
-   * Logik für die Sichtbarkeit basierend auf dem Attribut am BUTTON 
-   * Default (kein Attribut oder 'system') -> System Icon
-   */
-  button:not([data-state]),
-  button[data-state='system'] .icon-system {
-    display: block;
+  /* =========================================
+     LOGIK: Welches Icon ist aktiv? (Sichtbarkeit)
+     ========================================= */
+  /* Das aktive Icon wird sichtbar gemacht */
+  .theme-toggle:not([data-state]) .icon-system, /* Default: System ist aktiv wenn kein data-state gesetzt */
+  .theme-toggle[data-state='system'] .icon-system,
+  .theme-toggle[data-state='light'] .icon-light,
+  .theme-toggle[data-state='dark'] .icon-dark {
+    opacity: 1;
+    pointer-events: auto; /* Aktives Icon ist interaktiv */
   }
 
-  /* Wenn Light gewählt ist -> Light Icon */
-  button[data-state='light'] .icon-light {
-    display: block;
-  }
-  /* System Icon dann ausblenden (überschreibt die :not Regel falls nötig, hier aber explizit) */
-  button[data-state='light'] .icon-system {
-    display: none;
+
+  /* =========================================
+     ANIMATION: ROTATE & SCALE
+     ========================================= */
+  .theme-toggle--rotate .icon-wrapper {
+    transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.2s linear;
+    transform: scale(0) rotate(-90deg); /* Inaktive Icons sind klein und gedreht */
   }
 
-  /* Wenn Dark gewählt ist -> Dark Icon */
-  button[data-state='dark'] .icon-dark {
-    display: block;
+  /* Aktive Icons der Rotate-Variante */
+  .theme-toggle--rotate:not([data-state]) .icon-system,
+  .theme-toggle--rotate[data-state='system'] .icon-system,
+  .theme-toggle--rotate[data-state='light'] .icon-light,
+  .theme-toggle--rotate[data-state='dark'] .icon-dark {
+    transform: scale(1) rotate(0deg); /* Aktive Icons sind normal und ungedreht */
   }
-  button[data-state='dark'] .icon-system {
-    display: none;
-  }
+
 </style>
 
 <script>
@@ -91,10 +126,9 @@ import { Icon } from 'astro-icon/components'
     }
   }
 
-  // Helfer: State auf Button anwenden (für Icon-Wechsel)
+  // Helfer: State auf Button anwenden (für Icon-Wechsel & Title-Text)
   const updateButtonState = (button: HTMLElement, state: ThemeState) => {
     button.setAttribute('data-state', state)
-    // Optional: Title Attribut für Hover-Info anpassen
     const titles = {
       system: 'Design: System (Auto)',
       light: 'Design: Hell',
@@ -124,10 +158,8 @@ import { Icon } from 'astro-icon/components'
       const nextIndex = (currentIndex + 1) % THEME_STATES.length
       currentState = THEME_STATES[nextIndex]
 
-      // Speichern
+      // Speichern & Anwenden
       localStorage.setItem(STORAGE_KEY, currentState)
-
-      // Anwenden
       applyThemeToDocument(currentState)
       updateButtonState(button, currentState)
     })
