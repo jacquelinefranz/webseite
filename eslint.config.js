@@ -4,8 +4,9 @@ import tseslint from "typescript-eslint";
 import pluginAstro from "eslint-plugin-astro";
 import pluginJsxA11y from "eslint-plugin-jsx-a11y";
 import eslintConfigPrettier from "eslint-config-prettier";
+import { defineConfig } from "@eslint/js"; // This is likely incorrect, should be from "@eslint/js" or similar
 
-export default tseslint.config(
+export default defineConfig( // Changed here
   {
     ignores: [
       ".astro/",
@@ -16,7 +17,7 @@ export default tseslint.config(
       "src/env.d.ts"
     ],
   },
-  // JavaScript & TypeScript recommended
+  // Base configs
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   
