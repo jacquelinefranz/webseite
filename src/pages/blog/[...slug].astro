@@ -29,9 +29,7 @@ const { Content } = await entry.render();
   bild={entry.data.bild}
   typ="article"
 >
-  <main>
     <h1>{entry.data.titel}</h1>
     <p>Veröffentlicht am: {entry.data.datum.toLocaleDateString('de-DE')}</p>
     <Content />
-  </main>
 </BasisLayout>

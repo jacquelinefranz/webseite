@@ -43,7 +43,9 @@ const { titel, beschreibung, bild, typ } = Astro.props;
 			<a href="/">Home</a>
 			<a href="/blog">Blog</a>
 		</HauptNavigation>
-		<slot />
+		<main>
+			<slot />
+		</main>
 		<Footer />
 	</body>
 </html>

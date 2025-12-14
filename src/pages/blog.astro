@@ -12,12 +12,10 @@ allBlogPosts.sort((a, b) => b.data.datum.getTime() - a.data.datum.getTime());
   beschreibung="Entdecke die neuesten Blogposts von Jacqueline Franz zu Webentwicklung, Astro und digitalen Themen."
   typ="website"
 >
-  <main>
     <h1>Alle Blogposts</h1>
     <ul>
       {allBlogPosts.map(post => (
         <BlogpostVorschau titel={post.data.titel} url={`/blog/${post.slug}`} />
       ))}
     </ul>
-  </main>
 </BasisLayout>
