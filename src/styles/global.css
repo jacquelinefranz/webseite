@@ -32,15 +32,16 @@ h1, h2 {
 	margin-top: var(--abstand-ueberschrift-oben);
 	margin-bottom: var(--abstand-ueberschrift-unten);
 	line-height: var(--linienhoehe-ueberschrift);
-	color: var(--textfarbe); /* Kann später angepasst werden */
+	color: var(--textfarbe);
 }
 
+/* Fluide Schriftgrößen ohne Media Queries */
 h1 {
-	font-size: var(--schriftgroesse-h1-mobil);
+	font-size: var(--schriftgroesse-h1);
 }
 
 h2 {
-	font-size: var(--schriftgroesse-h2-mobil);
+	font-size: var(--schriftgroesse-h2);
 }
 
 p {
@@ -59,14 +60,16 @@ a:hover {
 
 main {
 	max-width: var(--seitenbreite-max);
-	margin: var(--abstand-main-vertikal-mobil) auto;
+	/* Fluider Abstand vertikal */
+	margin: var(--abstand-main-vertikal) auto;
 	padding: 0 var(--padding-main-horizontal);
 	flex: 1;
 	width: 100%;
 }
 
 section {
-	margin-bottom: var(--abstand-sektion-unten);
+	/* Fluider Abstand nach unten */
+	margin-bottom: var(--abstand-sektion-vertikal);
 }
 
 ul {
@@ -77,17 +80,4 @@ ul {
 
 li {
 	margin-bottom: var(--abstand-listenelement-unten);
-}
-
-/* Responsives Design - Mobile First */
-@media (min-width: 768px) {
-	h1 {
-		font-size: var(--schriftgroesse-h1-desktop);
-	}
-	h2 {
-		font-size: var(--schriftgroesse-h2-desktop);
-	}
-	main {
-		margin: var(--abstand-main-vertikal-desktop) auto;
-	}
 }

@@ -33,6 +33,9 @@
 
   /* Übergänge/Animationen */
   --uebergang-standard: color 0.3s ease; /* Weicher Übergang für Farben */
+  
+  /* Effekte */
+  --schatten-standard: 0 2px 8px rgba(0,0,0,0.05);
 
   /* Typografie - Ergänzungen */
   --linienhoehe-standard: 1.6;
