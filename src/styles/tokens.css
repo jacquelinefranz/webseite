@@ -1,61 +1,78 @@
-
 :root {
-    /* Farben */
-    --primärfarbe: #007bff; /* Blau für Links/Akzente */
-    --sekundärfarbe: #6c757d; /* Grau für Sekundärtext */
-    --hintergrundfarbe: #ffffff; /* Weißer Hintergrund */
-    --textfarbe: #333333; /* Dunkler Text */
-    --hintergrund-hellgrau: #f8f9fa; /* Leichter Hintergrund */
-    --border-farbe-hellgrau: #e9ecef; /* Dezente Trennlinie */
+  /* Dunkle Werte einmal definieren */
+  --dark-hintergrundfarbe: #121212;
+  --dark-textfarbe: #e0e0e0;
+  --dark-hintergrund-hellgrau: #1e1e1e;
+  --dark-border-farbe-hellgrau: #333333;
+  --dark-sekundärfarbe: #adb5bd;
 
-    /* Typografie */
-    --schriftart-standard: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --schriftgewicht-semi-bold: 600; /* Halbfett */
+  /* Farben */
+  --primärfarbe: #007bff; /* Blau für Links/Akzente */
+  --sekundärfarbe: #6c757d; /* Grau für Sekundärtext */
+  --hintergrundfarbe: #ffffff; /* Weißer Hintergrund */
+  --textfarbe: #333333; /* Dunkler Text */
+  --hintergrund-hellgrau: #f8f9fa; /* Leichter Hintergrund */
+  --border-farbe-hellgrau: #e9ecef; /* Dezente Trennlinie */
 
-    /* Abstände */
-    --abstand-xs: 0.25rem;
-    --abstand-s: 0.5rem;
-    --abstand-m: 1rem;
-    --abstand-l: 1.5rem;
-    --abstand-xl: 2rem;
-    --abstand-xxl: 3rem;
-    --abstand-element-gap: var(--abstand-xl); /* 2rem */
-    --abstand-padding-vertikal: var(--abstand-l); /* 1.5rem */
-    --abstand-padding-horizontal: var(--abstand-m); /* 1rem */
+  /* Typografie */
+  --schriftart-standard:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --schriftgewicht-semi-bold: 600; /* Halbfett */
 
-    /* Übergänge/Animationen */
-    --uebergang-standard: color 0.3s ease; /* Weicher Übergang für Farben */
+  /* Abstände */
+  --abstand-xs: 0.25rem;
+  --abstand-s: 0.5rem;
+  --abstand-m: 1rem;
+  --abstand-l: 1.5rem;
+  --abstand-xl: 2rem;
+  --abstand-xxl: 3rem;
+  --abstand-element-gap: var(--abstand-xl); /* 2rem */
+  --abstand-padding-vertikal: var(--abstand-l); /* 1.5rem */
+  --abstand-padding-horizontal: var(--abstand-m); /* 1rem */
 
-    /* Typografie - Ergänzungen */
-    --linienhoehe-standard: 1.6;
-    --linienhoehe-ueberschrift: 1.2;
-    --schriftgroesse-h1-mobil: 2.5rem; /* ~40px */
-    --schriftgroesse-h2-mobil: 2rem; /* ~32px */
-    --schriftgroesse-h1-desktop: 3rem;
-    --schriftgroesse-h2-desktop: 2.5rem;
+  /* Übergänge/Animationen */
+  --uebergang-standard: color 0.3s ease; /* Weicher Übergang für Farben */
 
-    /* Abstände - Ergänzungen */
-    --abstand-ueberschrift-oben: 1.5em;
-    --abstand-ueberschrift-unten: 0.5em;
-    --abstand-absatz-unten: 1em;
-    --abstand-main-vertikal-mobil: 2rem;
-    --abstand-main-vertikal-desktop: 3rem;
-    --abstand-sektion-unten: 3rem;
-    --abstand-listenelement-unten: 0.5rem;
-    --seitenbreite-max: 800px;
-    --padding-main-horizontal: 1rem; /* Besser benannt als spezifischer Padding-Wert */
+  /* Typografie - Ergänzungen */
+  --linienhoehe-standard: 1.6;
+  --linienhoehe-ueberschrift: 1.2;
+  --schriftgroesse-h1-mobil: 2.5rem; /* ~40px */
+  --schriftgroesse-h2-mobil: 2rem; /* ~32px */
+  --schriftgroesse-h1-desktop: 3rem;
+  --schriftgroesse-h2-desktop: 2.5rem;
 
-    /* Breakpoints */
-    --breakpoint-md: 768px;
+  /* Abstände - Ergänzungen */
+  --abstand-ueberschrift-oben: 1.5em;
+  --abstand-ueberschrift-unten: 0.5em;
+  --abstand-absatz-unten: 1em;
+  --abstand-main-vertikal-mobil: 2rem;
+  --abstand-main-vertikal-desktop: 3rem;
+  --abstand-sektion-unten: 3rem;
+  --abstand-listenelement-unten: 0.5rem;
+  --seitenbreite-max: 800px;
+  --padding-main-horizontal: 1rem;
+
+  /* Breakpoints */
+  --breakpoint-md: 768px;
 }
 
+/* Automatische Systemerkennung (nur wenn kein data-theme gesetzt) */
 @media (prefers-color-scheme: dark) {
-    :root {
-        --hintergrundfarbe: #121212;
-        --textfarbe: #e0e0e0;
-        --hintergrund-hellgrau: #1e1e1e;
-        --border-farbe-hellgrau: #333333;
-        --sekundärfarbe: #adb5bd;
-        /* Primärfarbe kann oft bleiben oder leicht angepasst werden, hier belassen wir sie vorerst */
-    }
+  :root:not([data-theme]) {
+    --hintergrundfarbe: var(--dark-hintergrundfarbe);
+    --textfarbe: var(--dark-textfarbe);
+    --hintergrund-hellgrau: var(--dark-hintergrund-hellgrau);
+    --border-farbe-hellgrau: var(--dark-border-farbe-hellgrau);
+    --sekundärfarbe: var(--dark-sekundärfarbe);
+  }
+}
+
+/* Manuelle Overrides */
+html[data-theme='dark'] {
+  --hintergrundfarbe: var(--dark-hintergrundfarbe);
+  --textfarbe: var(--dark-textfarbe);
+  --hintergrund-hellgrau: var(--dark-hintergrund-hellgrau);
+  --border-farbe-hellgrau: var(--dark-border-farbe-hellgrau);
+  --sekundärfarbe: var(--dark-sekundärfarbe);
 }
