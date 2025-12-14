@@ -45,3 +45,4 @@ Blogposts sind Markdown-Dateien und werden im Verzeichnis `/src/content/blog/` a
 -   **[Dokumentation schreiben](./DOKUMENTATIONS_RICHTLINIE.md)**
 -   **[Git Commits](./COMMIT_RICHTLINIE.md)**
 -   **[Komponenten-Stories mit Astrobook](./STORYBOOK_RICHTLINIE.md)**
+-   **[Responsives Design](./RESPONSIVE_RICHTLINIE.md)****

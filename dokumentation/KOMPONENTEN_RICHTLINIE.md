@@ -56,6 +56,10 @@ Füge einen `<style>`-Block hinzu und verwende ausschließlich **[Design Tokens]
 </style>
 ```
 
+### Schritt 3.1: Responsives Styling
+
+Für Schriftgrößen und Abstände ist **[Responsives Design mit Fluid Typography & Spacing](./RESPONSIVE_RICHTLINIE.md)** anzuwenden. Vermeide Media Queries für diese Eigenschaften und nutze stattdessen die dort definierten fluiden Tokens, um ein nahtloses Skalieren über alle Bildschirmgrößen zu gewährleisten.
+
 ### Schritt 3.5: Icons verwenden
 
 Icons werden über das `astro-icon`-Paket integriert und unterstützen das Mingcute-Set. Verwende ausschließlich Mingcute für Konsistenz.
