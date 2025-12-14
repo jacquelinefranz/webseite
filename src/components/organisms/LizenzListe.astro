@@ -35,10 +35,10 @@ if (!licenses) {
         /* 
            Fluid Layout ohne Media Query:
            - auto-fill: Füllt die Zeile mit so vielen Spalten wie möglich
-           - minmax: Spalte ist mind. 300px breit, aber max. 1fr (teilt Restplatz auf)
-           - min(100%, ...): Verhindert Overflow auf Screens < 300px
+           - minmax: Spalte ist mind. card-min-width breit, aber max. 1fr (teilt Restplatz auf)
+           - min(100%, ...): Verhindert Overflow auf Screens < card-min-width
         */
-        grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--card-min-width)), 1fr));
         gap: var(--abstand-m);
     }
 

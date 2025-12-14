@@ -21,6 +21,7 @@
   --schriftgewicht-semi-bold: 600; /* Halbfett */
 
   /* Abstände */
+  --abstand-xxs: 0.125rem;
   --abstand-xs: 0.25rem;
   --abstand-s: 0.5rem;
   --abstand-m: 1rem;
@@ -39,11 +40,15 @@
 
   /* Typografie - Ergänzungen */
   --linienhoehe-standard: 1.6;
+  --linienhoehe-small: 1.4;
   --linienhoehe-ueberschrift: 1.2;
   --schriftgroesse-h1-mobil: 2.5rem; /* ~40px */
   --schriftgroesse-h2-mobil: 2rem; /* ~32px */
   --schriftgroesse-h1-desktop: 3rem;
   --schriftgroesse-h2-desktop: 2.5rem;
+  
+  /* Layout Größen */
+  --card-min-width: 300px;
   
   /* Fluide Typografie (Bevorzugt nutzen) */
   --schriftgroesse-h1: clamp(2.5rem, 2.14rem + 1.5vw, 3rem);
@@ -67,6 +72,17 @@
 
   /* Icon-Größen */
   --icon-groesse-standard: clamp(1.5rem, 1vw + 1rem, 2rem);
+
+  /* Border Radius */
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 16px;
+
+  /* Schriftgrößen (Text) */
+  --schriftgroesse-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.85rem);
+  --schriftgroesse-s: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --schriftgroesse-standard: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --schriftgroesse-m: clamp(1.125rem, 1.05rem + 0.375vw, 1.3rem);
 
   /* Breakpoints */
   --breakpoint-md: 768px;

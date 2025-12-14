@@ -37,7 +37,7 @@ const { lizenz } = Astro.props;
     background-color: var(--hintergrund-hellgrau);
     border: 1px solid var(--border-farbe-hellgrau);
     padding: var(--abstand-m);
-    border-radius: 8px; /* Kann auch via Token sein falls vorhanden, nehme erstmal Standard */
+    border-radius: var(--radius-m);
     display: flex;
     flex-direction: column;
     gap: var(--abstand-s);
@@ -51,19 +51,17 @@ const { lizenz } = Astro.props;
   .header {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Zentriert Badge vertikal zum Titel */
+    align-items: center;
     flex-wrap: wrap;
     gap: var(--abstand-xs);
   }
 
   .name {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: var(--schriftgroesse-m);
     color: var(--textfarbe);
     font-weight: var(--schriftgewicht-semi-bold);
   }
-
-  /* .version entfernt */
 
   .details {
     display: flex;
@@ -73,40 +71,38 @@ const { lizenz } = Astro.props;
 
   .author {
     margin: 0;
-    font-size: 0.95rem;
+    font-size: var(--schriftgroesse-s);
     color: var(--textfarbe);
   }
 
   .label {
     color: var(--sekundärfarbe);
-    font-size: 0.85rem;
-    margin-right: 4px;
+    font-size: var(--schriftgroesse-xs);
+    margin-right: var(--abstand-xs);
   }
 
   .license-info {
     display: flex;
     align-items: center;
     gap: var(--abstand-m);
-    /* margin-top: var(--abstand-xs); Optional, je nach Geschmack */
   }
 
   .badge {
     background-color: var(--hintergrundfarbe);
     border: 1px solid var(--border-farbe-hellgrau);
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.8rem;
+    padding: var(--abstand-xxs) var(--abstand-s);
+    border-radius: var(--radius-s);
+    font-size: var(--schriftgroesse-xs);
     font-weight: 500;
     color: var(--textfarbe);
-    /* Damit Badge nicht schrumpft wenn Titel lang ist */
     flex-shrink: 0; 
   }
 
   .license-link {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    font-size: 0.9rem;
+    gap: var(--abstand-xs);
+    font-size: var(--schriftgroesse-s);
     color: var(--primärfarbe);
     text-decoration: none;
   }
@@ -122,8 +118,8 @@ const { lizenz } = Astro.props;
 
   .description {
     margin: var(--abstand-xs) 0 0 0;
-    font-size: 0.9rem;
+    font-size: var(--schriftgroesse-s);
     color: var(--sekundärfarbe);
-    line-height: 1.4;
+    line-height: var(--linienhoehe-small);
   }
 </style>
