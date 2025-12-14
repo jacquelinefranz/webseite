@@ -2,45 +2,118 @@
 import ThemeSchalter from '../molecules/ThemeSchalter.astro';
 ---
 
-<nav>
-    <div class="nav-links">
-        <slot />
-    </div>
-    <div class="nav-theme">
-        <ThemeSchalter />
+<nav id="main-nav">
+    <div class="nav-container">
+        <div class="nav-links">
+            <slot />
+        </div>
+        <div class="nav-theme">
+            <ThemeSchalter />
+        </div>
     </div>
 </nav>
 
+<script>
+    let cleanup: (() => void) | null = null;
+
+    document.addEventListener('astro:page-load', () => {
+        // Aufräumen alter Listener falls vorhanden
+        if (cleanup) cleanup();
+
+        const nav = document.getElementById('main-nav');
+        if (!nav) return;
+
+        // Platzhalter für Fixed Nav schaffen
+        const updatePadding = () => {
+            document.body.style.paddingTop = `${nav.offsetHeight}px`;
+        };
+        
+        // Initial und bei Resize
+        updatePadding();
+        window.addEventListener('resize', updatePadding);
+
+        let lastScrollY = window.scrollY;
+        
+        const onScroll = () => {
+            const currentScrollY = window.scrollY;
+            
+            // Logik:
+            // 1. Ganz oben (oder im "Bounce"-Bereich): Immer sichtbar
+            // 2. Runterscrollen (> 50px Threshold): Ausblenden
+            // 3. Hochscrollen: Einblenden
+            
+            if (currentScrollY <= 0) {
+                nav.style.transform = 'translateY(0)';
+            } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
+                nav.style.transform = 'translateY(-100%)';
+            } else if (currentScrollY < lastScrollY) {
+                nav.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Cleanup-Funktion speichern
+        cleanup = () => {
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', updatePadding);
+            // Padding zurücksetzen beim Verlassen der Seite ist meist nicht nötig, 
+            // da die neue Seite es neu berechnet, aber sauberer wäre es.
+            document.body.style.paddingTop = '';
+        };
+    });
+</script>
+
 <style>
     nav {
-        display: flex;
-        justify-content: space-between; /* Links zentrieren, Theme rechts */
-        align-items: center;
-        gap: var(--abstand-element-gap); /* Etwas mehr Abstand */
-        padding: var(--abstand-padding-vertikal) var(--abstand-padding-horizontal); /* Mehr Padding */
-        background-color: var(--hintergrund-hellgrau); /* Leichter Hintergrund */
-        border-bottom: 1px solid var(--border-farbe-hellgrau); /* Dezente Trennlinie */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--hintergrund-hellgrau);
+        border-bottom: 1px solid var(--border-farbe-hellgrau);
+        z-index: 100;
+        transition: transform 0.3s ease;
     }
+
+    .nav-container {
+        /* Responsives Layout gemäß Richtlinie */
+        width: min(100%, var(--seitenbreite-max));
+        margin-inline: auto;
+        
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--abstand-element-gap);
+        padding: var(--abstand-padding-vertikal) var(--abstand-padding-horizontal);
+    }
+
     .nav-links {
         display: flex;
         justify-content: center;
         gap: var(--abstand-element-gap);
     }
+
     .nav-theme {
         display: flex;
     }
+
     @media (max-width: 767px) {
         .nav-theme {
             display: none;
         }
     }
+
     nav :global(a) {
-        color: var(--textfarbe); /* Globale Textfarbe */
-        font-weight: var(--schriftgewicht-semi-bold); /* Etwas dicker für Navigation */
-        transition: var(--uebergang-standard); /* Weicher Übergang */
+        color: var(--textfarbe);
+        font-weight: var(--schriftgewicht-semi-bold);
+        transition: var(--uebergang-standard);
     }
+
     nav :global(a):hover {
-        color: var(--primärfarbe); /* Globale Primärfarbe */
-        text-decoration: none; /* Unterstreichung bei Hover entfernen */
+        color: var(--primärfarbe);
+        text-decoration: none;
     }
 </style>
