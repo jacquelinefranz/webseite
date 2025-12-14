@@ -62,9 +62,11 @@
   --abstand-main-vertikal: clamp(2rem, 1vw + 1.5rem, 4rem);
 
   --abstand-listenelement-unten: 0.5rem;
-  --abstand-listenelement-unten: 0.5rem;
   --seitenbreite-max: 800px;
   --padding-main-horizontal: 1rem;
+
+  /* Icon-Größen */
+  --icon-groesse-standard: clamp(1.5rem, 1vw + 1rem, 2rem);
 
   /* Breakpoints */
   --breakpoint-md: 768px;

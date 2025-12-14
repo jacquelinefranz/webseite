@@ -8,14 +8,16 @@ interface Props {
     href: string;
     /** Der sichtbare Text des Links. */
     text: string;
+    /** Wenn true, wird der Text visuell versteckt (nur für Screenreader verfügbar). */
+    hideText?: boolean;
 }
 
-const { icon, href, text } = Astro.props;
+const { icon, href, text, hideText = false } = Astro.props;
 ---
 
-<a href={href} target="_blank" rel="noopener noreferrer" class="social-link">
+<a href={href} target="_blank" rel="noopener noreferrer" class="social-link" aria-label={hideText ? text : undefined}>
     <Icon name={icon} class="icon" />
-    <span>{text}</span>
+    <span class={hideText ? 'sr-only' : ''}>{text}</span>
 </a>
 
 <style>
@@ -31,8 +33,14 @@ const { icon, href, text } = Astro.props;
         text-decoration: underline;
     }
 
+    /* Entfernt Unterstreichung beim Hover, wenn nur Icon sichtbar ist */
+    .social-link:has(.sr-only):hover {
+        text-decoration: none;
+        opacity: 0.8;
+    }
+
     .icon {
-        width: 1.2em;
-        height: 1.2em;
+        width: var(--icon-groesse-standard);
+        height: var(--icon-groesse-standard);
     }
 </style>

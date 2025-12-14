@@ -3,8 +3,6 @@ import BasisLayout from "../components/templates/BasisLayout.astro";
 import IntroSektion from "../components/organisms/IntroSektion.astro";
 import UeberMichSektion from "../components/organisms/UeberMichSektion.astro";
 import NeuesteBlogpostsSektion from "../components/organisms/NeuesteBlogpostsSektion.astro";
-import KontaktSektion from "../components/organisms/KontaktSektion.astro";
-import SocialMediaLink from "../components/molecules/SocialMediaLink.astro";
 ---
 
 <BasisLayout
@@ -15,16 +13,4 @@ import SocialMediaLink from "../components/molecules/SocialMediaLink.astro";
     <IntroSektion />
     <UeberMichSektion />
     <NeuesteBlogpostsSektion />
-    <KontaktSektion email="hi@jacquelinefranz.de">
-      <SocialMediaLink
-        icon="mingcute:github-fill"
-        href="https://github.com/your-username"
-        text="GitHub"
-      />
-      <SocialMediaLink
-        icon="mingcute:linkedin-fill"
-        href="https://linkedin.com/in/your-username"
-        text="LinkedIn"
-      />
-    </KontaktSektion>
 </BasisLayout>

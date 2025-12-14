@@ -1,4 +1,6 @@
 ---
+import EmailLink from '../molecules/EmailLink.astro';
+import SocialMediaLink from '../molecules/SocialMediaLink.astro';
 
 const startYear = 2025;
 const currentYear = new Date().getFullYear();
@@ -9,14 +11,47 @@ const copyrightDate = startYear === currentYear
 
 <footer>
     <div class="footer-content">
-        <div class="footer-links">
-            <a href="/impressum">Impressum</a>
-            <span class="separator">|</span>
-            <a href="/datenschutz">Datenschutz</a>
+        
+        <div class="footer-column left">
+            <div class="legal-links">
+                <a href="/impressum">Impressum</a>
+                <span class="separator">|</span>
+                <a href="/datenschutz">Datenschutz</a>
+                {/* <span class="separator">|</span> <a href="/lizenzen">Lizenzen</a> */}
+            </div>
+            <p class="copyright">
+                &copy; {copyrightDate} Jacqueline Franz.
+            </p>
         </div>
-        <p class="copyright">
-            &copy; {copyrightDate} Jacqueline Franz. Alle Rechte vorbehalten.
-        </p>
+
+        <div class="footer-column right social-section">
+            <EmailLink email="hi@jacquelinefranz.de" hideText={true} />
+            <SocialMediaLink
+                icon="mingcute:github-line"
+                href="https://github.com/jacquelinefranz"
+                text="GitHub"
+                hideText={true}
+            />
+            <SocialMediaLink
+                icon="mingcute:linkedin-line"
+                href="https://www.linkedin.com/in/jacqueline-franz"
+                text="LinkedIn"
+                hideText={true}
+            />
+            <SocialMediaLink
+                icon="mingcute:instagram-line"
+                href="https://instagram.com/digitalerPanda"
+                text="Instagram"
+                hideText={true}
+            />
+             <SocialMediaLink
+                icon="mingcute:social-x-line"
+                href="https://x.com/digitalerPanda"
+                text="X (Twitter)"
+                hideText={true}
+            />
+        </div>
+
     </div>
 </footer>
 
@@ -26,29 +61,63 @@ const copyrightDate = startYear === currentYear
         background-color: var(--hintergrund-hellgrau);
         border-top: 1px solid var(--border-farbe-hellgrau);
         margin-top: var(--abstand-sektion-unten);
-        text-align: center;
         width: 100%;
     }
+
     .footer-content {
         max-width: var(--seitenbreite-max);
         margin: 0 auto;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: var(--abstand-s);
+        justify-content: space-between;
+        align-items: center; /* Vertikal zentriert */
+        gap: var(--abstand-m);
     }
-    .footer-links {
+
+    .footer-column.left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--abstand-xs);
+    }
+
+    .footer-column.right {
+        display: flex;
+        align-items: center;
+        gap: var(--abstand-m);
+    }
+
+    .legal-links {
         display: flex;
         gap: var(--abstand-s);
-        align-items: center;
+        font-size: 0.95rem;
     }
+
     .separator {
         color: var(--sekundärfarbe);
         opacity: 0.5;
     }
+
     .copyright {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         color: var(--sekundärfarbe);
         margin: 0;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .footer-content {
+            flex-direction: column-reverse; /* Socials (rechts im HTML) nach oben, Text nach unten */
+            text-align: center;
+            gap: var(--abstand-l);
+        }
+
+        .footer-column.left {
+            align-items: center;
+        }
+
+        .footer-column.right {
+            justify-content: center;
+            flex-wrap: wrap;
+        }
     }
 </style>
