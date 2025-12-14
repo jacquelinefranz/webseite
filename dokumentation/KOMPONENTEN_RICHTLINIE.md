@@ -1,77 +1,67 @@
 # Richtlinie: Eine Komponente erstellen
 
-Dies ist eine Schritt-für-Schritt-Anleitung zur Erstellung einer neuen, wiederverwendbaren UI-Komponente.
+Anleitung zur Erstellung wiederverwendbarer UI-Komponenten.
 
-> **Zuerst lesen:** [Onboarding > Eine neue UI-Komponente erstellen](./ONBOARDING.md#1-eine-neue-ui-komponente-erstellen)
+> **Siehe auch:** [Onboarding > Eine neue UI-Komponente erstellen](./ONBOARDING.md#1-eine-neue-ui-komponente-erstellen)
 
 ---
 
-### Schritt 1: Speicherort wählen
+### Schritt 1: Speicherort wählen (Atomic Design)
 
-Ordne die neue Komponente nach dem **Atomic Design** Prinzip ein:
+-   **Atom:** Grundlegendes Element (`/src/components/atoms/`)
+-   **Molekül:** Gruppe von Atomen (`/src/components/molecules/`)
+-   **Organismus:** Komplexer Seitenbereich (`/src/components/organisms/`)
 
--   **Atom:** Ein grundlegendes UI-Element? (`/src/components/atoms/`)
--   **Molekül:** Eine Gruppe von Atomen? (`/src/components/molecules/`)
--   **Organismus:** Ein komplexer Seitenbereich? (`/src/components/organisms/`)
+### Schritt 2: Datei erstellen & Struktur
 
-### Schritt 2: Datei erstellen & Grundstruktur anlegen
-
-Erstelle die `.astro`-Datei im `PascalCase`-Format (z.B. `MeineKomponente.astro`). Jede Komponente enthält drei Bereiche:
-
-1.  **Script (`---`):** Für Props und Logik.
-2.  **Props-Interface:** Eine `interface Props` mit JSDoc-Kommentaren für jede Eigenschaft.
-3.  **Template (HTML):** Das Markup der Komponente.
+Erstelle die `.astro`-Datei im `PascalCase` (z.B. `MeineKomponente.astro`).
 
 ```astro
 ---
-// 2. Props-Interface definieren
-/**
- * Definiert die Eigenschaften für die Beispiel-Komponente.
- */
+// 1. Props Interface mit JSDoc
 interface Props {
-    /** Der Titel, der angezeigt werden soll. */
+    /** Der Titel der Komponente */
     titel: string;
 }
 
-// 1. Script-Bereich
 const { titel } = Astro.props;
 ---
 
-{* 3. Template-Bereich *}
+<!-- 2. Template -->
 <div>
     <h2>{titel}</h2>
 </div>
 ```
 
-### Schritt 3: Styling mit Design Tokens
+### Schritt 3: Styling
 
-Füge einen `<style>`-Block hinzu und verwende ausschließlich **[Design Tokens](./DESIGN_TOKENS.md)** für Farben, Abstände, Schriftarten etc.
+Verwende ausschließlich **[Design Tokens](./DESIGN_TOKENS.md)** und **[Responsives Design](./RESPONSIVE_RICHTLINIE.md)**.
+
+*   Nutze fluide Tokens für Schriftgrößen und Abstände (z.B. `var(--abstand-m)`).
+*   Definiere Farben über Tokens.
 
 ```astro
 <style>
     div {
-        padding: var(--abstand-m);
+        padding: var(--abstand-m); /* Skaliert automatisch */
         border: 1px solid var(--border-farbe-standard);
     }
 </style>
 ```
 
-### Schritt 3.1: Responsives Styling
+### Schritt 4: Icons
 
-Für Schriftgrößen und Abstände ist **[Responsives Design mit Fluid Typography & Spacing](./RESPONSIVE_RICHTLINIE.md)** anzuwenden. Vermeide Media Queries für diese Eigenschaften und nutze stattdessen die dort definierten fluiden Tokens, um ein nahtloses Skalieren über alle Bildschirmgrößen zu gewährleisten.
+Nutze das `astro-icon` Paket mit dem **Mingcute** Set.
 
-### Schritt 3.5: Icons verwenden
+1.  Import: `import { Icon } from 'astro-icon/components';`
+2.  Nutzung: `<Icon name="mingcute:example-line" class="icon" />`
+3.  Styling: Setze Größe über CSS (z.B. `width: 1.2em`).
 
-Icons werden über das `astro-icon`-Paket integriert und unterstützen das Mingcute-Set. Verwende ausschließlich Mingcute für Konsistenz.
+### Schritt 5: Storybook
 
-**Nutzung:**
-- Importiere die `Icon`-Komponente: `import { Icon } from 'astro-icon/components';`
-- Verwende sie im Template: `<Icon name="mingcute:example-line" class="icon-class" />`
-- Style die Icons mit CSS (z.B. `width: 1.2em; height: 1.2em;`) und halte dich an Design Tokens.
+Erstelle eine Story gemäß der **[Storybook Richtlinie](./STORYBOOK_RICHTLINIE.md)**.
 
-**Hinweis zur Erweiterung:** Wenn ein neues Set benötigt wird, installiere es via `npm install @iconify-json/set-name` und aktualisiere diese Richtlinie.
+## Vermeidung
 
-### Schritt 4: Story für Astrobook anlegen
-
-Um eine Story für Astrobook anzulegen, folge der **[Richtlinie: Komponenten-Stories mit Astrobook](./STORYBOOK_RICHTLINIE.md)**.
-
+*   **Harte Pixelwerte:** Nutze keine `px` für Layout-Abstände oder Schriftgrößen.
+*   **Inline-Styles:** Nutze den `<style>` Block.

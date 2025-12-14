@@ -41,6 +41,10 @@
   --schriftgroesse-h2-mobil: 2rem; /* ~32px */
   --schriftgroesse-h1-desktop: 3rem;
   --schriftgroesse-h2-desktop: 2.5rem;
+  
+  /* Fluide Typografie (Bevorzugt nutzen) */
+  --schriftgroesse-h1: clamp(2.5rem, 2.14rem + 1.5vw, 3rem);
+  --schriftgroesse-h2: clamp(2rem, 1.64rem + 1.5vw, 2.5rem);
 
   /* Abstände - Ergänzungen */
   --abstand-ueberschrift-oben: 1.5em;
@@ -49,6 +53,12 @@
   --abstand-main-vertikal-mobil: 2rem;
   --abstand-main-vertikal-desktop: 3rem;
   --abstand-sektion-unten: 3rem;
+  
+  /* Fluide Abstände (Bevorzugt nutzen für Layout) */
+  --abstand-sektion-vertikal: clamp(3rem, 2vw + 2rem, 5rem);
+  --abstand-main-vertikal: clamp(2rem, 1vw + 1.5rem, 4rem);
+
+  --abstand-listenelement-unten: 0.5rem;
   --abstand-listenelement-unten: 0.5rem;
   --seitenbreite-max: 800px;
   --padding-main-horizontal: 1rem;
