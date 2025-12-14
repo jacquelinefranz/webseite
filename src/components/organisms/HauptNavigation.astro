@@ -1,18 +1,38 @@
 ---
+import ThemeSchalter from '../molecules/ThemeSchalter.astro';
 ---
 
 <nav>
-    <slot />
+    <div class="nav-links">
+        <slot />
+    </div>
+    <div class="nav-theme">
+        <ThemeSchalter />
+    </div>
 </nav>
 
 <style>
     nav {
         display: flex;
-        justify-content: center; /* Navigation zentrieren */
+        justify-content: space-between; /* Links zentrieren, Theme rechts */
+        align-items: center;
         gap: var(--abstand-element-gap); /* Etwas mehr Abstand */
         padding: var(--abstand-padding-vertikal) var(--abstand-padding-horizontal); /* Mehr Padding */
         background-color: var(--hintergrund-hellgrau); /* Leichter Hintergrund */
         border-bottom: 1px solid var(--border-farbe-hellgrau); /* Dezente Trennlinie */
+    }
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: var(--abstand-element-gap);
+    }
+    .nav-theme {
+        display: flex;
+    }
+    @media (max-width: 767px) {
+        .nav-theme {
+            display: none;
+        }
     }
     nav :global(a) {
         color: var(--textfarbe); /* Globale Textfarbe */
