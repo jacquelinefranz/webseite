@@ -12,7 +12,7 @@ const { lizenz } = Astro.props;
 <article class="lizenz-eintrag">
   <div class="header">
     <h3 class="name">{lizenz.name}</h3>
-    <span class="version">v{lizenz.version}</span>
+    <span class="badge">{lizenz.licenseType}</span>
   </div>
   
   <div class="details">
@@ -20,7 +20,6 @@ const { lizenz } = Astro.props;
         <span class="label">Von:</span> {lizenz.author}
     </p>
     <div class="license-info">
-      <span class="badge">{lizenz.licenseType}</span>
       {lizenz.licenseUrl && (
         <a href={lizenz.licenseUrl} target="_blank" rel="noopener noreferrer" class="license-link">
           Lizenztext
@@ -52,7 +51,7 @@ const { lizenz } = Astro.props;
   .header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center; /* Zentriert Badge vertikal zum Titel */
     flex-wrap: wrap;
     gap: var(--abstand-xs);
   }
@@ -64,11 +63,7 @@ const { lizenz } = Astro.props;
     font-weight: var(--schriftgewicht-semi-bold);
   }
 
-  .version {
-    font-size: 0.85rem;
-    color: var(--sekundärfarbe);
-    font-family: monospace;
-  }
+  /* .version entfernt */
 
   .details {
     display: flex;
@@ -92,7 +87,7 @@ const { lizenz } = Astro.props;
     display: flex;
     align-items: center;
     gap: var(--abstand-m);
-    margin-top: var(--abstand-xs);
+    /* margin-top: var(--abstand-xs); Optional, je nach Geschmack */
   }
 
   .badge {
@@ -103,6 +98,8 @@ const { lizenz } = Astro.props;
     font-size: 0.8rem;
     font-weight: 500;
     color: var(--textfarbe);
+    /* Damit Badge nicht schrumpft wenn Titel lang ist */
+    flex-shrink: 0; 
   }
 
   .license-link {

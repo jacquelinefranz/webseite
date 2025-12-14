@@ -12,7 +12,6 @@ export default meta;
 const mockLicenses = [
   {
     name: 'astro',
-    version: '5.0.0',
     author: 'Fred K. Schott',
     licenseType: 'MIT',
     licenseUrl: 'https://github.com/withastro/astro/blob/main/LICENSE',
@@ -20,7 +19,6 @@ const mockLicenses = [
   },
   {
     name: 'react',
-    version: '18.3.0',
     author: 'Meta',
     licenseType: 'MIT',
     licenseUrl: 'https://github.com/facebook/react',
@@ -28,7 +26,6 @@ const mockLicenses = [
   },
    {
     name: '@iconify-json/mingcute',
-    version: '1.2.6',
     author: 'Richard Hor',
     licenseType: 'Apache-2.0',
     licenseUrl: 'https://github.com/Richard9394/MingCute',

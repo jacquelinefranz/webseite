@@ -15,7 +15,6 @@ export const MITLizenz = {
   args: {
     lizenz: {
       name: 'astro',
-      version: '5.0.0',
       author: 'Fred K. Schott',
       licenseType: 'MIT',
       licenseUrl: 'https://github.com/withastro/astro/blob/main/LICENSE',
@@ -28,7 +27,6 @@ export const ApacheLizenz = {
   args: {
     lizenz: {
       name: 'mingcute-icon',
-      version: '1.0.0',
       author: 'Richard Hor',
       licenseType: 'Apache-2.0',
       licenseUrl: 'https://github.com/Richard9394/MingCute/blob/main/LICENSE',

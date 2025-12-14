@@ -3,7 +3,6 @@ import path from 'node:path';
 
 export interface LicenseInfo {
   name: string;
-  version: string;
   author: string;
   licenseType: string;
   licenseUrl?: string;
@@ -12,6 +11,17 @@ export interface LicenseInfo {
 }
 
 const IGNORED_PACKAGES = ['typescript'];
+
+const OVERRIDES: Record<string, Partial<LicenseInfo>> = {
+    '@iconify-json/mingcute': {
+        name: 'MingCute Icon',
+        author: 'Richard Hor',
+        licenseType: 'Apache-2.0',
+        licenseUrl: 'https://github.com/Richard9394/MingCute/blob/main/LICENSE',
+        repository: 'https://github.com/Richard9394/MingCute',
+        description: 'A simple and exquisite open-source icon library.'
+    }
+};
 
 export async function getProjectLicenses(): Promise<LicenseInfo[]> {
   try {
@@ -25,18 +35,52 @@ export async function getProjectLicenses(): Promise<LicenseInfo[]> {
 
     for (const dep of dependencies) {
       if (IGNORED_PACKAGES.includes(dep)) continue;
+      
+      // Sub-Pakete von Astro ignorieren, da das Hauptpaket "astro" reicht
+      if (dep.startsWith('@astrojs/')) continue;
+
+      // Check for Override first
+      if (OVERRIDES[dep]) {
+          licenses.push({
+              name: dep, // Fallback name
+              version: '', // Version holen wir trotzdem gleich frisch oder lassen leer
+              author: 'Unbekannt',
+              licenseType: 'Unbekannt',
+              ...OVERRIDES[dep]
+          } as LicenseInfo);
+          continue; 
+      }
 
       try {
         const depPackageJsonPath = path.join(rootDir, 'node_modules', dep, 'package.json');
         const depContent = await fs.readFile(depPackageJsonPath, 'utf-8');
         const depPkg = JSON.parse(depContent);
 
-        // Autor extrahieren (kann String oder Object sein)
-        let author = 'Unbekannt';
-        if (typeof depPkg.author === 'string') {
-          author = depPkg.author;
-        } else if (depPkg.author && typeof depPkg.author === 'object') {
-          author = depPkg.author.name || 'Unbekannt';
+        // Autor extrahieren
+        let author = 'Community'; // Default, falls nichts gefunden
+        
+        if (depPkg.author) {
+            if (typeof depPkg.author === 'string') {
+                // "Name <email> (url)" -> "Name"
+                author = depPkg.author.replace(/<.*>/, '').replace(/\(.*\)/, '').trim();
+            } else if (typeof depPkg.author === 'object') {
+                author = depPkg.author.name || 'Community';
+            }
+        } else if (depPkg.contributors && Array.isArray(depPkg.contributors) && depPkg.contributors.length > 0) {
+             // Fallback auf ersten Contributor
+             const contributor = depPkg.contributors[0];
+             if (typeof contributor === 'string') {
+                 author = contributor.replace(/<.*>/, '').replace(/\(.*\)/, '').trim();
+             } else if (typeof contributor === 'object') {
+                 author = contributor.name || 'Community';
+             }
+        } else if (depPkg.maintainers && Array.isArray(depPkg.maintainers) && depPkg.maintainers.length > 0) {
+             const maintainer = depPkg.maintainers[0];
+             if (typeof maintainer === 'string') {
+                 author = maintainer.replace(/<.*>/, '').replace(/\(.*\)/, '').trim();
+             } else if (typeof maintainer === 'object') {
+                 author = maintainer.name || 'Community';
+             }
         }
 
         // Repository URL bereinigen
@@ -52,8 +96,7 @@ export async function getProjectLicenses(): Promise<LicenseInfo[]> {
             }
         }
 
-        // Lizenz URL raten (da nicht immer standardisiert im package.json)
-        // Fallback auf Repository + LICENSE Datei typische Pfade
+        // Lizenz URL raten
         let licenseUrl = '';
         if (repository && repository.startsWith('https://github.com')) {
              licenseUrl = `${repository}/blob/main/LICENSE`;
@@ -63,11 +106,10 @@ export async function getProjectLicenses(): Promise<LicenseInfo[]> {
 
         licenses.push({
           name: depPkg.name,
-          version: depPkg.version,
           author: author,
           licenseType: depPkg.license || 'Unbekannt',
           repository: repository,
-          licenseUrl: licenseUrl, // Frontend kann prüfen ob URL valide, oder wir lassen es so
+          licenseUrl: licenseUrl,
           description: depPkg.description
         });
 
