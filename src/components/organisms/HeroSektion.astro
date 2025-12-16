@@ -28,8 +28,7 @@ import ProfilBild from '../atoms/ProfilBild.astro';
         display: flex;
         flex-wrap: wrap;
         gap: var(--abstand-xl);
-        align-items: center;
-        /* justify-content: center; entfernt für linksbündiges Layout */
+        align-items: center
     }
 
     .hero-content {
@@ -38,6 +37,10 @@ import ProfilBild from '../atoms/ProfilBild.astro';
         flex-direction: column;
         gap: var(--abstand-s);
         min-width: min(100%, 20rem);
+    }
+    
+    .hero-content h2 {
+        margin-top: 0;
     }
     
     .role {

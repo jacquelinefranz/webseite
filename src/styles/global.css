@@ -67,6 +67,12 @@ main {
 	width: 100%;
 }
 
+/* Entfernt den oberen Abstand für das erste direkte Kind im Main-Bereich.
+   Sorgt für einen konsistenten Startabstand definiert durch den Main-Container. */
+main > *:first-child {
+	margin-top: 0;
+}
+
 section {
 	/* Fluider Abstand nach unten */
 	margin-bottom: var(--abstand-sektion-vertikal);
