@@ -1,52 +1,103 @@
 ---
 import ProfilBild from '../atoms/ProfilBild.astro';
+import profileImage from '../../assets/jacqueline-franz-profilbild.png';
 ---
 
-<section class="hero-card">
-    <div class="hero-body">
-        <ProfilBild />
+<section class="hero-section">
+    <div class="hero-grid">
+        <div class="hero-image-container">
+            <ProfilBild 
+                src={profileImage} 
+                alt="Jacqueline Franz" 
+                width={800} 
+                loading="eager"
+            />
+        </div>
         
-        <hgroup class="hero-content">
-            <h2>Hi, ich bin Jacqueline Franz</h2>
-            <p class="role">Product Owner | <span class="handle">@digitalerPanda 🐼</span></p>
-            
-            <p class="description">
-                Ich lerne öffentlich, experimentiere mit Code und teile dabei alles was interessant ist - Erfolge, Fehler und alles dazwischen.
-            </p>
-        </hgroup>
+        <div class="hero-content-container">
+            <div class="hero-content-wrapper">
+                <h2>Hi, ich bin Jacqueline Franz</h2>
+                <p class="role">Product Owner | <span class="handle">@digitalerPanda 🐼</span></p>
+                
+                <p class="description">
+                    Ich lerne öffentlich, experimentiere mit Code und teile dabei alles was interessant ist - Erfolge, Fehler und alles dazwischen.
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 
 <style>
-    .hero-card {
-        max-width: var(--seitenbreite-max);
-        margin: 0 auto var(--abstand-sektion-vertikal) auto;
+    .hero-section {
+        /* Volle Breite, kein Margin oben/unten der das Layout stört */
+        width: 100%;
+        background-color: var(--hintergrundfarbe);
+        /* border-bottom: 1px solid var(--border-farbe-hellgrau); */
+    }
+
+    .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    /* Bild-Container */
+    .hero-image-container {
+        width: 100%;
+        height: 50vh; /* Mobile Höhe */
+        position: relative;
         overflow: hidden;
+        background-color: var(--hintergrund-hellgrau);
     }
 
-    .hero-body {
+    /* Text-Container */
+    .hero-content-container {
         display: flex;
-        flex-wrap: wrap;
-        gap: var(--abstand-xl);
-        align-items: center
+        align-items: center;
+        padding: var(--abstand-xl) var(--padding-main-horizontal);
     }
 
-    .hero-content {
-        flex: 1 1 20rem;
-        display: flex;
-        flex-direction: column;
-        gap: var(--abstand-s);
-        min-width: min(100%, 20rem);
+    .hero-content-wrapper {
+        max-width: 600px;
+        margin: 0 auto; /* Zentriert im rechten Bereich */
     }
-    
-    .hero-content h2 {
+
+    /* Desktop Layout */
+    @media (min-width: 768px) {
+        .hero-grid {
+            grid-template-columns: 1fr 1fr;
+            min-height: 85vh; /* Fast volle Höhe auf Desktop */
+        }
+
+        .hero-image-container {
+            height: 100%; /* Füllt die volle Höhe des Grids */
+            order: 1; /* Links (Default, aber explizit gut) */
+        }
+        
+        .hero-content-container {
+            order: 2; /* Rechts */
+            padding: var(--abstand-xxl);
+        }
+        
+        /* Auf Desktop den Inhalt linksbündig im rechten Sektor lassen, 
+           aber nicht ganz am Rand kleben */
+        .hero-content-wrapper {
+            margin: 0;
+            margin-right: auto;
+        }
+    }
+
+    /* Typografie Anpassungen für Hero */
+    h2 {
         margin-top: 0;
+        margin-bottom: var(--abstand-s);
     }
-    
+
     .role {
-        margin: 0;
         font-size: var(--schriftgroesse-m);
         font-weight: var(--schriftgewicht-semi-bold);
+        color: var(--textfarbe);
+        margin-bottom: var(--abstand-m);
     }
 
     .handle {
@@ -54,7 +105,9 @@ import ProfilBild from '../atoms/ProfilBild.astro';
     }
 
     .description {
-        margin-top: var(--abstand-s);
-        margin-bottom: 0;
+        font-size: var(--schriftgroesse-m);
+        color: var(--sekundärfarbe);
+        margin-bottom: 0; /* Ursprünglich keine margin-bottom, da kein Button-group mehr da ist */
+        max-width: 45ch;
     }
 </style>

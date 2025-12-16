@@ -7,7 +7,8 @@ import HauptNavigation from '../organisms/HauptNavigation.astro';
 import Footer from '../organisms/Footer.astro';
 
 /**
- * Definiert die Eigenschaften für das BasisLayout.
+ * Definiert die Eigenschaften für das LandingLayout.
+ * Dieses Layout ermöglicht volle Breite im Hauptbereich (main).
  */
 interface Props {
 	/** Der Titel der Seite, der an die SEO-Komponente weitergegeben wird. */
@@ -51,15 +52,8 @@ const { titel, beschreibung, bild, typ } = Astro.props;
 </html>
 
 <style>
-	main {
-		max-width: var(--seitenbreite-max);
-		/* Fluider Abstand vertikal */
-		margin: var(--abstand-main-vertikal) auto;
-		padding: 0 var(--padding-main-horizontal);
-		width: 100%;
-	}
-	
-	/* Entfernt den oberen Abstand für das erste direkte Kind im Main-Bereich. */
+	/* LandingLayout spezifisch: Keine Breitenbeschränkung für main, 
+	   aber wir wollen sicherstellen, dass das erste Element oben bündig ist */
 	main > :global(*:first-child) {
 		margin-top: 0;
 	}

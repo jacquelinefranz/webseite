@@ -59,10 +59,7 @@ a:hover {
 }
 
 main {
-	max-width: var(--seitenbreite-max);
-	/* Fluider Abstand vertikal */
-	margin: var(--abstand-main-vertikal) auto;
-	padding: 0 var(--padding-main-horizontal);
+	/* Layout-Verantwortung liegt bei den Templates (z.B. BasisLayout) */
 	flex: 1;
 	width: 100%;
 }
