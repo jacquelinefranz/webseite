@@ -1,96 +1,56 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import defaultProfileImage from '../../assets/jacquelinefranz_profile.jpeg';
+import defaultProfileImage from '../../assets/jacqueline-franz-profilbild.png';
 
 interface Props {
   /** Der Pfad zum Profilbild */
   src?: string | ImageMetadata;
   /** Der Alternativtext für das Bild */
   alt?: string;
+  /** CSS Klasse für das Wrapper-Element */
+  class?: string;
+  /** Explizite Breite für das img-Attribut (Layout Shift Prevention) */
+  width?: number;
+  /** Explizite Höhe für das img-Attribut */
+  height?: number;
+  /** Ladeverhalten */
+  loading?: "eager" | "lazy";
 }
 
 const { 
   src = defaultProfileImage, 
-  alt = "Profilbild von Jacqueline Franz" 
+  alt = "Profilbild von Jacqueline Franz",
+  class: className,
+  width = 800, // Standardbreite für gute Qualität
+  height,
+  loading = "lazy"
 } = Astro.props;
 ---
 
-<div class="profile-visual">
-    <div class="ring ring-outer"></div>
-    <div class="ring ring-middle"></div>
-    <div class="ring ring-inner"></div>
-    <div class="image-wrapper">
-        <Image
-            src={src}
-            alt={alt}
-            width={120}
-            height={120}
-            loading="lazy"
-            class="profile-image"
-        />
-    </div>
+<div class:list={["profile-image-wrapper", className]}>
+    <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={loading}
+        class="profile-image"
+    />
 </div>
 
 <style>
-    /* Profilbild-Komposition mit Ringen */
-    .profile-visual {
-        position: relative;
-        /* Platzhaltergröße für die gesamte Komposition inkl. äußerstem Ring */
-        width: 10rem; 
-        height: 10rem;
-        flex: 0 0 10rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .ring {
-        position: absolute;
-        border-radius: 50%;
-        border-style: solid;
-        border-color: var(--sekundärfarbe);
-        pointer-events: none; /* Klicks gehen durch */
-    }
-
-    /* Äußerster Ring */
-    .ring-outer {
-        inset: 0;
-        border-width: 1px;
-        opacity: 0.1;
-    }
-
-    /* Mittlerer Ring */
-    .ring-middle {
-        inset: var(--abstand-s); /* 0.5rem */
-        border-width: 1px;
-        opacity: 0.2;
-    }
-
-    /* Innerer Ring */
-    .ring-inner {
-        inset: var(--abstand-m); /* 1rem */
-        border-width: 1px;
-        opacity: 0.3;
-    }
-
-    .image-wrapper {
-        position: relative;
-        z-index: 1;
-        width: 7.5rem; /* ~120px */
-        height: 7.5rem;
-        border-radius: 50%;
+    .profile-image-wrapper {
+        display: block;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
-        /* Kleiner Abstand zwischen innerstem Ring/Container und Bild */
-        padding: var(--abstand-xxs);
-        background-clip: content-box; 
     }
 
     .profile-image {
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        display: block;
-        border-radius: 50%;
     }
 </style>
