@@ -33,6 +33,14 @@ const { titel } = Astro.props;
 </div>
 ```
 
+### Schritt 2.1: Semantisches HTML
+
+Bevorzuge spezifische HTML-Tags gegenüber generischen `<div>`-Containern, um die Struktur für Screenreader und Suchmaschinen verständlicher zu machen.
+
+*   **`<hgroup>`:** Für eine Überschrift (`h1`-`h6`) mit zugehörigem Untertitel oder Tagline (`p`).
+*   **`<section>` / `<article>`:** Für inhaltlich abgegrenzte Bereiche.
+*   **`<nav>` / `<aside>` / `<footer>`:** Für spezifische Layout-Bereiche.
+
 ### Schritt 3: Styling
 
 Verwende ausschließlich **[Design Tokens](./DESIGN_TOKENS.md)** und **[Responsives Design](./RESPONSIVE_RICHTLINIE.md)**.
