@@ -1,23 +1,10 @@
 ---
+import ProfilBild from '../atoms/ProfilBild.astro';
 ---
 
 <section class="hero-card">
     <div class="hero-body">
-        <div class="profile-visual">
-            <div class="ring ring-outer"></div>
-            <div class="ring ring-middle"></div>
-            <div class="ring ring-inner"></div>
-            <div class="image-wrapper">
-                <img 
-                    src="/jacquelinefranz_profile.jpeg" 
-                    alt="Profilbild von Jacqueline Franz" 
-                    width="120" 
-                    height="120" 
-                    loading="lazy" 
-                    class="profile-image"
-                />
-            </div>
-        </div>
+        <ProfilBild />
         
         <div class="hero-content">
             <h2>Hi, ich bin Jacqueline Franz</h2>
@@ -32,84 +19,17 @@
 
 <style>
     .hero-card {
-        background-color: var(--hintergrundfarbe);
-        border-radius: var(--radius-m);
         max-width: var(--seitenbreite-max);
         margin: 0 auto var(--abstand-sektion-vertikal) auto;
-        box-shadow: var(--schatten-standard);
         overflow: hidden;
     }
 
     .hero-body {
-        padding: var(--abstand-l);
         display: flex;
         flex-wrap: wrap;
-        gap: var(--abstand-xl); /* Erhöhter Abstand für mehr Whitespace */
+        gap: var(--abstand-xl);
         align-items: center;
         /* justify-content: center; entfernt für linksbündiges Layout */
-    }
-
-    /* Profilbild-Komposition mit Ringen */
-    .profile-visual {
-        position: relative;
-        /* Platzhaltergröße für die gesamte Komposition inkl. äußerstem Ring */
-        width: 10rem; 
-        height: 10rem;
-        flex: 0 0 10rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .ring {
-        position: absolute;
-        border-radius: 50%;
-        border-style: solid;
-        border-color: var(--sekundärfarbe);
-        pointer-events: none; /* Klicks gehen durch */
-    }
-
-    /* Äußerster Ring */
-    .ring-outer {
-        inset: 0;
-        border-width: 1px;
-        opacity: 0.1;
-    }
-
-    /* Mittlerer Ring */
-    .ring-middle {
-        inset: var(--abstand-s); /* 0.5rem */
-        border-width: 1px;
-        opacity: 0.2;
-    }
-
-    /* Innerer Ring */
-    .ring-inner {
-        inset: var(--abstand-m); /* 1rem */
-        border-width: 1px;
-        opacity: 0.3;
-    }
-
-    .image-wrapper {
-        position: relative;
-        z-index: 1;
-        width: 7.5rem; /* ~120px */
-        height: 7.5rem;
-        border-radius: 50%;
-        overflow: hidden;
-        background-color: var(--hintergrund-hellgrau);
-        /* Kleiner Abstand zwischen innerstem Ring/Container und Bild */
-        padding: var(--abstand-xxs);
-        background-clip: content-box; 
-        box-shadow: var(--schatten-standard);
-    }
-
-    .profile-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        border-radius: 50%;
     }
 
     .hero-content {

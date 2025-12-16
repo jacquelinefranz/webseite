@@ -1,0 +1,92 @@
+---
+interface Props {
+  /** Der Pfad zum Profilbild */
+  src?: string;
+  /** Der Alternativtext für das Bild */
+  alt?: string;
+}
+
+const { 
+  src = "/jacquelinefranz_profile.jpeg", 
+  alt = "Profilbild von Jacqueline Franz" 
+} = Astro.props;
+---
+
+<div class="profile-visual">
+    <div class="ring ring-outer"></div>
+    <div class="ring ring-middle"></div>
+    <div class="ring ring-inner"></div>
+    <div class="image-wrapper">
+        <img 
+            src={src} 
+            alt={alt} 
+            width="120" 
+            height="120" 
+            loading="lazy" 
+            class="profile-image"
+        />
+    </div>
+</div>
+
+<style>
+    /* Profilbild-Komposition mit Ringen */
+    .profile-visual {
+        position: relative;
+        /* Platzhaltergröße für die gesamte Komposition inkl. äußerstem Ring */
+        width: 10rem; 
+        height: 10rem;
+        flex: 0 0 10rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ring {
+        position: absolute;
+        border-radius: 50%;
+        border-style: solid;
+        border-color: var(--sekundärfarbe);
+        pointer-events: none; /* Klicks gehen durch */
+    }
+
+    /* Äußerster Ring */
+    .ring-outer {
+        inset: 0;
+        border-width: 1px;
+        opacity: 0.1;
+    }
+
+    /* Mittlerer Ring */
+    .ring-middle {
+        inset: var(--abstand-s); /* 0.5rem */
+        border-width: 1px;
+        opacity: 0.2;
+    }
+
+    /* Innerer Ring */
+    .ring-inner {
+        inset: var(--abstand-m); /* 1rem */
+        border-width: 1px;
+        opacity: 0.3;
+    }
+
+    .image-wrapper {
+        position: relative;
+        z-index: 1;
+        width: 7.5rem; /* ~120px */
+        height: 7.5rem;
+        border-radius: 50%;
+        overflow: hidden;
+        /* Kleiner Abstand zwischen innerstem Ring/Container und Bild */
+        padding: var(--abstand-xxs);
+        background-clip: content-box; 
+    }
+
+    .profile-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 50%;
+    }
+</style>
