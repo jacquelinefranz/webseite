@@ -65,6 +65,40 @@ Nutze das `astro-icon` Paket mit dem **Mingcute** Set.
 2.  Nutzung: `<Icon name="mingcute:example-line" class="icon" />`
 3.  Styling: Setze Größe über CSS (z.B. `width: 1.2em`).
 
+### Schritt 4.1: Bildnutzung (Astro Image-Komponente)
+
+Für die optimale Performance und automatische Bildoptimierung (z.B. WebP-Konvertierung, responsive Größen) sollten Bilder über die Astro `Image`-Komponente eingebunden werden.
+
+1.  **Speicherort:** Platziere Bilder in `src/assets/` anstatt in `public/`.
+2.  **Import:** Importiere das Bild in der `.astro`-Komponente. Dies generiert `ImageMetadata`.
+    ```astro
+    ---
+    import { Image } from 'astro:assets';
+    import type { ImageMetadata } from 'astro';
+    import meinBild from '../../assets/meinBild.png';
+
+    interface Props {
+        /** Der Pfad zum Bild oder ImageMetadata */
+        src?: string | ImageMetadata;
+        /** Der Alternativtext für das Bild */
+        alt: string;
+    }
+
+    const { src = meinBild, alt } = Astro.props;
+    ---
+    ```
+3.  **Nutzung:** Verwende die `Image`-Komponente mit den importierten Metadaten.
+    ```astro
+    <Image 
+        src={src} 
+        alt={alt} 
+        width={100} 
+        height={100} 
+        loading="lazy" 
+    />
+    ```
+    Stelle sicher, dass `width` und `height` explizit gesetzt sind, um Layout-Shifts zu vermeiden.
+
 ### Schritt 5: Storybook
 
 Erstelle eine Story gemäß der **[Storybook Richtlinie](./STORYBOOK_RICHTLINIE.md)**.

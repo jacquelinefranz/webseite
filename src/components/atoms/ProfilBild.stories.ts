@@ -11,7 +11,6 @@ export default {
 
 export const Default = {
   args: {
-    src: "/jacquelinefranz_profile.jpeg",
     alt: "Profilbild von Jacqueline Franz",
   },
 };
