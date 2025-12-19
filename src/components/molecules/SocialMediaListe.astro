@@ -1,0 +1,41 @@
+---
+import EmailLink from './EmailLink.astro';
+import SocialMediaLink from './SocialMediaLink.astro';
+---
+
+<div class="social-media-liste">
+    <EmailLink email="hi@jacquelinefranz.de" hideText={true} />
+    <SocialMediaLink
+        icon="mingcute:github-line"
+        href="https://github.com/jacquelinefranz"
+        text="GitHub"
+        hideText={true}
+    />
+    <SocialMediaLink
+        icon="mingcute:linkedin-line"
+        href="https://www.linkedin.com/in/jacqueline-franz"
+        text="LinkedIn"
+        hideText={true}
+    />
+    <SocialMediaLink
+        icon="mingcute:instagram-line"
+        href="https://instagram.com/digitalerPanda"
+        text="Instagram"
+        hideText={true}
+    />
+     <SocialMediaLink
+        icon="mingcute:social-x-line"
+        href="https://x.com/digitalerPanda"
+        text="X (Twitter)"
+        hideText={true}
+    />
+</div>
+
+<style>
+    .social-media-liste {
+        display: flex;
+        align-items: center;
+        gap: var(--abstand-m);
+        flex-wrap: wrap;
+    }
+</style>

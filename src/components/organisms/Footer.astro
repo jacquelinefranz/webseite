@@ -1,6 +1,5 @@
 ---
-import EmailLink from '../molecules/EmailLink.astro';
-import SocialMediaLink from '../molecules/SocialMediaLink.astro';
+import SocialMediaListe from '../molecules/SocialMediaListe.astro';
 import RechtlicheNavigation from '../molecules/RechtlicheNavigation.astro';
 
 const startYear = 2025;
@@ -21,31 +20,7 @@ const copyrightDate = startYear === currentYear
         </div>
 
         <div class="footer-column right social-section">
-            <EmailLink email="hi@jacquelinefranz.de" hideText={true} />
-            <SocialMediaLink
-                icon="mingcute:github-line"
-                href="https://github.com/jacquelinefranz"
-                text="GitHub"
-                hideText={true}
-            />
-            <SocialMediaLink
-                icon="mingcute:linkedin-line"
-                href="https://www.linkedin.com/in/jacqueline-franz"
-                text="LinkedIn"
-                hideText={true}
-            />
-            <SocialMediaLink
-                icon="mingcute:instagram-line"
-                href="https://instagram.com/digitalerPanda"
-                text="Instagram"
-                hideText={true}
-            />
-             <SocialMediaLink
-                icon="mingcute:social-x-line"
-                href="https://x.com/digitalerPanda"
-                text="X (Twitter)"
-                hideText={true}
-            />
+            <SocialMediaListe />
         </div>
 
     </div>
