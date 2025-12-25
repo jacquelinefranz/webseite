@@ -1,0 +1,107 @@
+---
+import ProfilBild from '../atoms/ProfilBild.astro';
+import profileImage from '../../assets/jacqueline-franz-profilbild.png';
+import SozialMediaListe from '../molecules/SocialMediaListe.astro';
+---
+
+<section class="hero-section">
+    <div class="hero-grid">
+        <div class="hero-image-container">
+            <ProfilBild 
+                src={profileImage} 
+                alt="Jacqueline Franz" 
+                width={800} 
+                loading="eager"
+            />
+        </div>
+        
+        <div class="hero-content-container">
+            <div class="hero-content-wrapper">
+                <hgroup>
+                    <h2>Hi, ich bin Jacqueline Franz</h2>
+                    <p class="role">Product Owner | <span class="handle">@digitalerPanda 🐼</span></p>
+                </hgroup>
+                
+                <p class="description">
+                    Ich lerne öffentlich, experimentiere mit Code und teile dabei alles was interessant ist - Erfolge, Fehler und alles dazwischen.
+                </p>
+                <SozialMediaListe />
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero-section{
+        width: 100%;
+    }
+
+    .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    /* Bild-Container */
+    .hero-image-container {
+        width: 100%;
+        height: 50vh; /* Mobile Höhe */
+        position: relative;
+        overflow: hidden
+    }
+
+    /* Text-Container */
+    .hero-content-container {
+        display: flex;
+        align-items: center;
+        padding: var(--abstand-xl) var(--padding-main-horizontal)
+    }
+
+    /* Desktop Layout */
+    @media (min-width: 768px) {
+        .hero-grid {
+            grid-template-columns: 1fr 1fr;
+            min-height: 85vh; /* Fast volle Höhe auf Desktop */
+        }
+
+        .hero-image-container {
+            height: 100%; /* Füllt die volle Höhe des Grids */
+            order: 1; /* Links (Default, aber explizit gut) */
+        }
+        
+        .hero-content-container {
+            order: 2; /* Rechts */
+            padding: var(--abstand-xxl);
+        }
+        
+        /* Auf Desktop den Inhalt linksbündig im rechten Sektor lassen, 
+           aber nicht ganz am Rand kleben */
+        .hero-content-wrapper {
+            margin: 0;
+            margin-right: auto;
+        }
+    }
+
+    /* Typografie Anpassungen für Hero */
+    h2 {
+        margin-top: 0;
+        margin-bottom: var(--abstand-s);
+    }
+
+    .role {
+        font-size: var(--schriftgroesse-m);
+        font-weight: var(--schriftgewicht-semi-bold);
+        color: var(--textfarbe);
+        margin-bottom: var(--abstand-m);
+    }
+
+    .handle {
+        color: var(--sekundärfarbe);
+    }
+
+    .description {
+        font-size: var(--schriftgroesse-m);
+        color: var(--sekundärfarbe);
+        max-width: 45ch; 
+    }
+</style>

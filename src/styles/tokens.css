@@ -64,7 +64,7 @@
   
   /* Fluide Abstände (Bevorzugt nutzen für Layout) */
   --abstand-sektion-vertikal: clamp(3rem, 2vw + 2rem, 5rem);
-  --abstand-main-vertikal: clamp(2rem, 1vw + 1.5rem, 4rem);
+  --abstand-main-vertikal: clamp(3rem, 1vw + 2rem, 5rem);
 
   --abstand-listenelement-unten: 0.5rem;
   --seitenbreite-max: 800px;
