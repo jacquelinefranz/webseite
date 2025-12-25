@@ -1,15 +1,12 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import node from '@astrojs/node';
 import icon from 'astro-icon';
 import astrobook from 'astrobook';
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
-  adapter: node({
-    mode: 'standalone',
-  }),
+  output: 'static',
+  site: import.meta.env.SITE || 'https://jacquelinefranz.de',
   integrations: [
     icon({ include: { mingcute: ['*'] } }), // Mingcute inkludieren
     // Astrobook wird nur geladen, wenn die Umgebungsvariable ENABLE_ASTROBOOK gesetzt ist.
