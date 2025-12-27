@@ -1,0 +1,175 @@
+/**
+ * Design Tokens - Variante 3: Modern & Tech-Forward
+ *
+ * Visuelle Identität: Product Owner, UX-affin, Future-oriented
+ * Stimmung: Systematisch, innovativ, präzise
+ * Farbkonzept: Kühle technische Farben (Teal, Indigo, Slate)
+ */
+
+:root {
+  /* ========================================
+     COLOR TOKENS
+     ======================================== */
+
+  /* Primary - Teal für CTAs und Akzente */
+  --color-primary: #14b8a6;
+  --color-primary-hover: #0f9f90;
+  --color-primary-active: #0d8679;
+  --color-primary-focus: #14b8a6;
+
+  /* Background - Kühle neutrale Töne */
+  --color-background-base: #f8fafc;
+  --color-background-surface: #ffffff;
+  --color-background-elevated: #f1f5f9;
+
+  /* Text - Slate Töne */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-subtle: #94a3b8;
+
+  /* Accent - Indigo für subtile Highlights */
+  --color-accent: #6366f1;
+  --color-accent-light: #818cf8;
+
+  /* Border & Divider */
+  --color-border: #e2e8f0;
+  --color-divider: #f1f5f9;
+
+  /* State Colors */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  /* ========================================
+     TYPOGRAPHY TOKENS (Fluid)
+     ======================================== */
+
+  /* Font Family */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-family-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-family-mono: 'Courier New', Courier, monospace;
+
+  /* Font Sizes - Fluid scaling with clamp() */
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 0.82rem + 0.275vw, 1rem);
+  --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --font-size-md: clamp(1.125rem, 1.05rem + 0.375vw, 1.3rem);
+  --font-size-lg: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+
+  /* Headings - Fluid scaling - Light & Restrained */
+  --font-size-h1: clamp(2rem, 1.75rem + 1.5vw, 3rem);
+  --font-size-h2: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
+  --font-size-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  --font-size-h4: clamp(1rem, 0.95rem + 0.3vw, 1.25rem);
+
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-heading: 500;
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.8;
+
+  /* ========================================
+     SPACING TOKENS (Fluid)
+     ======================================== */
+
+  /* Spacing Scale - Fluid with clamp() */
+  --spacing-xs: clamp(0.5rem, 1vw + 0.25rem, 0.75rem);
+  --spacing-sm: clamp(0.75rem, 1.5vw + 0.375rem, 1rem);
+  --spacing-md: clamp(1rem, 2vw + 0.5rem, 1.5rem);
+  --spacing-lg: clamp(1.5rem, 3vw + 0.75rem, 2.5rem);
+  --spacing-xl: clamp(2rem, 4vw + 1rem, 3.5rem);
+  --spacing-2xl: clamp(3rem, 6vw + 1.5rem, 5rem);
+  --spacing-3xl: clamp(4rem, 8vw + 2rem, 7rem);
+
+  /* Section Spacing */
+  --spacing-section-vertical: clamp(3rem, 5vw + 2rem, 6rem);
+  --spacing-section-horizontal: clamp(1rem, 3vw + 0.5rem, 2rem);
+
+  /* Container */
+  --container-max-width: 1200px;
+  --container-padding: max(1rem, 5vw);
+
+  /* ========================================
+     BORDER & RADIUS TOKENS
+     ======================================== */
+
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 4px;
+
+  --border-radius-sm: 2px;
+  --border-radius-md: 4px;
+  --border-radius-lg: 8px;
+  --border-radius-xl: 12px;
+  --border-radius-full: 9999px;
+
+  /* ========================================
+     SHADOW TOKENS
+     ======================================== */
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 6px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 10px 15px rgba(15, 23, 42, 0.1);
+  --shadow-xl: 0 20px 25px rgba(15, 23, 42, 0.12);
+
+  /* ========================================
+     TRANSITION TOKENS
+     ======================================== */
+
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+
+  --transition-color: color var(--transition-base);
+  --transition-background: background-color var(--transition-base);
+  --transition-transform: transform var(--transition-base);
+  --transition-all: all var(--transition-base);
+
+  /* ========================================
+     Z-INDEX SCALE
+     ======================================== */
+
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+
+  /* ========================================
+     LAYOUT TOKENS - Modern & Tech-Forward
+     ======================================== */
+
+  /* Grid Layout - 12-Column System */
+  --layout-grid-columns: repeat(12, 1fr);
+  --layout-grid-gap: var(--spacing-md);
+
+  /* Geometric Accents */
+  --layout-line-width: 1px;
+  --layout-dot-size: 6px;
+  --layout-grid-opacity: 0.03;
+  --layout-grid-color: var(--color-text-primary);
+
+  /* Geometric Line Pattern */
+  --layout-geometric-line: var(--layout-line-width) solid var(--color-border);
+  --layout-geometric-dot-shadow: 0 0 0 var(--layout-line-width) var(--color-border);
+
+  /* Precise Spacing */
+  --layout-card-padding: var(--spacing-md);
+  --layout-card-gap: var(--spacing-md);
+  --layout-card-border-radius: var(--border-radius-md);
+
+  /* Tech Aesthetic */
+  --layout-mono-accent: var(--font-family-mono);
+  --layout-grid-background: radial-gradient(circle, var(--color-text-primary) var(--layout-dot-size), transparent var(--layout-dot-size));
+
+}
