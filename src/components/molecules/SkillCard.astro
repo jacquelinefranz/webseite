@@ -1,0 +1,81 @@
+---
+import { Icon } from 'astro-icon/components';
+import Text from '../atoms/Text.astro';
+
+interface Props {
+  /** Der Name des Icons aus dem Mingcute Set */
+  icon: string;
+  /** Das Label des Skills */
+  label: string;
+  /** CSS-Klasse für das Element */
+  class?: string;
+}
+
+const {
+  icon,
+  label,
+  class: className
+} = Astro.props;
+---
+
+<article class:list={['skill-card', className]}>
+  <div class="skill-card__icon-wrapper">
+    <Icon name={icon} class="skill-card__icon" />
+  </div>
+  <Text size="sm" color="secondary" class="skill-card__label">{label}</Text>
+</article>
+
+<style>
+  .skill-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background-color: var(--color-background-surface);
+    border: var(--border-width-thin) solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    transition: var(--transition-all);
+    cursor: default;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .skill-card:hover .skill-card__icon-wrapper {
+    background-color: var(--color-primary);
+    transform: scale(1.1);
+  }
+
+  .skill-card:hover .skill-card__icon {
+    color: var(--color-background-surface);
+  }
+
+  /* Icon Wrapper */
+  .skill-card__icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(3rem, 5vw + 2rem, 4rem);
+    height: clamp(3rem, 5vw + 2rem, 4rem);
+    background-color: var(--color-background-elevated);
+    border-radius: var(--border-radius-lg);
+    transition: var(--transition-all);
+  }
+
+  .skill-card__icon {
+    width: 60%;
+    height: 60%;
+    color: var(--color-primary);
+    transition: var(--transition-color);
+  }
+
+  .skill-card__label {
+    text-align: center;
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-tight);
+  }
+</style>

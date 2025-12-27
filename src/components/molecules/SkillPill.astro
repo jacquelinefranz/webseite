@@ -1,0 +1,70 @@
+---
+/**
+ * SkillPill Component
+ *
+ * Pill-förmige Skill-Tags für Modern & Tech-Forward Design.
+ * Clean und minimal mit optionalem Icon.
+ */
+
+export interface Props {
+  /** Beschriftung des Skills */
+  label: string;
+  /** Optionales Icon (z.B. Emoji oder SVG-Code) */
+  icon?: string;
+  /** Optionale CSS-Klasse */
+  class?: string;
+}
+
+const {
+  label,
+  icon,
+  class: className = ''
+} = Astro.props;
+---
+
+<span class:list={['skill-pill', className]}>
+  {icon && <span class="icon" aria-hidden="true">{icon}</span>}
+  <span class="label">{label}</span>
+</span>
+
+<style>
+  .skill-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--color-background-elevated);
+    border: var(--border-width-thin) solid var(--color-border);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    transition: var(--transition-all);
+    white-space: nowrap;
+  }
+
+  .skill-pill:hover {
+    background-color: var(--color-background-surface);
+    border-color: var(--color-primary);
+    color: var(--color-text-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    line-height: 1;
+    transition: transform var(--transition-base);
+  }
+
+  .skill-pill:hover .icon {
+    transform: rotate(15deg);
+  }
+
+  .label {
+    font-size: var(--font-size-sm);
+    line-height: 1;
+  }
+</style>

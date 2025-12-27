@@ -1,0 +1,142 @@
+---
+interface Props {
+  /** Jahr der Journey-Station */
+  year: string;
+  /** Titel der Journey-Station */
+  title: string;
+  /** Beschreibung der Journey-Station */
+  description: string;
+  /** Kategorie für Farbkodierung */
+  category?: 'education' | 'work' | 'freelance' | 'parenting';
+  /** Grid-Größe (1x1 oder 2x2) */
+  gridSize?: '1x1' | '2x2';
+  /** CSS-Klasse für das Wrapper-Element */
+  class?: string;
+}
+
+const {
+  year,
+  title,
+  description,
+  category = 'work',
+  gridSize = '1x1',
+  class: className
+} = Astro.props;
+
+// Kategorie-basierte Farbkodierung
+const categoryColors: Record<string, string> = {
+  education: 'var(--color-accent)',
+  work: 'var(--color-primary)',
+  freelance: 'var(--color-info)',
+  parenting: 'var(--color-success)'
+};
+
+const accentColor = categoryColors[category] || categoryColors.work;
+---
+
+<article
+  class:list={['journey-grid-item', `journey-grid-item--${gridSize}`, className]}
+  style={`--item-accent-color: ${accentColor};`}
+>
+  <div class="journey-grid-item__color-block"></div>
+  <div class="journey-grid-item__content">
+    <span class="journey-grid-item__year">{year}</span>
+    <h3 class="journey-grid-item__title">{title}</h3>
+    <p class="journey-grid-item__description">{description}</p>
+  </div>
+</article>
+
+<style>
+  .journey-grid-item {
+    position: relative;
+    background-color: var(--color-background-surface);
+    border: var(--border-width-thin) solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    transition: var(--transition-all);
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+  }
+
+  /* Grid-Größen */
+  .journey-grid-item--1x1 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .journey-grid-item--2x2 {
+    grid-column: span 2;
+    grid-row: span 2;
+    min-height: 400px;
+  }
+
+  /* Farbblock - Initial klein */
+  .journey-grid-item__color-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 60px;
+    background: var(--item-accent-color);
+    transition: var(--transition-all);
+    z-index: 0;
+  }
+
+  /* Hover: Farbblock-Expansion */
+  .journey-grid-item:hover .journey-grid-item__color-block {
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+  }
+
+  .journey-grid-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--item-accent-color);
+  }
+
+  /* Content */
+  .journey-grid-item__content {
+    position: relative;
+    z-index: 1;
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    flex: 1;
+  }
+
+  .journey-grid-item__year {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--item-accent-color);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-accent);
+  }
+
+  .journey-grid-item__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-heading);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-tight);
+    margin: 0;
+  }
+
+  .journey-grid-item__description {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-normal);
+    margin: 0;
+    flex: 1;
+  }
+
+  /* 2x2 Items haben größere Typografie */
+  .journey-grid-item--2x2 .journey-grid-item__title {
+    font-size: var(--font-size-h3);
+  }
+
+  .journey-grid-item--2x2 .journey-grid-item__description {
+    font-size: var(--font-size-base);
+  }
+</style>

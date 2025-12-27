@@ -1,0 +1,111 @@
+---
+import Text from '../atoms/Text.astro';
+import Heading from '../atoms/Heading.astro';
+
+interface Props {
+  /** Das Jahr der Timeline-Station */
+  year: string;
+  /** Der Titel der Station */
+  title: string;
+  /** Die Beschreibung */
+  description: string;
+  /** CSS-Klasse für das Element */
+  class?: string;
+  /** Ob dies die aktuelle/letzte Station ist */
+  isCurrent?: boolean;
+}
+
+const {
+  year,
+  title,
+  description,
+  class: className,
+  isCurrent = false
+} = Astro.props;
+---
+
+<article class:list={['timeline-item', isCurrent && 'timeline-item--current', className]}>
+  <div class="timeline-item__marker" aria-hidden="true"></div>
+  <div class="timeline-item__content">
+    <Text size="sm" color="subtle" class="timeline-item__year">{year}</Text>
+    <Heading level={3} class="timeline-item__title">{title}</Heading>
+    <Text size="base" color="secondary" class="timeline-item__description">{description}</Text>
+  </div>
+</article>
+
+<style>
+  .timeline-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--spacing-md);
+    padding-bottom: var(--spacing-lg);
+  }
+
+  /* Timeline Line */
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--spacing-sm) - 1px);
+    top: calc(var(--spacing-md) + var(--spacing-sm));
+    bottom: 0;
+    width: var(--border-width-medium);
+    background-color: var(--color-border);
+    transition: var(--transition-background);
+  }
+
+  .timeline-item:last-child::before {
+    display: none;
+  }
+
+  /* Marker (Dot) */
+  .timeline-item__marker {
+    position: relative;
+    width: var(--spacing-md);
+    height: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    border-radius: var(--border-radius-full);
+    background-color: var(--color-background-surface);
+    border: var(--border-width-medium) solid var(--color-border);
+    transition: var(--transition-all);
+    flex-shrink: 0;
+  }
+
+  /* Current Item Styling */
+  .timeline-item--current .timeline-item__marker {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 20%, transparent);
+  }
+
+  /* Content */
+  .timeline-item__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .timeline-item__year {
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .timeline-item__title {
+    margin: 0;
+  }
+
+  .timeline-item__description {
+    line-height: var(--line-height-relaxed);
+  }
+
+  /* Hover Effect */
+  .timeline-item:hover .timeline-item__marker {
+    transform: scale(1.2);
+    border-color: var(--color-primary);
+  }
+
+  .timeline-item--current:hover .timeline-item__marker {
+    transform: scale(1.15);
+  }
+</style>

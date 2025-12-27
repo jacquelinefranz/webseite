@@ -1,0 +1,60 @@
+---
+interface Props {
+  /** Die Variante des Badges */
+  variant?: 'default' | 'accent' | 'success' | 'warning';
+  /** CSS-Klasse für das Element */
+  class?: string;
+}
+
+const {
+  variant = 'default',
+  class: className
+} = Astro.props;
+---
+
+<span class:list={['badge', `badge--${variant}`, className]}>
+  <slot />
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-full);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-tight);
+    white-space: nowrap;
+    transition: var(--transition-all);
+  }
+
+  /* Default Variant */
+  .badge--default {
+    background-color: var(--color-background-elevated);
+    color: var(--color-text-secondary);
+    border: var(--border-width-thin) solid var(--color-border);
+  }
+
+  /* Accent Variant */
+  .badge--accent {
+    background-color: var(--color-accent-light);
+    color: var(--color-text-primary);
+    border: var(--border-width-thin) solid var(--color-accent);
+  }
+
+  /* Success Variant */
+  .badge--success {
+    background-color: color-mix(in srgb, var(--color-success) 20%, transparent);
+    color: var(--color-success);
+    border: var(--border-width-thin) solid var(--color-success);
+  }
+
+  /* Warning Variant */
+  .badge--warning {
+    background-color: color-mix(in srgb, var(--color-warning) 20%, transparent);
+    color: var(--color-text-primary);
+    border: var(--border-width-thin) solid var(--color-warning);
+  }
+</style>
