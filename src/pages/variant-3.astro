@@ -1,0 +1,54 @@
+---
+import LandingLayout from '../components/templates/LandingLayout.astro';
+import HeroMinimal from '../components/organisms/heroes/HeroMinimal.astro';
+import JourneyCards from '../components/organisms/journeys/JourneyCards.astro';
+import SkillsMatrix from '../components/organisms/skills/SkillsMatrix.astro';
+import { heroData } from '../data/heroData';
+import { journeyData } from '../data/journeyData';
+import { skillsData } from '../data/skillsData';
+import '../styles/tokens/variant-3.css';
+
+// Transform journeyData to match JourneyCards interface
+const cardStations = journeyData.map((station) => ({
+  year: station.period,
+  title: station.title,
+  description: station.description,
+  category: station.category
+}));
+---
+
+<LandingLayout
+  titel="Variante 3: Modern & Tech-Forward – Jacqueline Franz"
+  beschreibung="Variante 3 meines Portfolios: Modern und Tech-Forward mit Fokus auf Innovation und technologische Kompetenz."
+  typ="website"
+>
+  <HeroMinimal
+    headline={heroData.minimal.headline}
+    tagline={heroData.minimal.tagline}
+    primaryCTA={heroData.minimal.primaryCTA.text}
+    primaryCTALink={heroData.minimal.primaryCTA.url}
+    secondaryCTA={heroData.minimal.secondaryCTA.text}
+    secondaryCTALink={heroData.minimal.secondaryCTA.url}
+  />
+
+  <JourneyCards
+    stations={cardStations}
+  />
+
+  <SkillsMatrix
+    title="Skills & Expertise"
+    skills={skillsData}
+  />
+</LandingLayout>
+
+<style>
+  /* Variant-3 spezifische Überschreibungen oder Ergänzungen */
+  :global(body) {
+    background-color: var(--color-background-base);
+  }
+
+  /* Zusätzliche Spacing zwischen Sections */
+  :global(section) {
+    margin: var(--spacing-section-vertical) 0;
+  }
+</style>

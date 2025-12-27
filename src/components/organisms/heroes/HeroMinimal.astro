@@ -1,0 +1,285 @@
+---
+/**
+ * HeroMinimal Component
+ *
+ * Split-Screen Hero für Modern & Tech-Forward Design.
+ * Links: Text-Content, Rechts: Geometrische Grafik
+ */
+
+import GridBackground from '../../atoms/GridBackground.astro';
+import GeometricAccent from '../../atoms/GeometricAccent.astro';
+
+export interface Props {
+  /** Haupt-Überschrift */
+  headline: string;
+  /** Tagline/Untertitel */
+  tagline: string;
+  /** Primärer Call-to-Action Text */
+  primaryCTA?: string;
+  /** Primärer Call-to-Action Link */
+  primaryCTALink?: string;
+  /** Sekundärer Call-to-Action Text */
+  secondaryCTA?: string;
+  /** Sekundärer Call-to-Action Link */
+  secondaryCTALink?: string;
+  /** Optionale CSS-Klasse */
+  class?: string;
+}
+
+const {
+  headline,
+  tagline,
+  primaryCTA,
+  primaryCTALink = '#',
+  secondaryCTA,
+  secondaryCTALink = '#',
+  class: className = ''
+} = Astro.props;
+---
+
+<section class:list={['hero-minimal', className]}>
+  <GridBackground opacity={0.03} />
+
+  <div class="hero-container">
+    <!-- Text Content (Links) -->
+    <div class="hero-content">
+      <GeometricAccent type="line" position="top-left" />
+
+      <h1 class="headline">{headline}</h1>
+      <p class="tagline">{tagline}</p>
+
+      {(primaryCTA || secondaryCTA) && (
+        <div class="cta-group">
+          {primaryCTA && (
+            <a href={primaryCTALink} class="cta-primary">
+              {primaryCTA}
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          )}
+          {secondaryCTA && (
+            <a href={secondaryCTALink} class="cta-secondary">
+              {secondaryCTA}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+
+    <!-- Geometric Graphic (Rechts) -->
+    <div class="hero-graphic" aria-hidden="true">
+      <div class="geometric-container">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <GeometricAccent type="dot" position="top-right" />
+        <GeometricAccent type="grid" position="bottom-right" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-minimal {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-section-vertical) var(--container-padding);
+    background-color: var(--color-background-base);
+    overflow: hidden;
+  }
+
+  .hero-container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+  }
+
+  /* Text Content */
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+  }
+
+  .headline {
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-heading);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-tight);
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  .tagline {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-normal);
+    margin: 0 0 var(--spacing-xl) 0;
+  }
+
+  /* CTAs */
+  .cta-group {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    transition: var(--transition-all);
+  }
+
+  .cta-primary {
+    background-color: var(--color-primary);
+    color: white;
+    border: var(--border-width-medium) solid var(--color-primary);
+  }
+
+  .cta-primary:hover {
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    box-shadow: var(--shadow-md);
+  }
+
+  .cta-primary .arrow {
+    display: inline-block;
+    transition: transform var(--transition-base);
+  }
+
+  .cta-primary:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  .cta-secondary {
+    background-color: transparent;
+    color: var(--color-text-primary);
+    border: var(--border-width-medium) solid var(--color-border);
+  }
+
+  .cta-secondary:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background-color: var(--color-background-surface);
+  }
+
+  /* Geometric Graphic */
+  .hero-graphic {
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .geometric-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .shape {
+    position: absolute;
+    border: var(--border-width-medium) solid var(--color-primary);
+    opacity: 0.2;
+  }
+
+  .shape-1 {
+    width: 300px;
+    height: 300px;
+    border-radius: var(--border-radius-xl);
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .shape-2 {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    top: 20%;
+    right: 10%;
+    animation: float 6s ease-in-out infinite reverse;
+  }
+
+  .shape-3 {
+    width: 150px;
+    height: 150px;
+    border-radius: var(--border-radius-md);
+    bottom: 20%;
+    left: 10%;
+    animation: float 10s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-2xl);
+    }
+
+    .hero-graphic {
+      height: 400px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-minimal {
+      min-height: 60vh;
+    }
+
+    .hero-content {
+      max-width: 100%;
+    }
+
+    .hero-graphic {
+      height: 300px;
+    }
+
+    .shape-1 {
+      width: 200px;
+      height: 200px;
+    }
+
+    .shape-2 {
+      width: 150px;
+      height: 150px;
+    }
+
+    .shape-3 {
+      width: 100px;
+      height: 100px;
+    }
+
+    .cta-group {
+      flex-direction: column;
+    }
+
+    .cta-primary,
+    .cta-secondary {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

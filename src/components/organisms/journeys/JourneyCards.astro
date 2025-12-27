@@ -1,0 +1,85 @@
+---
+/**
+ * JourneyCards Component
+ *
+ * Horizontale Karten-Reihe für Journey-Stationen im Modern & Tech-Forward Design.
+ * Nutzt das 12-Spalten Grid-System für präzises Layout.
+ */
+
+import JourneyCardMinimal from '../../molecules/JourneyCardMinimal.astro';
+
+export interface JourneyStation {
+  year: string;
+  title: string;
+  description: string;
+  category?: string;
+}
+
+export interface Props {
+  /** Array von Journey-Stationen */
+  stations: JourneyStation[];
+  /** Optionale CSS-Klasse */
+  class?: string;
+}
+
+const {
+  stations,
+  class: className = ''
+} = Astro.props;
+---
+
+<section class:list={['journey-cards', className]}>
+  <div class="journey-container">
+    <div class="cards-grid">
+      {stations.map((station) => (
+        <div class="card-wrapper">
+          <JourneyCardMinimal
+            year={station.year}
+            title={station.title}
+            description={station.description}
+            category={station.category}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .journey-cards {
+    padding: var(--spacing-section-vertical) var(--container-padding);
+    background-color: var(--color-background-base);
+  }
+
+  .journey-container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: var(--layout-grid-columns);
+    gap: var(--layout-grid-gap);
+  }
+
+  .card-wrapper {
+    grid-column: span 4;
+  }
+
+  /* Responsive Grid */
+  @media (max-width: 1024px) {
+    .card-wrapper {
+      grid-column: span 6;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .card-wrapper {
+      grid-column: span 1;
+    }
+  }
+</style>
