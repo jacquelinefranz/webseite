@@ -8,7 +8,12 @@ export default defineConfig({
   output: 'static',
   site: import.meta.env.SITE || 'https://jacquelinefranz.de',
   integrations: [
-    icon({ include: { mingcute: ['*'] } }), // Mingcute inkludieren
+    icon({
+      include: {
+        mingcute: ['*']
+      },
+      iconDir: 'src/icons', // Verhindert Fehler bei fehlendem local icon set
+    }), // Mingcute inkludieren
     // Astrobook wird nur geladen, wenn die Umgebungsvariable ENABLE_ASTROBOOK gesetzt ist.
     // Dies erlaubt es, Astrobook bei Bedarf separat zu starten, ohne die Hauptwebseite zu beeinflussen.
     process.env.ENABLE_ASTROBOOK ? astrobook() : null,

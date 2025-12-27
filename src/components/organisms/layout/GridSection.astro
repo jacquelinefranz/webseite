@@ -1,0 +1,77 @@
+---
+/**
+ * Flexibles Grid-Layout Container
+ *
+ * Unterstützt verschiedene Spalten-Konfigurationen
+ * Responsive mit auto-fit für flexible Layouts
+ * Nutzt Design Tokens für Abstände und Farben
+ */
+
+interface Props {
+  /** Spalten-Konfiguration: "auto" | 2 | 3 | 4 | 12 */
+  columns?: 'auto' | 2 | 3 | 4 | 12;
+  /** Abstand zwischen Grid-Items */
+  gap?: 'sm' | 'md' | 'lg' | 'xl';
+  /** Minimale Item-Breite für auto-fit */
+  minWidth?: string;
+  /** CSS-Klasse für das Element */
+  class?: string;
+}
+
+const {
+  columns = 'auto',
+  gap = 'lg',
+  minWidth = 'clamp(280px, 100%, 350px)',
+  class: className
+} = Astro.props;
+
+const columnsMap = {
+  'auto': `repeat(auto-fit, minmax(${minWidth}, 1fr))`,
+  2: 'repeat(2, 1fr)',
+  3: 'repeat(3, 1fr)',
+  4: 'repeat(4, 1fr)',
+  12: 'repeat(12, 1fr)'
+};
+
+const gapMap = {
+  sm: '--spacing-sm',
+  md: '--spacing-md',
+  lg: '--spacing-lg',
+  xl: '--spacing-xl'
+};
+---
+
+<div
+  class:list={['grid-section', className]}
+  style={`
+    --grid-columns: ${columnsMap[columns]};
+    --grid-gap: var(${gapMap[gap]});
+  `}
+>
+  <slot />
+</div>
+
+<style>
+  .grid-section {
+    display: grid;
+    grid-template-columns: var(--grid-columns);
+    gap: var(--grid-gap);
+    width: 100%;
+  }
+
+  /* Responsive: Tablet */
+  @media (max-width: 1024px) {
+    .grid-section {
+      --grid-columns: var(--layout-grid-columns, repeat(auto-fit, minmax(280px, 1fr)));
+      --grid-gap: var(--spacing-md);
+    }
+  }
+
+  /* Responsive: Mobile */
+  @media (max-width: 768px) {
+    .grid-section {
+      --grid-columns: 1fr;
+      --grid-gap: var(--spacing-sm);
+    }
+  }
+</style>
