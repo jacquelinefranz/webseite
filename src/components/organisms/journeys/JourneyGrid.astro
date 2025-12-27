@@ -1,0 +1,116 @@
+---
+import JourneyGridItem from '../../molecules/JourneyGridItem.astro';
+
+interface JourneyStation {
+  year: string;
+  title: string;
+  description: string;
+  category?: 'education' | 'work' | 'freelance' | 'parenting';
+  gridSize?: '1x1' | '2x2';
+}
+
+interface Props {
+  /** Array von Journey-Stationen */
+  stations: JourneyStation[];
+  /** Überschrift der Sektion */
+  headline?: string;
+  /** CSS-Klasse für das Wrapper-Element */
+  class?: string;
+}
+
+const {
+  stations,
+  headline = 'Meine Journey',
+  class: className
+} = Astro.props;
+---
+
+<section class:list={['journey-grid', className]}>
+  <div class="journey-grid__container">
+    {headline && (
+      <h2 class="journey-grid__headline">{headline}</h2>
+    )}
+
+    <div class="journey-grid__bento">
+      {stations.map((station) => (
+        <JourneyGridItem
+          year={station.year}
+          title={station.title}
+          description={station.description}
+          category={station.category}
+          gridSize={station.gridSize}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .journey-grid {
+    padding: var(--spacing-section-vertical) 0;
+    background-color: var(--color-background-base);
+  }
+
+  .journey-grid__container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+  }
+
+  .journey-grid__headline {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-heading);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-heading);
+    margin: 0 0 var(--spacing-2xl) 0;
+  }
+
+  /* Bento-Box Layout (asymmetrisches Grid) */
+  .journey-grid__bento {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--layout-grid-gap);
+    align-items: start;
+  }
+
+  /* Tablet und Desktop: Explizites asymmetrisches Grid */
+  @media (min-width: 768px) {
+    .journey-grid__bento {
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(280px, auto);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .journey-grid__bento {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* Animation beim Scrollen (optional - kann mit Intersection Observer aktiviert werden) */
+  @media (prefers-reduced-motion: no-preference) {
+    .journey-grid__bento > * {
+      animation: fadeInUp 0.6s ease-out both;
+    }
+
+    /* Staggered Animation */
+    .journey-grid__bento > *:nth-child(1) { animation-delay: 0.1s; }
+    .journey-grid__bento > *:nth-child(2) { animation-delay: 0.2s; }
+    .journey-grid__bento > *:nth-child(3) { animation-delay: 0.3s; }
+    .journey-grid__bento > *:nth-child(4) { animation-delay: 0.4s; }
+    .journey-grid__bento > *:nth-child(5) { animation-delay: 0.5s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+</style>
