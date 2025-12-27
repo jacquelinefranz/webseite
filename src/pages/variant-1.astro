@@ -1,0 +1,54 @@
+---
+import LandingLayout from '../components/templates/LandingLayout.astro';
+import HeroWarm from '../components/organisms/heroes/HeroWarm.astro';
+import JourneyFlowTimeline from '../components/organisms/journeys/JourneyFlowTimeline.astro';
+import SkillsGrid from '../components/organisms/SkillsGrid.astro';
+
+import '../styles/tokens/variant-1.css';
+
+import { heroData } from '../data/heroData';
+import { journeyData } from '../data/journeyData';
+import { skillsData } from '../data/skillsData';
+
+const playfulHero = heroData.playful;
+---
+
+<LandingLayout
+  titel="Variante 1: Warm & Hands-on - Jacqueline Franz"
+  beschreibung="Entdecke die Design-Variante 'Warm & Hands-on' – eine authentische und handwerklich geprägte Darstellung meiner Journey vom Product Owner mit Background in Mechanik."
+  typ="website"
+>
+  <HeroWarm
+    headline={playfulHero.headline}
+    tagline={playfulHero.tagline}
+    primaryCTA={playfulHero.primaryCTA}
+    secondaryCTA={playfulHero.secondaryCTA}
+  />
+
+  <JourneyFlowTimeline
+    stations={journeyData}
+  />
+
+  <SkillsGrid
+    title="Skills & Technologien"
+    description="Werkzeuge und Technologien, mit denen ich arbeite."
+    skills={skillsData}
+  />
+</LandingLayout>
+
+<style>
+  /* Variant-1 spezifische Styles */
+  :global(body) {
+    background-color: var(--color-background-base);
+  }
+
+  /* Spacing zwischen Sections */
+  :global(section) {
+    margin: var(--spacing-section-vertical) 0;
+  }
+
+  /* Sicherstelle, dass die erste Section keinen oberen Margin hat */
+  :global(section:first-of-type) {
+    margin-top: 0;
+  }
+</style>
