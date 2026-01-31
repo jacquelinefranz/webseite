@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(modern-frontend-architecture)",
+      "Bash(cat:*)",
+      "Bash(bun run build:*)",
+      "Bash(test:*)",
+      "Bash(astro check:*)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(bun run check:*)",
+      "Bash(tree:*)",
+      "Bash(wc:*)"
+    ]
+  }
+}

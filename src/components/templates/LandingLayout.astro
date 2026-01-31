@@ -2,9 +2,12 @@
 import { ClientRouter } from 'astro:transitions';
 import '../../styles/tokens.css';
 import '../../styles/global.css';
-import SEO from '../atoms/SEO.astro'; // Import SEO component
+import SEO from '../atoms/SEO.astro';
 import HauptNavigation from '../organisms/HauptNavigation.astro';
 import Footer from '../organisms/Footer.astro';
+import AgentationWrapper from '../dev/AgentationWrapper';
+
+const isDev = import.meta.env.DEV;
 
 /**
  * Definiert die Eigenschaften für das LandingLayout.
@@ -48,6 +51,7 @@ const { titel, beschreibung, bild, typ } = Astro.props;
 			<slot />
 		</main>
 		<Footer />
+		{isDev && <AgentationWrapper client:only="react" />}
 	</body>
 </html>
 
