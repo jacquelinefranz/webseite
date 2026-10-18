@@ -98,3 +98,12 @@ li {
 	white-space: nowrap;
 	border-width: 0;
 }
+
+/* Zentrierter Inhaltscontainer basierend auf BasisLayout */
+.page-width-centered {
+	max-width: var(--seitenbreite-max);
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 var(--padding-main-horizontal);
+	width: 100%;
+}
