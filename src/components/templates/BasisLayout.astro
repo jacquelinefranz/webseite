@@ -42,10 +42,7 @@ const { titel, beschreibung, bild, typ } = Astro.props;
 		<ClientRouter />
 	</head>
 	<body>
-		<HauptNavigation>
-			<a href="/">Home</a>
-			<a href="/blog">Blog</a>
-		</HauptNavigation>
+		<HauptNavigation />
 		<main>
 			<slot />
 		</main>
@@ -62,7 +59,7 @@ const { titel, beschreibung, bild, typ } = Astro.props;
 		padding: 0 var(--padding-main-horizontal);
 		width: 100%;
 	}
-	
+
 	/* Entfernt den oberen Abstand für das erste direkte Kind im Main-Bereich. */
 	main > :global(*:first-child) {
 		margin-top: 0;
