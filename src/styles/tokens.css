@@ -22,12 +22,12 @@
 
   /* Abstände */
   --abstand-xxs: 0.125rem;
-  --abstand-xs: 0.25rem;
-  --abstand-s: 0.5rem;
-  --abstand-m: 1rem;
-  --abstand-l: 1.5rem;
-  --abstand-xl: 2rem;
-  --abstand-xxl: 3rem;
+  --abstand-xs: clamp(0.2rem, 0.15rem + 0.25vw, 0.3rem);
+  --abstand-s: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+  --abstand-m: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  --abstand-l: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  --abstand-xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  --abstand-xxl: clamp(3rem, 2rem + 5vw, 5rem);
   --abstand-element-gap: var(--abstand-xl); /* 2rem */
   --abstand-padding-vertikal: var(--abstand-l); /* 1.5rem */
   --abstand-padding-horizontal: var(--abstand-m); /* 1rem */
@@ -48,7 +48,7 @@
   --schriftgroesse-h2-desktop: 2.5rem;
   
   /* Layout Größen */
-  --card-min-width: 300px;
+  --card-min-width: clamp(260px, 20vw, 350px);
   
   /* Fluide Typografie (Bevorzugt nutzen) */
   --schriftgroesse-h1: clamp(2.5rem, 2.14rem + 1.5vw, 3rem);
@@ -57,7 +57,7 @@
   /* Abstände - Ergänzungen */
   --abstand-ueberschrift-oben: 1.5em;
   --abstand-ueberschrift-unten: 0.5em;
-  --abstand-absatz-unten: 1em;
+  --abstand-absatz-unten: clamp(1em, 0.8em + 0.5vw, 1.5em);
   --abstand-main-vertikal-mobil: 2rem;
   --abstand-main-vertikal-desktop: 3rem;
   --abstand-sektion-unten: 3rem;
@@ -66,9 +66,9 @@
   --abstand-sektion-vertikal: clamp(3rem, 2vw + 2rem, 5rem);
   --abstand-main-vertikal: clamp(3rem, 1vw + 2rem, 5rem);
 
-  --abstand-listenelement-unten: 0.5rem;
+  --abstand-listenelement-unten: clamp(0.5rem, 0.4rem + 0.25vw, 0.75rem);
   --seitenbreite-max: 800px;
-  --padding-main-horizontal: 1rem;
+  --padding-main-horizontal: clamp(1rem, 0.8rem + 1vw, 2rem);
 
   /* Icon-Größen */
   --icon-groesse-standard: clamp(1.5rem, 1vw + 1rem, 2rem);
