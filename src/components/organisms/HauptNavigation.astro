@@ -1,11 +1,18 @@
 ---
 import ThemeSchalter from '../molecules/ThemeSchalter.astro';
+import { Icon } from 'astro-icon/components';
 ---
 
 <nav id="main-nav">
     <div class="nav-container">
         <div class="nav-links">
             <a href="/">Home</a>
+        </div>
+        <div class="nav-links-right">
+            <a href="https://www.linkedin.com/in/jacqueline-franz/#:~:text=Erfahrung" target="_blank" rel="noopener noreferrer">
+                Lebenslauf
+                <Icon name="mingcute:arrow-right-up-line" class="external-icon" width="12" height="12" />
+            </a>
         </div>
     </div>
 </nav>
@@ -87,9 +94,9 @@ import ThemeSchalter from '../molecules/ThemeSchalter.astro';
         padding: var(--abstand-m) var(--abstand-padding-horizontal);
     }
 
-    .nav-links {
+    .nav-links-right {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         gap: var(--abstand-m);
     }
 
@@ -107,6 +114,18 @@ import ThemeSchalter from '../molecules/ThemeSchalter.astro';
         color: var(--textfarbe);
         font-weight: var(--schriftgewicht-semi-bold);
         transition: var(--uebergang-standard);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .external-icon {
+        opacity: 0.7;
+        transition: var(--uebergang-standard);
+    }
+
+    nav :global(a):hover .external-icon {
+        opacity: 1;
     }
 
     nav :global(a):hover {
