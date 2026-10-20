@@ -10,7 +10,6 @@ export const Standard = {
     slots: {
       default: `
         <a href="/">Startseite</a>
-        <a href="/blog">Blog</a>
         <a href="/kontakt">Kontakt</a>
       `,
     },

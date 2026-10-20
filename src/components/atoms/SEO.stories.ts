@@ -12,10 +12,10 @@ export default {
   },
 };
 
-export const Default = {
+export const Home = {
   args: {
     titel: "Startseite",
-    beschreibung: "Willkommen auf meiner persönlichen Webseite über Webentwicklung und Blogbeiträge.",
+    beschreibung: "Willkommen auf meiner persönlichen Webseite über Webentwicklung.",
     url: "https://www.jacquelinefranz.de/",
   },
 };
