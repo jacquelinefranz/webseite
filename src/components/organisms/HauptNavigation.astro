@@ -1,12 +1,14 @@
 ---
 import ThemeSchalter from '../molecules/ThemeSchalter.astro';
 import { Icon } from 'astro-icon/components';
+
+const isHome = Astro.url.pathname === '/';
 ---
 
 <nav id="main-nav">
     <div class="nav-container">
         <div class="nav-links">
-            <a href="/">Home</a>
+            {!isHome && <a href="/">Home</a>}
         </div>
         <div class="nav-links-right">
             <a href="https://www.linkedin.com/in/jacqueline-franz/#:~:text=Erfahrung" target="_blank" rel="noopener noreferrer">
